@@ -1,7 +1,7 @@
-# 예람드리 웹사이트
+# Yeramdri Web Site
     Frontend: Vue.js + Webpack
     Backend: Node.js + Express
     DB: MySQL, MongoDB
     OS: Ubuntu 16.04.04 LTS
-# Clone
-
+# Start
+> <https://github.com/livelikeabel/yeramdri-web-project/wiki/Start>
