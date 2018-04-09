@@ -4,4 +4,4 @@
     DB: MySQL, MongoDB
     OS: Ubuntu 16.04.04 LTS
 # Start
-> <https://github.com/livelikeabel/yeramdri-web-project/wiki/Start>
+> <https://github.com/livelikeabel/yeramdri-web-project/wiki/01.-Start>
