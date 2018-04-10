@@ -9,3 +9,5 @@
 > <https://github.com/livelikeabel/yeramdri-web-project/wiki/02.-Installation>
 # Vue.js SSR
 > <https://github.com/livelikeabel/yeramdri-web-project/wiki/03.-Vue.js-SSR>
+# Favicon
+> <https://github.com/livelikeabel/yeramdri-web-project/wiki/04.-Favicon>
