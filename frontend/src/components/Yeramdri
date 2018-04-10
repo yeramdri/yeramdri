@@ -1,10 +1,10 @@
-<template>
+template>
   <div class="App">
   </div>
 </template>
 <script>
 export default {
-  name: 'Introduce'
+  name: 'YeramdriColumn'
 }
 </script>
 <style scoped>
