@@ -21,4 +21,6 @@ app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')))
 
 app.use('/', index);
 
-app.listen(6508, function (){})
+app.listen(6508, function (){
+  console.log('Server running port 6508')
+})
