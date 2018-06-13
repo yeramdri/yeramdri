@@ -51,6 +51,7 @@ export default {
 }
 </script>
 <style scoped>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 .logo {
   width:40px;
   height: 40px;

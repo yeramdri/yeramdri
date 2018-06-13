@@ -12,6 +12,8 @@ export default {
 }
 </script>
 <style scoped>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 @media (min-width: 992px) {
   .introduce-content {
     background: linear-gradient(0deg,rgba(0,0,0,0.4), rgba(0,0, 0,0.4)), url("/assets/mainIntroduce.jpg");
@@ -29,12 +31,16 @@ export default {
   .introduce-content > h1 {
     margin-top: 0px;
     margin-bottom: 0px;
+    font-family: 'Nanum Gothic', serif;
+    font-weight: 700;
     font-size: 4.5vw;
     color: white;
   }
   .introduce-content > h3 {
     margin-top: 0px;
     margin-bottom: 0px;
+    font-family: 'Nanum Gothic', serif;
+    font-weight: 700;
     font-size: 2.5vw;
     color: #C4BD27;
   }
@@ -60,15 +66,23 @@ export default {
     bottom: 0px;
     color: white;
     text-align: left;
+    padding-top: 32vw;
+    padding-left: 5vw;
   }
   .introduce-content > h1 {
     margin-top: 0px;
     margin-bottom: 0px;
+    font-size: 5vw;
+    font-family: 'Nanum Gothic', serif;
+    font-weight: 700;
     color: white;
   }
   .introduce-content > h3 {
     margin-top: 0px;
     margin-bottom: 0px;
+    font-size: 3vw;
+    font-family: 'Nanum Gothic', serif;
+    font-weight: 700;
     color: #C4BD27;
   }
   .introduce-box {

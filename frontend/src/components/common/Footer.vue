@@ -14,12 +14,14 @@ export default {
 }
 </script>
 <style scoped>
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 .footer_div {
   background-color: #414141;
 }
 .footer_content > h1 {
   margin-top: 0px;
   margin-bottom: 0px;
+  font-family: 'Nanum Gothic', serif;
 }
 .footer_content > hr {
   margin-top: 0px;
@@ -29,6 +31,7 @@ export default {
 .footer_content > h6 {
   margin-top: 0px;
   margin-bottom: 0px;
+  font-family: 'Nanum Gothic', serif;
   color: #ccc;
 }
 .footer_a_tag {
