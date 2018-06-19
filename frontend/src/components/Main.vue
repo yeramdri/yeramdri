@@ -8,8 +8,8 @@
 </template>
 <script>
 import MainHeader from './common/Header.vue'
-import MainIntroduce from './main/MainIntroduce.vue'
-import MainContent from './main/MainContent.vue'
+import MainIntroduce from './mainByAbel/MainIntroduce.vue'
+import MainContent from './mainByAbel/MainContent.vue'
 import MainFooter from './common/Footer.vue'
 export default {
   name: 'Main',
