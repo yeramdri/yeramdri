@@ -1,5 +1,11 @@
 <template>
-    <div class="life">삶이야</div>
+    <div class="life">
+        <div class="life-wrapper">
+            <h2>Daily Life</h2>
+            <p>일상을 살아가기</p>
+        </div>
+        <a href="#" class="demo-arrow-cls forward"> &raquo; </a>
+    </div>
 </template>
 
 <script>
@@ -10,9 +16,48 @@ export default {
 
 <style scoped>
 @media (max-width: 991px) {
+  h2 {
+    /* padding-top: 5vh; */
+    margin-top: 0px;
+    margin-bottom: 1vh;
+  }
+  p {
+    margin-top: 1vh;
+    margin-bottom: 0;
+  }
   .life {
-    background-color: rgba(153, 205, 50, 0.762);
+    font-family: 'Nanum Gothic', serif;
+    color: rgba(121, 154, 198, 0.94);
+    background: url('../../assets/life.jpg');
+    opacity: 0.7;
     height: 20vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .demo-arrow-cls {
+    float: right;
+    /* display: inline-block; */
+    position: absolute;
+    margin-left: 10rem;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border-top: 1.5px solid #0C0F18;
+    border-left: 1.5px solid rgba(121, 154, 198, 0.94);
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    color: transparent;
+  }
+  .demo-arrow-cls:hover {
+    border-top: 1.5px solid rgba(208, 206, 206, 0.276);
+    border-left: 1.5px solid #f4f4f468;
+    border-width: 2px;
+  }
+  .demo-arrow-cls.forward {
+    transform: rotate(140deg);
+    right: 1.5rem;
   }
 }
 </style>
