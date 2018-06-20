@@ -1,5 +1,11 @@
 <template>
-    <div class="words">말씀이야</div>
+    <div class="words">
+        <div clss="words-wrapper">
+            <h2>말씀</h2>
+            <p>말씀과의 조우</p>
+        </div>
+        <a href="#" class="demo-arrow-cls forward"> &raquo; </a>
+    </div>
 </template>
 
 <script>
@@ -10,9 +16,55 @@ export default {
 
 <style scoped>
 @media (max-width: 991px) {
-    .words {
-        background-color:rgba(0, 128, 128, 0.762);
-        height: 20vh;
-    }
+  h2 {
+    /* padding-top: 5vh; */
+    margin-top: 0px;
+    margin-bottom: 1vh;
+  }
+  p {
+    margin-top: 1vh;
+    margin-bottom: 0;
+  }
+  .words {
+    font-family: 'Nanum Gothic', serif;
+    background-color: #fafafa;
+    height: 20vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .demo-arrow-cls {
+    float: right;
+    /* display: inline-block; */
+    position: absolute;
+    margin-left: 10rem;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border-top: 1.5px solid #c4bd27;
+    border-left: 1.5px solid #c4bc2793;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    color: transparent;
+  }
+  .demo-arrow-cls:hover {
+    border-top: 1.5px solid #c4bc2791;
+    border-left: 1.5px solid #c4bc272a;
+    border-width: 2px;
+  }
+  /* .demo-arrow-cls:before {
+    display: block;
+    height: 200%;
+    width: 200%;
+    margin-left: -50%;
+    margin-top: -50%;
+    content: '';
+    transform: rotate(45deg);
+  } */
+  .demo-arrow-cls.forward {
+    transform: rotate(140deg);
+    right: 1.5rem;
+  }
 }
 </style>
