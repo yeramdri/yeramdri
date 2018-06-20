@@ -64,6 +64,7 @@ export default {
   .introduce-content {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
       url('../../assets/mainIntroduceMobile.jpg');
+    opacity: 0.9;
     background-size: cover;
     position: absolute;
     top: 0px;
