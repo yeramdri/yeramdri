@@ -5,7 +5,7 @@
 <script>
 export default {
   name: 'Words'
-};
+}
 </script>
 
 <style scoped>

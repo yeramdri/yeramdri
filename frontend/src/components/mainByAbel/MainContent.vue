@@ -6,9 +6,9 @@
   </div>
 </template>
 <script>
-import Words from './Words.vue';
-import Life from './Life.vue';
-import Ministry from './Ministry.vue';
+import Words from './Words.vue'
+import Life from './Life.vue'
+import Ministry from './Ministry.vue'
 export default {
   name: 'MainContent',
   components: {
@@ -16,7 +16,7 @@ export default {
     Life,
     Ministry
   }
-};
+}
 </script>
 <style scoped>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
