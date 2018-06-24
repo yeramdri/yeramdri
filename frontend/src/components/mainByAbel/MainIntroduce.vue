@@ -21,7 +21,7 @@ export default {
 @media (min-width: 992px) {
   .introduce-content {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-      url('/assets/mainIntroduce.jpg');
+      url('../../assets/mainIntroduce.jpg');
     background-size: cover;
     position: absolute;
     top: 0px;
@@ -30,24 +30,26 @@ export default {
     bottom: 0px;
     color: white;
     text-align: left;
-    padding-top: 32vw;
-    padding-left: 5vw;
+    /* padding-top: 32vw; */
+    padding-top: 20vh;
   }
   .introduce-content > h1 {
     margin-top: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 15px;
     font-family: 'Nanum Gothic', serif;
     font-weight: 700;
     font-size: 4.5vw;
     color: white;
+    text-align: center;
   }
   .introduce-content > h3 {
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: 'Nanum Gothic', serif;
     font-weight: 700;
-    font-size: 2.5vw;
+    font-size: 2vw;
     color: #c4bd27;
+     text-align: center;
   }
   .introduce-box {
     position: relative;
@@ -58,6 +60,16 @@ export default {
     content: '';
     display: block;
     padding-top: 66.7%;
+  }
+  .bible {
+    text-align: center;
+    /* margin: 0 auto; */
+    margin-top: 7vh;
+    width: 100vw;
+  }
+  .bible > p {
+    font-size: 1rem;
+    color: #f4f4f4;
   }
 }
 @media (max-width: 991px) {
