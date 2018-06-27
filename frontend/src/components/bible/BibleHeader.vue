@@ -16,28 +16,13 @@
 import logo from '../yeramdri-logo.svg'
 export default {
   name: 'BibleHeader',
+  props: ['selectedTab', 'tabs', 'onClickAll', 'onClickSubject'],
   data () {
     return {
-      logo,
-      selectedTab: '전체',
-      tabs: ['전체', '주제']
+      logo
     }
   },
-  created () {
-
-  },
-  methods: {
-    onClickAll () {
-      // todo ...
-      // all 컴포넌트 렌더해주기 url은 바뀌지 않고 ㅇㅇ (데이터 가져와야 하는것들이 너무 많아서 무거워져서 느려지면 어떡하지???)
-      this.selectedTab = this.tabs[0]
-    },
-    onClickSubject () {
-      // todo ...
-      // subject 컴포넌트 렌더해주기
-      this.selectedTab = this.tabs[1]
-    }
-  }
+  created () {}
 }
 </script>
 
@@ -63,7 +48,7 @@ export default {
     border: none;
   }
   .all:focus {
-  outline: none;
+    outline: none;
   }
   .subject {
     font-size: 1.3rem;
@@ -75,7 +60,7 @@ export default {
     border: none;
   }
   .subject:focus {
-  outline: none;
+    outline: none;
   }
   .active {
     /* color: rgb(185, 183, 31); */
