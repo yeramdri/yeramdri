@@ -21,8 +21,7 @@ export default {
     return {
       logo
     }
-  },
-  created () {}
+  }
 }
 </script>
 
