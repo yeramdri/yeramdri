@@ -1,18 +1,18 @@
 <template>
   <div class="content-div">
-    <Words></Words>
+    <Bible></Bible>
     <Life></Life>
     <Ministry></Ministry>
   </div>
 </template>
 <script>
-import Words from './Words.vue'
+import Bible from './Bible.vue'
 import Life from './Life.vue'
 import Ministry from './Ministry.vue'
 export default {
   name: 'MainContent',
   components: {
-    Words,
+    Bible,
     Life,
     Ministry
   }

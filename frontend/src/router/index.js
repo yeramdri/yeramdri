@@ -6,6 +6,7 @@ import Main from '@/components/Main.vue'
 import Retreat from '@/components/Retreat.vue'
 import Column from '@/components/YeramdriColumn.vue'
 import Media from '@/components/YeramdriMedia.vue'
+import Bible from '@/components/bible'
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ export default new Router({
       path: '/media',
       name: 'Media',
       component: Media
+    },
+    {
+      path: '/bible',
+      name: 'Bible',
+      component: Bible
     }
   ]
 })

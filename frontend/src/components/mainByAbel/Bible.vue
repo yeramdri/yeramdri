@@ -1,16 +1,22 @@
 <template>
-    <div class="words">
-        <div clss="words-wrapper">
-            <h2>말씀</h2>
-            <p>말씀과의 조우</p>
-        </div>
-        <a href="#" class="demo-arrow-cls forward"> &raquo; </a>
+  <div class="bible">
+    <div clss="bible-wrapper">
+      <h2>말씀</h2>
+      <p>말씀과의 조우</p>
     </div>
+    <a href="" class="demo-arrow-cls forward" v-on:click="goBible"> &raquo; </a>
+  </div>
 </template>
 
 <script>
+import router from '../../router'
 export default {
-  name: 'Words'
+  name: 'bible',
+  methods: {
+    goBible () {
+      router.push('/bible')
+    }
+  }
 }
 </script>
 
@@ -25,7 +31,7 @@ export default {
     margin-top: 1vh;
     margin-bottom: 0;
   }
-  .words {
+  .bible {
     font-family: 'Nanum Gothic', serif;
     background-color: #fafafa;
     height: 20vh;
