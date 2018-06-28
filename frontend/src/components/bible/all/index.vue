@@ -3,7 +3,7 @@
     <div class="all">
       <h1>Bible</h1>
       <Input/>
-      <video class="all-video" src=""></video>
+      <iframe class="all-video" src="https://www.youtube.com/embed/9xmdxhnIDT8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 </template>
@@ -24,20 +24,29 @@ export default {
   h1 {
     text-align: center;
     font-size: 4rem;
-    /* margin-top: 20vh; */
   }
   .all-container {
-    background: #27c456;
-    height: 100vh;
+    /* background: #27c456; */
+    height: 91vh;
   }
   .all {
     margin: 60px auto 0px auto;
     width: 95vw;
-    background-color: green;
-    padding-top: 10vh;
+    /* background-color: green; */
+    padding-top: 3vh;
+    padding-bottom: 3vh;
   }
   .all-video {
-    background-color: #c4bd27;
+    background-color: #f6f6f6;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
+    display: block;
+    width: 90vw;
+    height: 30vh;
+    border: none;
+    /* width: 420;
+    height: 315; */
   }
 }
 </style>

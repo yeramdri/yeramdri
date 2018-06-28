@@ -32,7 +32,7 @@ input:focus {
 }
 .add-container {
   float: right;
-  background: linear-gradient(to right, #339af0, #74c0fc);
+  background: linear-gradient(to right, #c4bc27af, #c4bc2786);
   display: block;
   width: 3rem;
   border-radius: 0 5px 5px 0;
