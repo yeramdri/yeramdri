@@ -1,9 +1,11 @@
 <template>
+  <div class="all-container">
     <div class="all">
-        <h1>Bible</h1>
-        <Input/>
-        <video class="all-video" src=""></video>
+      <h1>Bible</h1>
+      <Input/>
+      <video class="all-video" src=""></video>
     </div>
+  </div>
 </template>
 
 <script>
@@ -19,21 +21,23 @@ export default {
 <style scoped>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @media (max-width: 991px) {
-  H1 {
+  h1 {
     text-align: center;
     font-size: 4rem;
-    margin-top: 20vh;
+    /* margin-top: 20vh; */
+  }
+  .all-container {
+    background: #27c456;
+    height: 100vh;
   }
   .all {
     margin: 60px auto 0px auto;
     width: 95vw;
-  }
-  .all-input{
-    background: green;
+    background-color: green;
+    padding-top: 10vh;
   }
   .all-video {
-    background-color: #C4BD27;
-
+    background-color: #c4bd27;
   }
 }
 </style>

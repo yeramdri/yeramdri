@@ -18,14 +18,17 @@ input:focus {
   outline: none;
 }
 .input-box {
-  background: green;
+  background: white;
   height: 50px;
   line-height: 50px;
   border-radius: 5px;
+  text-align: center;
 }
 .input-box input {
   border-style: none;
-  font-size: 1.4rem;
+  font-size: 0.9rem;
+  width: 70vw;
+  height: 5vh;
 }
 .add-container {
   float: right;
@@ -33,10 +36,10 @@ input:focus {
   display: block;
   width: 3rem;
   border-radius: 0 5px 5px 0;
+  text-align: center;
 }
 .add-btn {
   color: white;
-  vertical-align: middle;
 }
 input {
   border-style: groove;
