@@ -8,20 +8,33 @@
         <button class="all" v-bind:class="{active: this.selectedTab === tabs[0]}" v-on:click="onClickAll">전체</button>
         <button class="subject" v-bind:class="{active: this.selectedTab === tabs[1]}" v-on:click="onClickSubject">주제</button>
       </div>
-        <i class="fas fa-book fa-2x bible-icon"></i>
+        <i class="fas fa-book fa-2x bible-icon" v-show="this.selectedTab === tabs[0]" v-on:click="toggleModal"></i>
     </div>
+    <Modal v-if="showModal">
+      <button slot="footer" v-on:click="toggleModal" >close</button>
+    </Modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/Modal.vue'
 import logo from '../yeramdri-logo.svg'
 export default {
   name: 'BibleHeader',
   props: ['selectedTab', 'tabs', 'onClickAll', 'onClickSubject'],
   data () {
     return {
-      logo
+      logo,
+      showModal: false
     }
+  },
+  methods: {
+    toggleModal () {
+      this.showModal = !this.showModal
+    }
+  },
+  components: {
+    Modal
   }
 }
 </script>
@@ -96,6 +109,9 @@ export default {
     display: inline-block;
     top: 13px;
     right: 13px;
+  }
+  .bibleActive {
+    display: hidden;
   }
 }
 </style>
