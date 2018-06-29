@@ -8,6 +8,7 @@
         <button class="all" v-bind:class="{active: this.selectedTab === tabs[0]}" v-on:click="onClickAll">전체</button>
         <button class="subject" v-bind:class="{active: this.selectedTab === tabs[1]}" v-on:click="onClickSubject">주제</button>
       </div>
+        <i class="fas fa-book fa-2x bible-icon"></i>
     </div>
   </div>
 </template>
@@ -89,6 +90,12 @@ export default {
     position: relative;
     height: 60px;
     width: 100%;
+  }
+  .bible-icon {
+    position: absolute;
+    display: inline-block;
+    top: 13px;
+    right: 13px;
   }
 }
 </style>

@@ -63,7 +63,7 @@ export default {
   }
   .dommy-contents {
     display: inline-block;
-    background-color: green;
+    background-color: rgb(201, 188, 8);
     width: 30vw;
     height: 18vh;
   }
