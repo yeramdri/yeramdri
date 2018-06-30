@@ -5,7 +5,7 @@
         <img v-bind:src="logo" class="logo" alt="logo" />
       </router-link>
       <button v-on:click='fade=!fade' ref='button' class="hamburger">&#9776;</button>
-      <button class="goYeramdriIntroduce" v-on:click="goYeramdriIntroduce">Bible</button>
+      <button class="goBible" v-on:click="goBible">Bible</button>
       <button class="goConsulting" v-on:click="goConsulting">Daily</button>
       <button class="goYeramdriColumn" v-on:click="goYeramdriColumn">Duty</button>
       <span class="headerSearch">
@@ -15,7 +15,7 @@
       <button class="goRetreat" v-on:click="goRetreat">수련회</button> -->
     </div>
     <div v-bind:class="[fade?'home-clickTri-active':'home-clickTri']">
-      <button v-bind:class="[fade?'home-clickBible-active':'home-clickBible']" v-on:click="goYeramdriIntroduce">Bible</button>
+      <button v-bind:class="[fade?'home-clickBible-active':'home-clickBible']" v-on:click="goBible">Bible</button>
       <button v-bind:class="[fade?'home-clickDaily-active':'home-clickDaily']" v-on:click="goConsulting">Daily</button>
       <button v-bind:class="[fade?'home-clickDuty-active':'home-clickDuty']" v-on:click="goYeramdriColumn">Duty</button>
       <!-- <button v-bind:class="[fade?'home-clickYeramdriMedia-active':'home-clickYeramdriMedia']" v-on:click="goYeramdriMedia">미디어</button>
@@ -37,8 +37,8 @@ export default {
     }
   },
   methods: {
-    goYeramdriIntroduce () {
-      router.push('/introduce')
+    goBible () {
+      router.push('/bible')
     },
     goConsulting () {
       router.push('/consulting')
@@ -106,13 +106,13 @@ export default {
     top: 12.5px;
     right: 10px;
   }
-  .goYeramdriIntroduce {
+  .goBible {
     visibility: visible;
   }
-  .goYeramdriIntroduce:hover {
+  .goBible:hover {
     filter: opacity(50%);
   }
-  .goYeramdriIntroduce:focus {
+  .goBible:focus {
     outline: none;
   }
   .goConsulting {
@@ -220,8 +220,8 @@ export default {
   .headerLogo {
     position: absolute;
     top: 10px;
-    margin-left: 46.25%;
-    margin-right: 50%;
+    /* margin-left: 46.25%; */
+    left: 46.25%;
   }
   .header {
     position: relative;
@@ -231,7 +231,7 @@ export default {
   .headerSearch{
     display: none;
   }
-  .goYeramdriIntroduce {
+  .goBible {
     visibility: hidden;
   }
   .goConsulting {
@@ -401,7 +401,7 @@ export default {
     top: 0px;
   }
 }
-.goYeramdriIntroduce {
+.goBible {
   position: absolute;
   top: 12.5px;
   left: 23%;
