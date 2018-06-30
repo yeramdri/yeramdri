@@ -1,6 +1,7 @@
 <template>
   <div>
-    <BibleHeader v-bind:selectedTab="selectedTab" v-bind:tabs="tabs" :on-click-all="onClickAll" :on-click-subject="onClickSubject" />
+    <!-- <BibleHeader v-bind:selectedTab="selectedTab" v-bind:tabs="tabs" :on-click-all="onClickAll" :on-click-subject="onClickSubject" /> -->
+    <Header></Header>
     <div class="bible-box">
       <div v-if="selectedTab === tabs[0]">
         <All/>
@@ -14,7 +15,8 @@
 </template>
 
 <script>
-import BibleHeader from './BibleHeader.vue'
+// import BibleHeader from './BibleHeader.vue'
+import Header from '../common/Header.vue'
 import All from './all'
 import Subject from './subject'
 export default {
@@ -34,7 +36,7 @@ export default {
     }
   },
   components: {
-    BibleHeader,
+    Header,
     All,
     Subject
   }

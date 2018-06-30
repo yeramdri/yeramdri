@@ -1,6 +1,7 @@
 <template>
   <div class="App-header">
     <div class="header">
+      <div>hambuger</div>
       <router-link to="/" class="headerLogo">
         <img v-bind:src="logo" class="logo" alt="logo" />
       </router-link>
@@ -56,14 +57,14 @@ export default {
 @media (max-width: 991px) {
   .buttons {
     width: 50vw;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .all {
-    font-size: 1.3rem;
+    font-size: 15px;
     margin-right: 1rem;
     color: #f4f4f4ec;
     background-color: rgba(224, 222, 61, 0.9);
@@ -76,11 +77,11 @@ export default {
     outline: none;
   }
   .subject {
-    font-size: 1.3rem;
+    font-size: 15px;
     color: #f4f4f4ec;
     background-color: rgba(224, 222, 61, 0.9);
     border-radius: 5px;
-    height: 7vh;
+    height: 20px;
     width: 20vw;
     border: none;
   }
@@ -91,36 +92,40 @@ export default {
     /* color: rgb(185, 183, 31); */
     color: #f4f4f4;
     background: rgb(238, 236, 153);
+    border-bottom: solid 1px white;
   }
   .logo {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   }
   .App-header {
     position: fixed;
     top: 0px;
     width: 100%;
-    height: 60px;
+    height: 50px;
     /* background-color: rgba(255, 255, 255, 0.9); */
-    background-color: rgba(224, 222, 61, 0.9);
+    background-color:#414141;
     color: black;
     z-index: 100;
   }
   .headerLogo {
     position: absolute;
+    /* position: float; */
     top: 10px;
-    left: 10px;
+    left: 50%;
   }
   .header {
     position: relative;
-    height: 60px;
+    height: 50px;
     width: 100%;
   }
   .bible-icon {
     position: absolute;
     display: inline-block;
-    top: 13px;
-    right: 13px;
+    top: 12px;
+    right: 12px;
+    color: white;
+    font-size: 22px;
   }
   .bibleActive {
     display: hidden;
