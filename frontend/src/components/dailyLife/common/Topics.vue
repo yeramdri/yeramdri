@@ -30,14 +30,15 @@ export default {
 /* mobile */
 @media (max-width: 991px) {
   .topics-container {
-    background-color: #141414;
+    background-color: rgba(255,255,255,0.7);
     margin-top: 50px;
     height: 86px;
-    color: #f6f6f6;
+    color: rgba(0, 0, 0, 0.8);
     display: flex;
     /* justify-content: center; */
     padding-top: 12px;
     padding-bottom: 12px;
+    border-bottom: solid 1px f6f6f6;
 
     overflow: auto;
     white-space: nowrap;

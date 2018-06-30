@@ -2,8 +2,10 @@
   <div>
     <Header></Header>
     <Topics></Topics>
-    hi
-    <div class="bible-box">
+    <div class="dailyLife-box">
+      <div>
+          <Search/>
+      </div>
       <div v-if="selectedTab === tabs[0]">
         <All/>
       </div>
@@ -16,13 +18,13 @@
 </template>
 
 <script>
-// import BibleHeader from './BibleHeader.vue'
 import Header from '../common/Header.vue'
 import Topics from './common/Topics.vue'
+import Search from './search'
 // import All from './all'
 // import Subject from './subject'
 export default {
-  name: 'Bible',
+  name: 'DailyLife',
   data () {
     return {
       selectedTab: '전체',
@@ -39,9 +41,8 @@ export default {
   },
   components: {
     Header,
-    Topics
-    // All,
-    // Subject
+    Topics,
+    Search
   }
 }
 </script>
