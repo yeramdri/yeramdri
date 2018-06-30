@@ -47,7 +47,7 @@ export default {
   .introduce-box {
     position: relative;
     width: 100%;
-    margin: 60px auto 0px auto;
+    margin: 50px auto 0px auto;
   }
   .introduce-box:before {
     content: "";

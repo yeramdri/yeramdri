@@ -5,29 +5,34 @@
         <img v-bind:src="logo" class="logo" alt="logo" />
       </router-link>
       <button v-on:click='fade=!fade' ref='button' class="hamburger">&#9776;</button>
-      <button class="goYeramdriIntroduce" v-on:click="goYeramdriIntroduce">소개</button>
-      <button class="goConsulting" v-on:click="goConsulting">상담</button>
-      <button class="goYeramdriColumn" v-on:click="goYeramdriColumn">칼럼</button>
-      <button class="goYeramdriMedia" v-on:click="goYeramdriMedia">미디어</button>
-      <button class="goRetreat" v-on:click="goRetreat">수련회</button>
+      <button class="goYeramdriIntroduce" v-on:click="goYeramdriIntroduce">Bible</button>
+      <button class="goConsulting" v-on:click="goConsulting">Daily</button>
+      <button class="goYeramdriColumn" v-on:click="goYeramdriColumn">Duty</button>
+      <span class="headerSearch">
+        <img v-bind:src="search" class="search" alt="search"/>
+      </span>
+      <!-- <button class="goYeramdriMedia" v-on:click="goYeramdriMedia">미디어</button>
+      <button class="goRetreat" v-on:click="goRetreat">수련회</button> -->
     </div>
     <div v-bind:class="[fade?'home-clickTri-active':'home-clickTri']">
       <button v-bind:class="[fade?'home-clickYeramdriIntroduce-active':'home-clickYeramdriIntroduce']" v-on:click="goYeramdriIntroduce">소개</button>
       <button v-bind:class="[fade?'home-clickConsulting-active':'home-clickConsulting']" v-on:click="goConsulting">상담</button>
       <button v-bind:class="[fade?'home-clickYeramdriColumn-active':'home-clickYeramdriColumn']" v-on:click="goYeramdriColumn">칼럼</button>
-      <button v-bind:class="[fade?'home-clickYeramdriMedia-active':'home-clickYeramdriMedia']" v-on:click="goYeramdriMedia">미디어</button>
-      <button v-bind:class="[fade?'home-clickRetreat-active':'home-clickRetreat']" v-on:click="goRetreat">수련회</button>
+      <!-- <button v-bind:class="[fade?'home-clickYeramdriMedia-active':'home-clickYeramdriMedia']" v-on:click="goYeramdriMedia">미디어</button>
+      <button v-bind:class="[fade?'home-clickRetreat-active':'home-clickRetreat']" v-on:click="goRetreat">수련회</button> -->
     </div>
   </div>
 </template>
 <script>
 import router from '../../router'
 import logo from '../yeramdri-logo.svg'
+import search from '../search.svg'
 export default {
   name: 'Header',
   data () {
     return {
       logo: logo,
+      search: search,
       fade: false
     }
   },
@@ -53,16 +58,27 @@ export default {
 <style scoped>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 .logo {
-  width:40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+}
+.logo:hover {
+  filter: opacity(50%);
+}
+.search {
+  width: 25px;
+  height: 25px;
+}
+.search:hover {
+  filter: opacity(50%);
+  cursor: pointer;
 }
 .App-header {
   position: fixed;
   top: 0px;
   width: 100%;
-  height: 60px;
-  background-color: rgba(255, 255, 255, 0.9);
-  color:black;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
   z-index:100;
 }
 @media (min-width: 992px) {
@@ -76,7 +92,8 @@ export default {
   .header {
     max-width: 1280px;
     position: relative;
-    height: 60px;
+    height: 50px;
+    width: 75%;
     margin: 0 auto;
   }
   .headerLogo {
@@ -84,11 +101,16 @@ export default {
     top: 10px;
     left: 10px;
   }
+  .headerSearch {
+    position: absolute;
+    top: 12.5px;
+    right: 10px;
+  }
   .goYeramdriIntroduce {
     visibility: visible;
   }
   .goYeramdriIntroduce:hover {
-    color: #414141;
+    filter: opacity(50%);
   }
   .goYeramdriIntroduce:focus {
     outline: none;
@@ -97,7 +119,7 @@ export default {
     visibility: visible;
   }
   .goConsulting:hover {
-    color: #414141;
+    filter: opacity(50%);
   }
   .goConsulting:focus {
     outline: none;
@@ -106,7 +128,7 @@ export default {
     visibility: visible;
   }
   .goYeramdriColumn:hover {
-    color: #414141;
+    filter: opacity(50%);
   }
   .goYeramdriColumn:focus {
     outline: none;
@@ -371,38 +393,44 @@ export default {
 }
 .goYeramdriIntroduce {
   position: absolute;
-  top: 17.5px;
-  right: 210px;
+  top: 12.5px;
+  left: 23%;
   text-decoration: none;
   background-color: transparent;
   padding: 2px 10px 1px 10px;
   border: none;
-  color: rgb(43,144,216);
+  color: #f4f4f4;
   font-size: 15px;
+  font-family: 'Nanum Gothic' sans-serif;
+  font-weight: 100;
   cursor: pointer;
 }
 .goConsulting {
   position: absolute;
-  top: 17.5px;
-  right: 165px;
+  top: 12.5px;
+  left: 48%;
   text-decoration: none;
   background-color: transparent;
   padding: 2px 10px 1px 10px;
   border: none;
-  color: rgb(43,144,216);
+  color: #f4f4f4;
   font-size: 15px;
+  font-family: 'Nanum Gothic' sans-serif;
+  font-weight: 100;
   cursor: pointer;
 }
 .goYeramdriColumn {
   position: absolute;
-  top: 17.5px;
-  right: 120px;
+  top: 15px;
+  left: 73%;
   text-decoration: none;
   background-color: transparent;
   padding: 2px 10px 1px 10px;
   border: none;
-  color: rgb(43,144,216);
+  color: #f4f4f4;
   font-size: 15px;
+  font-family: 'Nanum Gothic' sans-serif;
+  font-weight: 100;
   cursor: pointer;
 }
 .goYeramdriMedia {
