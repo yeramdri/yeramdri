@@ -15,9 +15,9 @@
       <button class="goRetreat" v-on:click="goRetreat">수련회</button> -->
     </div>
     <div v-bind:class="[fade?'home-clickTri-active':'home-clickTri']">
-      <button v-bind:class="[fade?'home-clickYeramdriIntroduce-active':'home-clickYeramdriIntroduce']" v-on:click="goYeramdriIntroduce">소개</button>
-      <button v-bind:class="[fade?'home-clickConsulting-active':'home-clickConsulting']" v-on:click="goConsulting">상담</button>
-      <button v-bind:class="[fade?'home-clickYeramdriColumn-active':'home-clickYeramdriColumn']" v-on:click="goYeramdriColumn">칼럼</button>
+      <button v-bind:class="[fade?'home-clickBible-active':'home-clickBible']" v-on:click="goYeramdriIntroduce">Bible</button>
+      <button v-bind:class="[fade?'home-clickDaily-active':'home-clickDaily']" v-on:click="goConsulting">Daily</button>
+      <button v-bind:class="[fade?'home-clickDuty-active':'home-clickDuty']" v-on:click="goYeramdriColumn">Duty</button>
       <!-- <button v-bind:class="[fade?'home-clickYeramdriMedia-active':'home-clickYeramdriMedia']" v-on:click="goYeramdriMedia">미디어</button>
       <button v-bind:class="[fade?'home-clickRetreat-active':'home-clickRetreat']" v-on:click="goRetreat">수련회</button> -->
     </div>
@@ -159,27 +159,27 @@ export default {
     height: 0px;
     visibility: hidden;
   }
-  .home-clickYeramdriIntroduce-active {
+  .home-clickBible-active {
     height: 0px;
     visibility: hidden;
   }
-  .home-clickYeramdriIntroduce {
+  .home-clickBible {
     height: 0px;
     visibility: hidden;
   }
-  .home-clickConsulting-active {
+  .home-clickDaily-active {
     height: 0px;
     visibility: hidden;
   }
-  .home-clickConsulting {
+  .home-clickDaily {
     height: 0px;
     visibility: hidden;
   }
-  .home-clickYeramdriColumn-active {
+  .home-clickDuty-active {
     height: 0px;
     visibility: hidden;
   }
-  .home-clickYeramdriColumn {
+  .home-clickDuty {
     height: 0px;
     visibility: hidden;
   }
@@ -200,16 +200,19 @@ export default {
     visibility: hidden;
   }
 }
+/* mobile */
 @media (max-width: 991px) {
   .hamburger {
     visibility: visible;
     position: absolute;
     border: none;
     background-color: transparent;
-    top: 17.5px;
-    right: 10px;
-    font-size: 15px;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    font-weight: 100;
     cursor: pointer;
+    color: white;
   }
   .hamburger:focus {
     outline: none;
@@ -217,12 +220,16 @@ export default {
   .headerLogo {
     position: absolute;
     top: 10px;
-    left: 10px;
+    margin-left: 46.25%;
+    margin-right: 50%;
   }
   .header {
     position: relative;
-    height: 60px;
+    height: 50px;
     width: 100%;
+  }
+  .headerSearch{
+    display: none;
   }
   .goYeramdriIntroduce {
     visibility: hidden;
@@ -249,36 +256,38 @@ export default {
     visibility: visible;
     position: relative;
     background-color: rgba(255, 255, 255, 0.9);
-    height: 200px;
+    height: 120px;
   }
-  .home-clickYeramdriIntroduce-active {
+  .home-clickBible-active {
     visibility: visible;
     position: absolute;
     top: 0px;
     left: 0px;
     border-left: none;
     border-right: none;
-    background-color: transparent;
+    border-top:  none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.473);
+    background-color: rgba(0, 0, 0, 0.61);
     width: 100%;
     height: 40px;
-    color: rgb(43,144,216);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
   }
-  .home-clickYeramdriIntroduce-active:hover {
+  .home-clickBible-active:hover {
     color: #414141;
   }
-  .home-clickYeramdriIntroduce-active:focus {
+  .home-clickBible-active:focus {
     outline: none;
   }
-  .home-clickYeramdriIntroduce {
+  .home-clickBible {
     height: 0px;
     visibility: hidden;
     position: absolute;
     top: 0px;
   }
-  .home-clickConsulting-active {
+  .home-clickDaily-active {
     visibility: visible;
     position: absolute;
     top: 40px;
@@ -286,27 +295,28 @@ export default {
     border-left: none;
     border-right: none;
     border-top: none;
-    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.473);
+    background-color: rgba(0, 0, 0, 0.61);
     width: 100%;
     height: 40px;
-    color: rgb(43,144,216);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
   }
-  .home-clickConsulting-active:hover {
+  .home-clickDaily-active:hover {
     color: #414141;
   }
-  .home-clickConsulting-active:focus {
+  .home-clickDaily-active:focus {
     outline: none;
   }
-  .home-clickConsulting {
+  .home-clickDaily {
     height: 0px;
     visibility: hidden;
     position: absolute;
     top: 0px;
   }
-  .home-clickYeramdriColumn-active {
+  .home-clickDuty-active {
     visibility: visible;
     position: absolute;
     top: 80px;
@@ -314,21 +324,21 @@ export default {
     border-left: none;
     border-right: none;
     border-top: none;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.61);
     width: 100%;
     height: 40px;
-    color: rgb(43,144,216);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
   }
-  .home-clickYeramdriColumn-active:hover {
+  .home-clickDuty-active:hover {
     color: #414141;
   }
-  .home-clickYeramdriColumn-active:focus {
+  .home-clickDuty-active:focus {
     outline: none;
   }
-  .home-clickYeramdriColumn {
+  .home-clickDuty {
     height: 0px;
     visibility: hidden;
     position: absolute;
