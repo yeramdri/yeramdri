@@ -1,16 +1,22 @@
 <template>
-    <div class="life">
-        <div class="life-wrapper">
-            <h2>Daily Life</h2>
-            <p>일상을 살아가기</p>
-        </div>
-        <a href="#" class="demo-arrow-cls forward"> &raquo; </a>
+  <div class="life">
+    <div class="life-wrapper">
+      <h2>Daily Life</h2>
+      <p>일상을 살아가기</p>
     </div>
+    <a href="#" class="demo-arrow-cls forward" v-on:click="goLife"> &raquo; </a>
+  </div>
 </template>
 
 <script>
+import router from '../../router'
 export default {
-  name: 'Life'
+  name: 'Life',
+  methods: {
+    goLife () {
+      router.push('/dailylife')
+    }
+  }
 }
 </script>
 
@@ -44,7 +50,7 @@ export default {
     width: 30px;
     height: 30px;
     background: transparent;
-    border-top: 1.5px solid #0C0F18;
+    border-top: 1.5px solid #0c0f18;
     border-left: 1.5px solid rgba(121, 154, 198, 0.94);
     transition: all 0.3s ease-in-out;
     text-decoration: none;
