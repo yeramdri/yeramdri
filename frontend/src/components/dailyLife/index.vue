@@ -1,8 +1,8 @@
 <template>
   <div>
     <Header></Header>
-    <h1>sadflasdfh</h1>
     <Topics></Topics>
+    hi
     <div class="bible-box">
       <div v-if="selectedTab === tabs[0]">
         <All/>
