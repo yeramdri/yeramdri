@@ -11,6 +11,17 @@
         <i class="fas fa-book fa-2x bible-icon" v-show="this.selectedTab === tabs[0]" v-on:click="toggleModal"></i>
     </div>
     <Modal v-if="showModal">
+      <div slot="header" class="modal-header">
+        <span>성경</span>
+        <span>장</span>
+      </div>
+      <div slot="body">
+        <ul>
+          <li v-for="bible in bibles" v-bind:key="bible">
+            <div>{{bible}}</div>
+          </li>
+        </ul>
+      </div>
       <button slot="footer" v-on:click="toggleModal" >close</button>
     </Modal>
   </div>
@@ -25,7 +36,8 @@ export default {
   data () {
     return {
       logo,
-      showModal: false
+      showModal: false,
+      bibles: ['창세기', '출애굽기', '레위기', '민수기', '신명기', '여호수아', '사사기', '룻기', '사무엘상', '사무엘하']
     }
   },
   methods: {
@@ -112,6 +124,9 @@ export default {
   }
   .bibleActive {
     display: hidden;
+  }
+  .modal-header {
+    background-color: rgba(224, 222, 61, 0.9);
   }
 }
 </style>
