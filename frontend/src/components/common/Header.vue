@@ -6,7 +6,7 @@
       </router-link>
       <button v-on:click='fade=!fade' ref='button' class="hamburger">&#9776;</button>
       <button class="goBible" v-on:click="goBible">Bible</button>
-      <button class="goConsulting" v-on:click="goConsulting">Daily</button>
+      <button class="goDaily" v-on:click="goDaily">Daily</button>
       <button class="goYeramdriColumn" v-on:click="goYeramdriColumn">Duty</button>
       <span class="headerSearch">
         <img v-bind:src="search" class="search" alt="search"/>
@@ -16,7 +16,7 @@
     </div>
     <div v-bind:class="[fade?'home-clickTri-active':'home-clickTri']">
       <button v-bind:class="[fade?'home-clickBible-active':'home-clickBible']" v-on:click="goBible">Bible</button>
-      <button v-bind:class="[fade?'home-clickDaily-active':'home-clickDaily']" v-on:click="goConsulting">Daily</button>
+      <button v-bind:class="[fade?'home-clickDaily-active':'home-clickDaily']" v-on:click="goDaily">Daily</button>
       <button v-bind:class="[fade?'home-clickDuty-active':'home-clickDuty']" v-on:click="goYeramdriColumn">Duty</button>
       <!-- <button v-bind:class="[fade?'home-clickYeramdriMedia-active':'home-clickYeramdriMedia']" v-on:click="goYeramdriMedia">미디어</button>
       <button v-bind:class="[fade?'home-clickRetreat-active':'home-clickRetreat']" v-on:click="goRetreat">수련회</button> -->
@@ -40,8 +40,8 @@ export default {
     goBible () {
       router.push('/bible')
     },
-    goConsulting () {
-      router.push('/consulting')
+    goDaily () {
+      router.push('/dailylife')
     },
     goYeramdriColumn () {
       router.push('/column')
@@ -115,13 +115,13 @@ export default {
   .goBible:focus {
     outline: none;
   }
-  .goConsulting {
+  .goDaily {
     visibility: visible;
   }
-  .goConsulting:hover {
+  .goDaily:hover {
     filter: opacity(50%);
   }
-  .goConsulting:focus {
+  .goDaily:focus {
     outline: none;
   }
   .goYeramdriColumn {
@@ -234,7 +234,7 @@ export default {
   .goBible {
     visibility: hidden;
   }
-  .goConsulting {
+  .goDaily {
     visibility: hidden;
   }
   .goYeramdriColumn {
@@ -415,7 +415,7 @@ export default {
   font-weight: 100;
   cursor: pointer;
 }
-.goConsulting {
+.goDaily {
   position: absolute;
   top: 12.5px;
   left: 48%;
