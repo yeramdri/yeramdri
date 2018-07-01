@@ -71,7 +71,7 @@ export default {
     margin-right: 25%;
   }
   .topic > p {
-    font-size: 2px;
+    font-size: 10px;
     text-align: center;
     margin-top: 5px;
   }
