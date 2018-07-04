@@ -7,30 +7,36 @@
       <iframe class="all-video" src="https://www.youtube.com/embed/9xmdxhnIDT8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <Modal class="bible-modal" v-show="showModal" @close="showModal = false">
-      <h2 slot="header">Bible list</h2>
+      <h1 slot="header">Bible list</h1>
       <div slot="body">
-        <p>창세기</p>
-        <p>출애굽기</p>
-        <p>레위기</p>
-        <p>민수기</p>
-        <p>신경기</p>
+        <ul>
+          <li v-for="bible in bibles" v-bind:key="bible.id">
+            {{ bible.bibleName }}
+          </li>
+        </ul>
       </div>
     </Modal>
   </div>
 </template>
 
 <script>
+import BibleData from '../dommyModels/BibleModel.js'
+
 import Input from '../common/Input.vue'
 import Modal from '../common/Modal.vue'
 export default {
   name: 'All',
+  created: function () {
+    this.fetchBible()
+  },
   components: {
     Input,
     Modal
   },
   data () {
     return {
-      showModal: false
+      showModal: false,
+      bibles: []
     }
   },
   methods: {
@@ -40,6 +46,11 @@ export default {
     onSearch (searchWord) {
       console.log('search 실행됨', searchWord)
       // Todo... 검색 api 호출하기
+    },
+    fetchBible () {
+      BibleData.list().then(data => {
+        this.bibles = data
+      })
     }
   }
 }
@@ -85,8 +96,16 @@ export default {
     /* width: 420;
     height: 315; */
   }
-  .bible-modal p {
-    color: black;
+  .bible-modal ul {
+    padding: 0;
+  }
+  .bible-modal li {
+    color: #313131;
+    text-align: center;
+    list-style: none;
+    font-size: 7vw;
+    overflow: scroll;
+    margin: 2vw;
   }
 }
 </style>

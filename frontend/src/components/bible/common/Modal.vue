@@ -44,12 +44,14 @@ export default {}
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
+  padding-top: 5vh;
 }
 
 .modal-container {
-  width: 300px;
+  width: 270px;
+  height: 80vh;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding: 15px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -57,14 +59,23 @@ export default {}
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h2 {
+.modal-header {
+    text-align: center;
+    padding-left: 16px;
+}
+
+.modal-header h1 {
   margin-top: 0;
   color: #c4bc27af;
   display: inline-block;
+  font-size: 10vw;
+  padding-top: 5vh;
 }
 
 .modal-body {
   margin: 20px 0;
+  height: 60vh;
+  overflow: scroll;
 }
 
 /*
@@ -90,7 +101,8 @@ export default {}
   transform: scale(1.1);
 }
 .close {
-    display: inline-block;
     float: right;
+    font-size: 5vw;
+    color: rgb(121, 121, 121);
 }
 </style>
