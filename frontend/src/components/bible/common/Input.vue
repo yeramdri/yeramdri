@@ -1,16 +1,29 @@
 <template>
     <div class="input-box shadow">
-        <input type="text">
+        <input type="text" v-model="value" placeholder="Find in Bible" autofocus/>
         <span class="add-container">
-            <i class="fas fa-search add-btn"></i>
+            <i v-show="!value.length" v-on:click="onClick" class="fas fa-book add-btn"></i>
+            <i v-show="value.length" class="fas fa-search add-btn"></i>
         </span>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'Input'
+  name: 'Input',
+  data () {
+    return {
+      value: this.value || ''
+    }
+  },
+  methods: {
+    onClick () {
+      console.log('hiihi')
+      this.$emit('@click')
+    }
+  }
 }
+
 </script>
 
 <style scoped>

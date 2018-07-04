@@ -8,20 +8,14 @@
                         <slot name="header">
                             default header
                         </slot>
+                        <slot name="close">
+                            <i class="far fa-times-circle close" @click="$emit('close')"></i>
+                        </slot>
                     </div>
 
                     <div class="modal-body">
                         <slot name="body">
                             default body
-                        </slot>
-                    </div>
-
-                    <div class="modal-footer">
-                        <slot name="footer">
-                            default footer
-                            <button class="modal-default-button" @click="$emit('close')">
-                                OK
-                            </button>
                         </slot>
                     </div>
                 </div>
@@ -63,17 +57,14 @@ export default {}
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h3 {
+.modal-header h2 {
   margin-top: 0;
-  color: #42b983;
+  color: #c4bc27af;
+  display: inline-block;
 }
 
 .modal-body {
   margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
 }
 
 /*
@@ -97,5 +88,9 @@ export default {}
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+.close {
+    display: inline-block;
+    float: right;
 }
 </style>
