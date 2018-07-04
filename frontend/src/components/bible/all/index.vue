@@ -3,7 +3,7 @@
     <div class="all">
       <h1>Bible</h1>
       <p>말씀과의 조우</p>
-      <Input v-on:@click="onClickBible"/>
+      <Input v-on:@click="onClickBible" v-on:@submit="onSearch"/>
       <iframe class="all-video" src="https://www.youtube.com/embed/9xmdxhnIDT8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <Modal class="bible-modal" v-show="showModal" @close="showModal = false">
@@ -36,6 +36,10 @@ export default {
   methods: {
     onClickBible () {
       this.showModal = true
+    },
+    onSearch (searchWord) {
+      console.log('search 실행됨', searchWord)
+      // Todo... 검색 api 호출하기
     }
   }
 }

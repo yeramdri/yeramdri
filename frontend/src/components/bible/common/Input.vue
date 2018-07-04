@@ -1,9 +1,9 @@
 <template>
     <div class="input-box shadow">
-        <input type="text" v-model="value" placeholder="Find in Bible" autofocus/>
+        <input type="text" v-model="inputValue" v-on:keyup.enter="onSubmit" placeholder="Find in Bible" autofocus/>
         <span class="add-container">
-            <i v-show="!value.length" v-on:click="onClick" class="fas fa-book add-btn"></i>
-            <i v-show="value.length" class="fas fa-search add-btn"></i>
+            <i v-show="!inputValue.length" v-on:click="onClick" class="fas fa-book add-btn"></i>
+            <i v-show="inputValue.length" class="fas fa-search add-btn" v-on:click="onSubmit"></i>
         </span>
     </div>
 </template>
@@ -13,13 +13,19 @@ export default {
   name: 'Input',
   data () {
     return {
-      value: this.value || ''
+      inputValue: this.inputValue || ''
     }
   },
   methods: {
     onClick () {
-      console.log('hiihi')
       this.$emit('@click')
+    },
+    onSubmit () {
+      this.$emit('@submit', this.inputValue)
+      this.clearInput()
+    },
+    clearInput () {
+      this.inputValue = ''
     }
   }
 }
