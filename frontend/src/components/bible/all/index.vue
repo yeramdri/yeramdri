@@ -10,7 +10,7 @@
       <h1 slot="header">Bible list</h1>
       <div slot="body">
         <ul>
-          <li v-for="bible in bibles" v-bind:key="bible.id">
+          <li v-for="bible in bibles" v-bind:key="bible.id" v-on:click="goContentsList(bible)">
             {{ bible.bibleName }}
           </li>
         </ul>
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import router from '../../../router'
+
 import BibleData from '../dommyModels/BibleModel.js'
 
 import Input from '../common/Input.vue'
@@ -51,6 +53,9 @@ export default {
       BibleData.list().then(data => {
         this.bibles = data
       })
+    },
+    goContentsList (bible) {
+      router.push({name: 'BibleList', params: { bibleId: bible.id }})
     }
   }
 }
