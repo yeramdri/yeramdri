@@ -1,5 +1,6 @@
 <template>
   <div class="list-container">
+    <Header/>
     <div class="list">
       <div class="Input-container">
         <Input class="Input"/>
@@ -33,12 +34,14 @@
 </template>
 
 <script>
+import Header from '../../../common/Header.vue'
 import Input from '../../common/Input.vue'
 
 export default {
   name: 'List',
   components: {
-    Input
+    Input,
+    Header
   }
 }
 </script>
@@ -54,7 +57,7 @@ export default {
     padding-bottom: 3vh;
   }
   .bible-contents-container {
-    padding-top: 12vh;
+    padding-top: 19vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,12 +73,11 @@ export default {
   }
   .Input-container {
     position: fixed;
-    padding: 2vh 1.5vw 2vh 1.5vw;
+    padding: 60px 1.5vw 10px 1.5vw;
     width: 97vw;
     background: #f6f6f6;
   }
   .Input {
-    /* margin: 0 1.5vw 2vh 1.5vw; */
   }
 }
 </style>
