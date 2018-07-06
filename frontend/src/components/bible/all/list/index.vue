@@ -6,39 +6,50 @@
         <Input class="Input"/>
       </div>
       <div class="bible-contents-container">
-        <div class="bible-contents-row">
-          <div class="bible-contents">
-            1
+          <div v-for="(list, index) in formattedContentsList" v-bind:key="index" class="bible-contents-row">
+            <div v-for="(item) in list"
+                 v-bind:key="item.id"
+                 v-bind:style="{ 'background-image': 'url(' + item.img + ')' }"
+                 class="bible-contents">
+            </div>
           </div>
-          <div class="bible-contents">
-            2
-          </div>
-          <div class="bible-contents">
-            3
-          </div>
-        </div>
-        <div class="bible-contents-row">
-          <div class="bible-contents">
-            4
-          </div>
-          <div class="bible-contents">
-            5
-          </div>
-          <div class="bible-contents">
-            6
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import GenerationModel from '../../dommyModels/GenerationModel.js'
+
 import Header from '../../../common/Header.vue'
 import Input from '../../common/Input.vue'
 
 export default {
   name: 'List',
+  created: function () {
+    this.fetchContentsList()
+  },
+  data () {
+    return {
+      contentsList: [],
+      formattedContentsList: []
+    }
+  },
+  methods: {
+    fetchContentsList () {
+      GenerationModel.list().then(data => {
+        this.contentsList = data
+        this.formatContentsList()
+      })
+    },
+    formatContentsList () {
+      while (this.contentsList.length) {
+        this.formattedContentsList.push(this.contentsList.splice(0, 3))
+      }
+      console.log('원본', this.contentsList, this.contentsList.length)
+      console.log('새배열', this.formattedContentsList)
+    }
+  },
   components: {
     Input,
     Header
@@ -63,13 +74,18 @@ export default {
     align-items: center;
   }
   .bible-contents-row {
-    margin-bottom: 3px;
+    margin-bottom: 1px;
+    display: flex;
+    align-content: flex-start;
+    width: 100vw;
   }
   .bible-contents {
     display: inline-block;
     background-color: rgb(201, 188, 8);
-    width: 32vw;
+    background-size: 33vw;
+    width: 33vw;
     height: 18vh;
+    margin: 0 0.5px;
   }
   .Input-container {
     position: fixed;
