@@ -10,6 +10,7 @@
             <div v-for="(item) in list"
                  v-bind:key="item.id"
                  v-bind:style="{ 'background-image': 'url(' + item.img + ')' }"
+                 v-on:click="goContent()"
                  class="bible-contents">
             </div>
           </div>
@@ -19,6 +20,8 @@
 </template>
 
 <script>
+// import router from '../../../../router'
+
 import GenerationModel from '../../dommyModels/GenerationModel.js'
 
 import Header from '../../../common/Header.vue'
@@ -46,8 +49,10 @@ export default {
       while (this.contentsList.length) {
         this.formattedContentsList.push(this.contentsList.splice(0, 3))
       }
-      console.log('원본', this.contentsList, this.contentsList.length)
-      console.log('새배열', this.formattedContentsList)
+    },
+    goContent () {
+      console.log('hi')
+      // router.push({name: 'BibleList', params: { bibleId: bible.id }})
     }
   },
   components: {

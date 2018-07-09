@@ -2,7 +2,7 @@
   <div class="bible">
     <div clss="bible-wrapper">
       <h2>말씀</h2>
-      <p>말씀과의 조우</p>
+      <p>예수, 나를 향한 사랑의 시작</p>
     </div>
     <a href="" class="demo-arrow-cls forward" v-on:click="goBible"> &raquo; </a>
   </div>

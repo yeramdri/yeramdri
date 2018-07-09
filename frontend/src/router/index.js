@@ -9,6 +9,7 @@ import Media from '@/components/YeramdriMedia.vue'
 
 import Bible from '@/components/bible'
 import BibleList from '@/components/bible/all/list/index.vue' // bible 밑에 nested 하게 바꾸어야함
+import BibleContent from '@/components/bible/all/content/index.vue'
 
 import DailyLife from '@/components/dailyLife'
 
@@ -56,6 +57,11 @@ export default new Router({
       path: '/bible/list/:bibleId',
       name: 'BibleList',
       component: BibleList
+    },
+    {
+      path: '/bible/list/:bibleId/content/:contentId',
+      name: 'Content',
+      component: BibleContent
     },
     {
       path: '/dailylife',
