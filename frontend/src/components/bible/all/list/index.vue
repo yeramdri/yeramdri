@@ -20,7 +20,7 @@
 </template>
 
 <script>
-// import router from '../../../../router'
+import router from '../../../../router'
 
 import GenerationModel from '../../dommyModels/GenerationModel.js'
 
@@ -51,8 +51,8 @@ export default {
       }
     },
     goContent () {
-      console.log('hi')
-      // router.push({name: 'BibleList', params: { bibleId: bible.id }})
+      const bibleId = this.$route.params.bibleId
+      router.push({name: 'BibleContent', params: { bibleId, contentId: 1 }})
     }
   },
   components: {

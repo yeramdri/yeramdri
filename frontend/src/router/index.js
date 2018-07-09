@@ -60,7 +60,7 @@ export default new Router({
     },
     {
       path: '/bible/list/:bibleId/content/:contentId',
-      name: 'Content',
+      name: 'BibleContent',
       component: BibleContent
     },
     {
