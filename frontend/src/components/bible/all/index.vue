@@ -49,6 +49,8 @@ export default {
     onSearch (searchWord) {
       console.log('search 실행됨', searchWord)
       // Todo... 검색 api 호출하기
+      // list 페이지로 넘어가기 (url path: /bible/list/keyword ? 꿈 )
+      this.goSearchList(searchWord)
     },
     fetchBible () {
       BibleData.list().then(data => {
@@ -57,6 +59,9 @@ export default {
     },
     goContentsList (bible) {
       router.push({name: 'BibleList', params: { bibleId: bible.id }})
+    },
+    goSearchList (searchWord) {
+      router.push({name: 'BibleList', params: { bibleId: searchWord }})
     }
   }
 }

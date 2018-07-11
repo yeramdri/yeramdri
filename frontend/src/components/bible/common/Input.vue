@@ -22,11 +22,11 @@ export default {
     },
     onSubmit () {
       this.$emit('@submit', this.inputValue)
-      this.clearInput()
-    },
-    clearInput () {
-      this.inputValue = ''
+      // this.clearInput()
     }
+    // clearInput () {
+    //   this.inputValue = ''
+    // }
   }
 }
 

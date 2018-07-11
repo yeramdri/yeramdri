@@ -67,8 +67,8 @@ export default {
   h3 {
     color: #262626;
     margin: 0;
-    height: 40px;
-    line-height: 40px;
+    height: 60px;
+    line-height: 60px;
     padding-left: 10px;
     font-size: 15px;
   }

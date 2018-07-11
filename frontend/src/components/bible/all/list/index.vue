@@ -3,7 +3,7 @@
     <Header/>
     <div class="list">
       <div class="Input-container">
-        <Input class="Input"/>
+        <Input class="Input" v-bind:input-value="this.bibleId"/>
       </div>
       <div class="bible-contents-container">
           <div v-for="(list, index) in formattedContentsList" v-bind:key="index" class="bible-contents-row">
@@ -35,7 +35,8 @@ export default {
   data () {
     return {
       contentsList: [],
-      formattedContentsList: []
+      formattedContentsList: [],
+      bibleId: this.$route.params.bibleId
     }
   },
   methods: {
