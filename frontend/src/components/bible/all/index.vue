@@ -2,7 +2,9 @@
   <div class="all-container">
     <div class="all">
       <h1>Bible</h1>
-      <p>예수, 나를 향한 사랑의 시작</p>
+      <!-- <p>Coram Deo: 하나님 마음에서 찾아보기</p> -->
+      <!-- <p>Coram Deo: 하나님 다가섬 </p> -->
+      <p>다가서기, 흔들리기, 말씀 안에서 </p>
       <Input v-on:@click="onClickBible" v-on:@submit="onSearch"/>
       <iframe class="all-video" src="https://www.youtube.com/embed/9xmdxhnIDT8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>

@@ -1,6 +1,7 @@
 <template>
     <div class="input-box shadow">
-        <input type="text" v-model="inputValue" v-on:keyup.enter="onSubmit" placeholder="Find in Bible" autofocus/>
+        <input type="text" v-model="inputValue" v-on:keyup.enter="onSubmit" placeholder="ex) 일상, 취업, 연애, 로마서, 창세기" autofocus/>
+        <!-- <input type="text" v-model="inputValue" v-on:keyup.enter="onSubmit" placeholder="하나님 마음을 찾아보기" autofocus/> -->
         <span class="add-container">
             <i v-show="!inputValue.length" v-on:click="onClick" class="fas fa-book add-btn"></i>
             <i v-show="inputValue.length" class="fas fa-search add-btn" v-on:click="onSubmit"></i>

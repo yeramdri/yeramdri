@@ -1,6 +1,6 @@
 <template>
-  <div class="bible">
-    <div clss="bible-wrapper">
+  <div class="bible" v-on:click="goBible">
+    <div class="bible-wrapper">
       <h2>말씀</h2>
       <p>예수, 나를 향한 사랑의 시작</p>
     </div>
@@ -71,6 +71,35 @@ export default {
   .demo-arrow-cls.forward {
     transform: rotate(140deg);
     right: 1.5rem;
+  }
+}
+/* desktop */
+@media (min-width: 992px) {
+  h2 {
+    padding-top: 7vh;
+    margin-top: 0px;
+    margin-bottom: 1vh;
+    font-size: 2.5vw;
+  }
+  p {
+    margin-top: 1.5vh;
+    margin-bottom: 0;
+    font-size: 1.2vw;
+    font-weight: 500;
+  }
+  .bible {
+    font-family: 'Nanum Gothic', serif;
+    background-color: #fafafa;
+    height: 33vw;
+    width: 33vw;
+    margin:0.5vw 0.25vw;
+    text-align: center;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+  }
+  .demo-arrow-cls {
+    display: none;
   }
 }
 </style>

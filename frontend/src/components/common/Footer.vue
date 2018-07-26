@@ -40,10 +40,11 @@ export default {
 }
 @media (min-width: 992px) {
   .footer_content > h6 {
-    font-size: 1.3vw;
+    font-size: 1vw;
+    margin: 5px;
   }
   .footer_div {
-    padding-top: 2vw;
+    padding-top: 3vw;
     padding-bottom: 2vw;
   }
   .footer_content {
