@@ -1,5 +1,5 @@
 <template>
-  <div class="life">
+  <div class="life" v-on:click="goLife">
     <div class="life-wrapper">
       <h2>Daily Life</h2>
       <p>일상을 살아가기</p>
@@ -64,6 +64,38 @@ export default {
   .demo-arrow-cls.forward {
     transform: rotate(140deg);
     right: 1.5rem;
+  }
+}
+/* desktop */
+@media (min-width: 992px) {
+  h2 {
+    padding-top: 7vh;
+    margin-top: 0px;
+    margin-bottom: 1vh;
+    font-size: 2.5vw;
+  }
+  p {
+    margin-top: 1.5vh;
+    margin-bottom: 0;
+    font-size: 1.2vw;
+    font-weight: 500;
+  }
+  .life {
+    font-family: 'Nanum Gothic', serif;
+    color: rgba(121, 154, 198, 0.94);
+    background: url('../../assets/life.jpg');
+    background-size: 50vw;
+    opacity: 0.7;
+    height: 33vw;
+    width: 33vw;
+    margin: 0.5vw 0.25vw;
+    text-align: center;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+  }
+  .demo-arrow-cls {
+    display: none;
   }
 }
 </style>

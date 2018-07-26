@@ -3,10 +3,6 @@
     <div class="introduce-content">
       <h1>예람드리</h1>
       <h3>예배자들의 삶, 아름드리 꽃피우길.</h3>
-      <!-- <div class="bible">
-        <p>우리가 알거니와 하나님을 사랑하는 자<br> 곧 그의 뜻대로 부르심을 입은 자들에게는<br> 모든 것이 합력하여 선을 이루느니라</p>
-        <p>- 로마서 8장 28절 -</p>
-      </div> -->
     </div>
   </div>
 </template>
@@ -19,6 +15,7 @@ export default {
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 @import url(https://fonts.googleapis.com/css?family=Do+Hyeon);
 @import url(https://fonts.googleapis.com/css?family=Gothic+A1);
+/* desktop */
 @media (min-width: 992px) {
   .introduce-content {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
@@ -38,7 +35,8 @@ export default {
     margin-bottom: 15px;
     font-family: 'Gothic A1', serif;
     font-weight: 700;
-    font-size: 4.5vw;
+    /* font-size: 4.5vw; */
+    font-size: 65px;
     color: #f4f4f4;
     text-align: center
   }
@@ -48,7 +46,7 @@ export default {
     font-family: 'Nanum Gothic', serif;
     font-weight: 700;
     font-size: 2vw;
-    color: #f4f4f4;
+    color: #c4bd27;
      text-align: center;
   }
   .introduce-box {
@@ -71,6 +69,7 @@ export default {
     color: #f4f4f4;
   }
 }
+/* mobile */
 @media (max-width: 991px) {
   .introduce-content {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),

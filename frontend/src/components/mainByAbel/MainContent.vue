@@ -21,27 +21,6 @@ export default {
 <style scoped>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-@media (min-width: 992px) {
-  .bible-div {
-    background-color: #ddd;
-  }
-  .bible-main > h1 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-family: 'Nanum Gothic', serif;
-    font-weight: 700;
-    text-align: center;
-    color: #414141;
-  }
-  .bible-title > h3 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-family: 'Nanum Gothic', serif;
-    font-weight: 700;
-    text-align: center;
-    color: #414141;
-  }
-}
 @media (max-width: 991px) {
   .bible-div {
     padding-top: 4vw;
@@ -68,6 +47,33 @@ export default {
     font-weight: 700;
     text-align: center;
     color: #414141;
+  }
+}
+/* desktop */
+@media (min-width: 992px) {
+  .bible-div {
+    background-color: #ddd;
+  }
+  .bible-main > h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Nanum Gothic', serif;
+    font-weight: 700;
+    text-align: center;
+    color: #414141;
+  }
+  .bible-title > h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Nanum Gothic', serif;
+    font-weight: 700;
+    text-align: center;
+    color: #414141;
+  }
+  .content-div {
+    display: flex;
+    justify-content: center;
+    padding: 0 0.25vw;
   }
 }
 </style>

@@ -10,6 +10,12 @@
       {{searchValue}}
     </div>
     <div class="all_video_div" v-if="searchValue===''">
+=======
+      <!-- <p>Coram Deo: 하나님 마음에서 찾아보기</p> -->
+      <!-- <p>Coram Deo: 하나님 다가섬 </p> -->
+      <p>다가서기, 흔들리기, 말씀 안에서 </p>
+      <Input v-on:@click="onClickBible" v-on:@submit="onSearch"/>
+>>>>>>> 43b4d651f0e9c9a3d7244eeb06ae048b2ce94479
       <iframe class="all-video" src="https://www.youtube.com/embed/9xmdxhnIDT8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <Modal class="bible-modal" v-show="showModal" @close="showModal = false">
