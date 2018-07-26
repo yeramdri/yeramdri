@@ -18,6 +18,9 @@ export default {
     MainIntroduce: MainIntroduce,
     MainContent: MainContent,
     MainFooter: MainFooter
-  })
+  }),
+  mounted () {
+    this.$socket.emit('bible_card_data_req', 'ok')
+  }
 }
 </script>

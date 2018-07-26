@@ -1,9 +1,14 @@
 <template>
   <div class="all-container">
-    <div class="all">
+    <div class="all_title_div" v-if="searchValue===''">
       <h1>Bible</h1>
       <p>예수, 나를 향한 사랑의 시작</p>
-      <Input v-on:@click="onClickBible" v-on:@submit="onSearch"/>
+    </div>
+    <div class="all_search_div" id="all_search_div">
+      <Input v-on:@click="onClickBible" v-on:@submit="onSearch" v-model="searchValue"/>
+      {{searchValue}}
+    </div>
+    <div class="all_video_div" v-if="searchValue===''">
       <iframe class="all-video" src="https://www.youtube.com/embed/9xmdxhnIDT8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <Modal class="bible-modal" v-show="showModal" @close="showModal = false">
@@ -26,6 +31,7 @@ import BibleData from '../dommyModels/BibleModel.js'
 
 import Input from '../common/Input.vue'
 import Modal from '../common/Modal.vue'
+import {EventBus} from '../event-bus.js'
 
 export default {
   name: 'All',
@@ -39,7 +45,13 @@ export default {
   data () {
     return {
       showModal: false,
-      bibles: []
+      bibles: [],
+      searchValue: ''
+    }
+  },
+  sockets: {
+    bibleCard: function (data) {
+      console.log(data)
     }
   },
   methods: {
@@ -63,6 +75,13 @@ export default {
     goSearchList (searchWord) {
       router.push({name: 'BibleList', params: { bibleId: searchWord }})
     }
+  },
+  mounted () {
+    let self = this
+    document.getElementById('all_search_div').style.margin = '60px auto 0px auto'
+    EventBus.$on('searchValueChange', function (data) {
+      self.searchValue = data
+    })
   }
 }
 </script>
@@ -88,11 +107,18 @@ export default {
     /* background: #27c456; */
     height: 91vh;
   }
-  .all {
+  .all_title_div {
     margin: 60px auto 0px auto;
     width: 95vw;
     /* background-color: green; */
     padding-top: 3vh;
+    /*padding-bottom: 3vh;*/
+  }
+  .all_search_div {
+    width: 95vw;
+  }
+  .all_video_div {
+    width: 95vw;
     padding-bottom: 3vh;
   }
   .all-video {

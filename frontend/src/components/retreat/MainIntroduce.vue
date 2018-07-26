@@ -8,7 +8,12 @@
 </template>
 <script>
 export default {
-  name: 'MainIntroduce'
+  name: 'MainIntroduce',
+  sockets: {
+    bibleCard: function (data) {
+      console.log(data)
+    }
+  }
 }
 </script>
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
     <div class="input-box shadow">
-        <input type="text" v-model="inputValue" v-on:keyup.enter="onSubmit" placeholder="Find in Bible" autofocus/>
+        <input type="text" v-model="inputValue" v-on:keyup="searchValueChange" v-on:keyup.enter="onSubmit" placeholder="Find in Bible" autofocus/>
         <span class="add-container">
             <i v-show="!inputValue.length" v-on:click="onClick" class="fas fa-book add-btn"></i>
             <i v-show="inputValue.length" class="fas fa-search add-btn" v-on:click="onSubmit"></i>
@@ -9,14 +9,18 @@
 </template>
 
 <script>
+import {EventBus} from '../event-bus.js'
 export default {
   name: 'Input',
   data () {
     return {
-      inputValue: this.inputValue || ''
+      inputValue: ''
     }
   },
   methods: {
+    searchValueChange () {
+      EventBus.$emit('searchValueChange', this.inputValue)
+    },
     onClick () {
       this.$emit('@click')
     },
