@@ -38,7 +38,7 @@ export default {
   text-decoration: none;
   color: #4383D3;
 }
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   .footer_content > h6 {
     font-size: 1vw;
     margin: 5px;
@@ -52,17 +52,15 @@ export default {
     margin: 0 auto;
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .footer_content > h6 {
-    font-size: 2.6vw;
+    font-size: 1.5vh;
   }
   .footer_div {
-    padding-top: 4vw;
-    padding-bottom: 4vw;
-  }
-  .footer_content {
-    width: 80%;
-    margin: 0 auto;
+    height: 12vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

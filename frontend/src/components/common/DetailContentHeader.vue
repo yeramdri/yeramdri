@@ -193,7 +193,7 @@ export default {
 /* mobile */
 @media (max-width: 1024px) {
   .App-header {
-    position: relative;
+    position: fixed;
     width: 100%;
     height: 8vh;
     background-color: rgba(0, 0, 0, 0.8);

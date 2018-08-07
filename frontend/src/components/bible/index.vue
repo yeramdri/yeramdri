@@ -1,38 +1,101 @@
 <template>
-  <div>
+  <div class="bible-index">
     <Header></Header>
-    <div class="bible-box">
-      <div>
-        <All/>
+    <div v-bind:class="[searchValue===''?'visibleClass':'hiddenClass']">
+      <BibleTitle></BibleTitle>
+    </div>
+    <div class="bible-search">
+      <div class="input-div">
+        <input class="search-input" v-on:keyup="upEvent()" id="search-input" placeholder="Search Bible" v-model="searchValue"/>
       </div>
+    </div>
+    <div v-bind:class="[searchValue===''?'visibleClass':'hiddenClass']">
+      <BeforeBibleSearch></BeforeBibleSearch>
+    </div>
+    <div v-bind:class="[searchValue===''?'hiddenClass':'visibleClass']">
+      <AfterBibleSearch :lists="tag(lists)"></AfterBibleSearch>
     </div>
   </div>
 </template>
-
 <script>
-import Header from '../common/Header.vue'
-import All from './all'
+import Header from '../common/Header'
+import BibleTitle from './bible-title'
+import BeforeBibleSearch from './before-bible-search'
+import AfterBibleSearch from './after-bible-search'
+import { store } from './store.js'
+import { EventBus } from './event-bus.js'
 export default {
-  name: 'Bible',
+  name: 'index',
+  data () {
+    return {
+      searchValue: store.state.searchValue,
+      lists: []
+    }
+  },
   mounted () {
     this.$socket.emit('bible_card_data_req', 'ok')
+    var self = this
+    EventBus.$on('cardClick', function () {
+      store.state.searchValue = self.searchValue
+    })
   },
-  components: {
-    Header,
-    All
-  }
+  sockets: {
+    bibleCard: function (data) {
+      this.lists = data
+    }
+  },
+  methods: {
+    tag: function (lists) {
+      var self = this
+      return lists.filter(function (list) {
+        var trueOrFalse
+        var isStringInTag = list.tag.indexOf(self.searchValue)
+        var isStringInBibleTitle = list.bibleTitle1.indexOf(self.searchValue)
+        if (isStringInTag !== -1 || isStringInBibleTitle !== -1) {
+          trueOrFalse = true
+        } else {
+          trueOrFalse = false
+        }
+        return trueOrFalse
+      })
+    },
+    upEvent: function () {
+      this.searchValue = document.getElementById('search-input').value
+    }
+  },
+  components: ({
+    Header: Header,
+    BibleTitle: BibleTitle,
+    BeforeBibleSearch: BeforeBibleSearch,
+    AfterBibleSearch: AfterBibleSearch
+  })
 }
 </script>
-
-<style>
-input {
-  border-style: groove;
-  width: 200px;
+<style scoped>
+.visibleClass {
+  visibility: visible;
 }
-button {
-  border-style: groove;
+.hiddenClass {
+  visibility: hidden;
+  height: 0px;
 }
-.shadow {
-  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);
+@media (max-width: 1024px) {
+  .bible-search {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .search-input {
+    font-size: 3.5vh;
+    padding-top: 0.5vh;
+    padding-left: 0.5vh;
+    padding-bottom: 0.5vh;
+    width: 80vw;
+  }
+  .search-input:focus {
+    outline: none;
+    box-shadow: 0.4vh 0.4vh 0.2vh grey;
+  }
 }
 </style>
