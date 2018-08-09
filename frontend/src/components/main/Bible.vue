@@ -23,7 +23,38 @@ export default {
 
 <style scoped>
 @media (min-width: 1025px) {
-
+  h2 {
+    font-size: 7vh;
+    margin-top: 0px;
+    margin-bottom: 1vh;
+  }
+  p {
+    font-size: 3vh;
+    margin-top: 25px;
+    margin-bottom: 0;
+  }
+  a {
+    display: none;
+  }
+  .bible {
+    width: 32vw;
+    height: 32vw;
+    font-family: 'Nanum Gothic', serif;
+    background-color: #fafafa;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url('../../assets/bible.jpg');
+    background-size: cover;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(214, 230, 240, 0.9);
+    cursor: pointer;
+  }
+  .bible:hover {
+    opacity: 0.7;
+    color: rgb(190, 208, 210);
+  }
 }
 @media (max-width: 1024px) {
   h2 {
@@ -47,6 +78,7 @@ export default {
     justify-content: center;
     align-items: center;
     color: rgba(214, 230, 240, 0.9);
+    cursor: pointer;
   }
   .demo-arrow-cls {
     float: right;

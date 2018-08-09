@@ -9,6 +9,20 @@ export default {
 }
 </script>
 <style scoped>
+@media (min-width: 1024px) {
+  .before-bible-search-div {
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .before-bible-search-video {
+    width: 664px;
+    height: 35vh;
+    border: none;
+    box-shadow: 0.4vh 0.4vh 0.2vh rgba(128, 128, 128, 0.454);
+  }
+}
 @media (max-width: 1024px) {
   .before-bible-search-div {
     height: 50vh;

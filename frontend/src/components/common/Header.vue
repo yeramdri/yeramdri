@@ -6,16 +6,16 @@
       </router-link>
       <button v-on:click='fade=!fade' ref='button' class="hamburger">&#9776;</button>
       <button class="goBible" v-on:click="goBible">말씀</button>
-      <button class="goDaily" v-on:click="goDaily">삶</button>
-      <button class="goDuty" v-on:click="goDuty">사역</button>
+      <button class="goDaily">삶</button>
+      <button class="goDuty">사역</button>
       <span class="headerSearch">
         <img v-bind:src="search" class="search" alt="search"/>
       </span>
     </div>
     <div v-bind:class="[fade?'home-clickTri-active':'home-clickTri']">
       <button v-bind:class="[fade?'home-clickBible-active':'home-clickBible']" v-on:click="goBible">말씀</button>
-      <button v-bind:class="[fade?'home-clickDaily-active':'home-clickDaily']" v-on:click="goDaily">삶</button>
-      <button v-bind:class="[fade?'home-clickDuty-active':'home-clickDuty']" v-on:click="goDuty">사역</button>
+      <button v-bind:class="[fade?'home-clickDaily-active':'home-clickDaily']">삶</button>
+      <button v-bind:class="[fade?'home-clickDuty-active':'home-clickDuty']">사역</button>
     </div>
   </div>
 </template>
@@ -72,6 +72,15 @@ export default {
   z-index:100;
 }
 @media (min-width: 1025px) {
+  .App-header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 7vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    z-index:100;
+  }
   .hamburger {
     position: absolute;
     height: 0px;
@@ -79,21 +88,29 @@ export default {
     font-size: 0px;
     visibility: hidden;
   }
+  .logo {
+    width: 5vh;
+    height: 5vh;
+  }
+  .search {
+    width: 4vh;
+    height: 4vh;
+  }
   .header {
     max-width: 1280px;
     position: relative;
-    height: 50px;
+    height: 7vh;
     width: 75%;
     margin: 0 auto;
   }
   .headerLogo {
     position: absolute;
-    top: 10px;
+    top: 1vh;
     left: 10px;
   }
   .headerSearch {
     position: absolute;
-    top: 12.5px;
+    top: 1.5vh;
     right: 10px;
   }
   .goBible {
@@ -345,42 +362,42 @@ export default {
 }
 .goBible {
   position: absolute;
-  top: 12.5px;
+  top: 2vh;
   left: 23%;
   text-decoration: none;
   background-color: transparent;
-  padding: 2px 10px 1px 10px;
+  padding: 0.2vh 1vh 0.1vh 1vh;
   border: none;
   color: #f4f4f4;
-  font-size: 15px;
+  font-size: 2vh;
   font-family: 'Nanum Gothic' sans-serif;
   font-weight: 100;
   cursor: pointer;
 }
 .goDaily {
   position: absolute;
-  top: 12.5px;
+  top: 2vh;
   left: 48%;
   text-decoration: none;
   background-color: transparent;
-  padding: 2px 10px 1px 10px;
+  padding: 0.2vh 1vh 0.1vh 1vh;
   border: none;
   color: #f4f4f4;
-  font-size: 15px;
+  font-size: 2vh;
   font-family: 'Nanum Gothic' sans-serif;
   font-weight: 100;
   cursor: pointer;
 }
 .goDuty {
   position: absolute;
-  top: 15px;
+  top: 2vh;
   left: 73%;
   text-decoration: none;
   background-color: transparent;
-  padding: 2px 10px 1px 10px;
+  padding: 0.2vh 1vh 0.1vh 1vh;
   border: none;
   color: #f4f4f4;
-  font-size: 15px;
+  font-size: 2vh;
   font-family: 'Nanum Gothic' sans-serif;
   font-weight: 100;
   cursor: pointer;

@@ -12,6 +12,31 @@ export default {
 }
 </script>
 <style scoped>
+@media (min-width: 1025px) {
+  .bible-title {
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .text-div {
+    text-align: center;
+    color: rgb(190,206,210);
+    margin-top: 100px;
+  }
+  .text-div > h1 {
+    font-size: 90px;
+    font-weight: 400;
+    margin-top: 0px;
+    margin-bottom: 0;
+  }
+  .text-div > h4 {
+    font-size: 30px;
+    font-weight: 300;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
 @media (max-width: 1024px) {
   .bible-title {
     height: 32vh;

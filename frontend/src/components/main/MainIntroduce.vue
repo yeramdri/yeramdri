@@ -18,7 +18,35 @@ export default {
 @import url(https://fonts.googleapis.com/css?family=Do+Hyeon);
 @import url(https://fonts.googleapis.com/css?family=Gothic+A1);
 @media (min-width: 1025px) {
-
+  .introduce-content {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url('../../assets/mainIntroduceMobile.jpg');
+    height: 40vw;
+    margin-top: 50px;
+    opacity: 0.9;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .content-text > h1 {
+    font-size: 9vh;
+    margin-top: 0px;
+    margin-bottom: 2vh;
+    font-family: 'Nanum Gothic', serif;
+    font-weight: 700;
+    color: #f4f4f4;
+    text-align: center;
+  }
+  .content-text > h3 {
+    font-size: 6vh;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Nanum Gothic', serif;
+    font-weight: 700;
+    color: rgb(216, 200, 100);
+    text-align: center;
+  }
 }
 @media (max-width: 1024px) {
   .introduce-content {
