@@ -16,3 +16,18 @@ export default {
   })
 }
 </script>
+<style scoped>
+@media (min-width: 1025px) {
+  .after-bible-search-div {
+    width: 75vw;
+    margin: 0 auto;
+    max-width: 1280px;
+  }
+}
+@media (max-width: 1024px) {
+  .after-bible-search-div {
+    width: 80vw;
+    margin: 0 auto;
+  }
+}
+</style>

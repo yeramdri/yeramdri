@@ -14,7 +14,8 @@ export default {
 <style scoped>
 @media (min-width: 1025px) {
   .bible-title {
-    height: 300px;
+    margin: 7vh auto 0 auto;
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +23,7 @@ export default {
   .text-div {
     text-align: center;
     color: rgb(190,206,210);
-    margin-top: 100px;
+    /*margin-top: 100px;*/
   }
   .text-div > h1 {
     font-size: 90px;

@@ -81,7 +81,7 @@ export default {
   visibility: hidden;
   height: 0px;
 }
-@media (min-width: 1025px) {
+@media (min-width: 1025px){
   .bible-search {
     height: 10vh;
     display: flex;
@@ -89,12 +89,12 @@ export default {
     align-items: center;
   }
   .search-input {
-    font-size: 18px;
-    padding-top: 0.5vh;
-    padding-left: 10px;
-    padding-bottom: 0.5vh;
-    width: 654px;
-    height: 30px;
+    font-size: 2vw;
+    padding-top: 1vw;
+    padding-left: 1vw;
+    padding-bottom: 1vw;
+    width: 75vw;
+    max-width: 1280px;
     border: 1px solid rgba(185, 185, 185, 0.701);
     border-radius: 2px;
     box-shadow: 0.1vh 0.1vh 0.05vh rgba(128, 128, 128, 0.454);
@@ -109,7 +109,7 @@ export default {
   }
   .visibleFakeDiv {
     visibility: visible;
-    height: 50px;
+    height: 7vh;
   }
 }
 @media (max-width: 1024px) {

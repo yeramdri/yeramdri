@@ -4,6 +4,7 @@
       :key="item.id"
       :title="item.title"
       :image="item.image"
+      :contentVideo="item.contentVideo"
       :tag="item.tag.split(',')"
       :bibleTitle1="item.bibleTitle1"
       :bibleTitle2="item.bibleTitle2"

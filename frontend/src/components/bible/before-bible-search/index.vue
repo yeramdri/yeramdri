@@ -17,8 +17,9 @@ export default {
     align-items: center;
   }
   .before-bible-search-video {
-    width: 664px;
-    height: 35vh;
+    max-width: 1280px;
+    width: 75vw;
+    height: 38vh;
     border: none;
     box-shadow: 0.4vh 0.4vh 0.2vh rgba(128, 128, 128, 0.454);
   }

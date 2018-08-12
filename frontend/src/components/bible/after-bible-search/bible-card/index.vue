@@ -12,7 +12,6 @@ export default {
   data () {
     return {
       bibleCardStyle: {
-        display: 'inline-block',
         background: 'url("' + this.cardImage + '")',
         backgroundSize: 'cover'
       }
@@ -28,10 +27,17 @@ export default {
 </script>
 <style scoped>
 @media (min-width: 1025px) {
-  .bible-card-content {
-    width: 19.5vw;
-    height: 19.5vw;
+  .bible-card-box {
+    width: 24.95vw;
+    height: 24.95vw;
+    max-width: 426.6px;
+    max-height: 426.6px;
     margin: 0 auto;
+    display: inline-block;
+  }
+  .bible-card-content {
+    width: 100%;
+    height: 100%;
     cursor: pointer;
   }
   .bible-card-content:hover {
@@ -39,10 +45,15 @@ export default {
   }
 }
 @media (max-width: 1024px) {
-  .bible-card-content {
-    width: 33vw;
-    height: 33vw;
+  .bible-card-box {
+    width: 26.6vw;
+    height: 26.6vw;
     margin: 0 auto;
+    display: inline-block;
+  }
+  .bible-card-content {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

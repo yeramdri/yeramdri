@@ -22,7 +22,7 @@ export default {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
       url('../../assets/mainIntroduceMobile.jpg');
     height: 40vw;
-    margin-top: 50px;
+    margin-top: 7vh;
     opacity: 0.9;
     background-size: cover;
     display: flex;
