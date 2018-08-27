@@ -49,6 +49,7 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  /* mobile */
   .introduce-content {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
       url('../../assets/mainIntroduceMobile.jpg');
@@ -64,10 +65,11 @@ export default {
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 10vh;
+    /* align-items: center; */
   }
   .content-text > h1 {
-    font-size: 3vh;
+    font-size: 20px;
     margin-top: 0px;
     margin-bottom: 1vh;
     font-family: 'Nanum Gothic', serif;
@@ -76,7 +78,7 @@ export default {
     text-align: center;
   }
   .content-text > h3 {
-    font-size: 2vh;
+    font-size: 12px;
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: 'Nanum Gothic', serif;
@@ -87,7 +89,7 @@ export default {
   .introduce-box {
     position: relative;
     width: 100%;
-    height: 20vh;
+    height: 35vh;
     margin: 0px auto;
   }
   .introduce-box:before {

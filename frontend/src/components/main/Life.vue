@@ -1,10 +1,12 @@
 <template>
-  <div class="life">
-    <div class="life-wrapper">
-      <h2>삶</h2>
-      <p>일상을 살아가기</p>
+  <div class="life-box">
+    <div class="life">
+      <div class="life-wrapper">
+        <h2>삶</h2>
+        <p>일상을 살아가기</p>
+      </div>
+      <a class="demo-arrow-cls forward"> &raquo; </a>
     </div>
-    <a class="demo-arrow-cls forward"> &raquo; </a>
   </div>
 </template>
 
@@ -54,38 +56,50 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  /* mobile */
   h2 {
-    font-size: 3vh;
+    font-size: 2.2vh;
     margin-top: 0px;
     margin-bottom: 1vh;
   }
   p {
-    font-size: 2vh;
+    font-size: 1.8vh;
     margin-top: 0px;
     margin-bottom: 0;
   }
   .life {
     font-family: 'Nanum Gothic', serif;
     color: rgba(216, 200, 100, 1);
-    background: linear-gradient(0deg, rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('../../assets/life.jpg');
-    height: 20vh;
-    text-align: center;
+    background-color: #e4e4e4;
+    height: 12.5vh;
+    width: 90vw;
+    text-align: left;
     display: flex;
-    justify-content: center;
     align-items: center;
     cursor: pointer;
+  }
+  .life-wrapper {
+    margin-left:5vw;
+  }
+  .life-box {
+    height: 14vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6f6f6;
   }
   .demo-arrow-cls {
     float: right;
     position: absolute;
-    width: 4vh;
-    height: 4vh;
+    width: 1.5vh;
+    height: 1.5vh;
     background: transparent;
-    border-top: 0.5vh solid rgba(216, 200, 100, 0.5);
-    border-left: 0.5vh solid rgba(216, 200, 100, 1);
+    border-top: 0.3vh solid rgba(216, 200, 100, 1);
+    border-left: 0.3vh solid rgba(216, 200, 100, 1);
     transition: all 0.3s ease-in-out;
     text-decoration: none;
     color: transparent;
+    right: 13vw !important;
   }
   .demo-arrow-cls.forward {
     transform: rotate(140deg);

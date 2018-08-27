@@ -1,11 +1,11 @@
 <template>
   <div class="bible-found-div">
-    <div class="bible-found-mobile-title-div">
-      <h3>{{title}}</h3>
-    </div>
+    <!--<div class="bible-found-title-div">-->
+      <!--<h3>{{title}}</h3>-->
+    <!--</div>-->
     <div class="bible-found-image-div">
-      <iframe class="bible-found-image" :src="contentVideo" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"></iframe>
-      <!--<img class="bible-found-image" :src="image" alt="말씀사진">-->
+      <!-- <img class="bible-found-image" :src="image" alt="말씀사진"-->
+      <iframe class="bible-found-image" :src="contentVideo"></iframe>
     </div>
     <div class="bible-found-posts-div">
       <div class="bible-found-title-div">
@@ -21,9 +21,7 @@
       <div class="bible-found-sharing-div">
         <p class="bible-found-question" v-for="item in bibleQuestion" :key="item.id">{{item.id}}. {{item.text}}</p>
         <p class="bible-found-advice">{{bibleAdvice}}</p>
-      </div>
-      <div class="bible-found-tags-div">
-        <span v-for="item in tag" :key="item">#{{item}}</span>
+        <span class="bible-found-tag" v-for="item in tag" :key="item">#{{item}}</span>
       </div>
       <div class="bible-found-link-div">
         <button class="bible-found-link" v-on:click="goSermon">원문 설교 보러가기</button>
@@ -33,7 +31,7 @@
 </template>
 <script>
 export default {
-  props: ['title', 'image', 'contentVideo', 'tag', 'bibleTitle1', 'bibleTitle2', 'bibleContent', 'bibleQuestion', 'bibleAdvice', 'link'],
+  props: ['title', 'contentVideo', 'image', 'tag', 'bibleTitle1', 'bibleTitle2', 'bibleContent', 'bibleQuestion', 'bibleAdvice', 'link'],
   name: 'Found',
   methods: {
     goSermon () {
@@ -44,16 +42,9 @@ export default {
 </script>
 <style scoped>
 @media (min-width: 1025px) {
+  /* desktop */
   .bible-found-div {
     margin: 0 auto 0 auto;
-  }
-  .bible-found-mobile-title-div {
-    visibility: hidden;
-    height: 0px;
-  }
-  .bible-found-mobile-title-div > h3 {
-    margin: 0;
-    font-size: 0px;
   }
   .bible-found-title-div {
     margin: 0 auto;
@@ -82,8 +73,6 @@ export default {
   }
   .bible-found-image {
     width: 100%;
-    height: 40vh;
-    border: transparent;
   }
   .bible-found-posts-div {
     position: relative;
@@ -96,14 +85,16 @@ export default {
     height: 30vh;
     font-size: 2vh;
     overflow: scroll;
+    margin-top: 0px;
   }
   .bible-found-tags-div {
     margin-top: 1vh;
   }
   .bible-found-tags-div > span {
-    font-size: 2vh;
-    color: rgb(60, 122, 252);
-    background-color: transparnet;
+    font-size: 1.9vh;
+    background-color: rgb(60, 122, 252);
+    color: white;
+    padding: 1vh;
     margin-right: 1vh;
   }
   .bible-found-tag {
@@ -157,69 +148,61 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  /* mobile */
   .bible-found-div {
     margin: 8vh auto 0 auto;
   }
-  .bible-found-mobile-title-div {
-    margin-top: 1.3vh;
-    margin-bottom: 1.3vh;
-    text-align: center;
-  }
-  .bible-found-mobile-title-div > h3 {
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    font-size: 3vh;
-  }
   .bible-found-title-div {
-    visibility: hidden;
-    height: 0px;
-    /*margin-top: 1.3vh;
-    margin-bottom: 1.3vh;
-    text-align: center;*/
+    /* padding-left: 10px; */
   }
   .bible-found-title-div > h3 {
-    visibility: hidden;
-    height: 0px;
-    font-size: 0;
-    margin: 0;
-    /*margin-top: 1vh;
-    margin-bottom: 1vh;
-    font-size: 3vh;*/
+    height: 40px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 40px;
+    color: #262626;
   }
   .bible-found-posts-div {
-    width: 96%;
+    width: 92%;
     margin: 0 auto;
   }
   .bible-found-tags-div {
-    margin-top: 1vh;
+    /* margin-top: 1vh; */
   }
   .bible-found-tags-div > span {
-    font-size: 2vh;
-    color: rgb(60, 122, 252);
-    background-color: transparent;
-    padding: 0.5vh;
+    font-size: 10px;
+    /* background-color: rgb(60, 122, 252); */
+    color: #003569;
+    /* padding: 0.5vh; */
     margin-right: 0.5vh;
   }
   .bible-found-tag {
     background-color: transparent;
-    color: rgb(60, 122, 252);
+    color: #003569;
+    font-size: 13px;
     margin-left: 0.25vh;
     margin-right: 0.25vh;
+    padding-top: 10px;
+    display: inline-block;
   }
   .bible-found-section {
-    margin-top: 1.3vh;
-    margin-bottom: 1.3vh;
-    font-size: 2.5vh;
+    margin-top: 3.5px;
+    margin-bottom: 3.5px;
+    font-size: 14px;
+    font-weight: 500;
   }
   .bible-found-image {
     width: 100vw;
-    height: 40vh;
-    border: transparent;
+    height: 70vw;
+    margin-top: 15px;
+    border: none;
   }
   .bible-found-text {
     height: 20vh;
     font-size: 1.9vh;
     overflow: scroll;
+    margin-top: 0px;
   }
   .bible-found-sharing-div {
     margin-top: 1vh;
@@ -238,19 +221,20 @@ export default {
     margin-bottom: 0px;
   }
   .bible-found-link-div {
-    margin-top: 2vh;
-    margin-bottom: 1vh;
+    margin-top: 20px;
+    margin-bottom: 25px;
     text-align: center;
   }
   .bible-found-link {
     text-decoration: none;
-    color: black;
-    font-size: 2.5vh;
+    color: #262626;
+    font-size: 13px;
     padding: 1vh 3vh;
     width: 50vw;
-    font-weight: 700;
-    background-color: white;
-    border: 0.5vh solid black;
+    font-weight: 600;
+    background-color: #f6f6f6;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
   }
 }
 </style>

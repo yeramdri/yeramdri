@@ -39,23 +39,27 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  /* mobile */
   .bible-title {
-    height: 32vh;
+    height: 160px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    padding-bottom: 15px;
   }
   .text-div {
     text-align: center;
     color: rgb(190,206,210);
   }
   .text-div > h1 {
-    font-size: 8vh;
+    font-size: 38px;
     margin-top: 0px;
-    margin-bottom: 2vh;
+    margin-bottom: 0px;
+    font-weight: 400;
   }
   .text-div > h4 {
-    font-size: 3vh;
+    font-size: 18px;
+    font-weight: 400;
     margin-top: 0px;
     margin-bottom: 0px;
   }

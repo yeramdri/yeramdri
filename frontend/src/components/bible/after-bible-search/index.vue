@@ -25,8 +25,9 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  /* mobile */
   .after-bible-search-div {
-    width: 80vw;
+    width: 96vw;
     margin: 0 auto;
   }
 }

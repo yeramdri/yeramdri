@@ -25,16 +25,18 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  /* mobile */
   .before-bible-search-div {
-    height: 50vh;
+    height: 35vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .before-bible-search-video {
-    width: 80vw;
-    height: 40vh;
+    width: 75vw;
+    height: 30vh;
     border: none;
+    box-shadow: 0.4vh 0.4vh 0.2vh rgba(128, 128, 128, 0.454);
   }
 }
 </style>

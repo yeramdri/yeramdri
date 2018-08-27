@@ -29,4 +29,10 @@ export default {
     padding-left: 0.5vw;
   }
 }
+@media (max-width: 1025px){
+  .content-div {
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+  }
+}
 </style>

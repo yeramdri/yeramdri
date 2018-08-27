@@ -45,10 +45,12 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  /* mobile */
   .bible-card-box {
-    width: 26.6vw;
-    height: 26.6vw;
-    margin: 0 auto;
+    width: 30vw;
+    height: 30vw;
+    /* margin: 0 auto; */
+    margin: 0.5vw;
     display: inline-block;
   }
   .bible-card-content {

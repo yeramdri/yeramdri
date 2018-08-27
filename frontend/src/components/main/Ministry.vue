@@ -1,4 +1,5 @@
 <template>
+  <div class="ministry-box">
     <div class="ministry">
         <div class="ministry-wrapper">
             <h2>사역</h2>
@@ -6,6 +7,7 @@
         </div>
         <a class="demo-arrow-cls forward"> &raquo; </a>
     </div>
+  </div>
 </template>
 
 <script>
@@ -47,41 +49,52 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  /* mobile */
   h2 {
-    font-size: 3vh;
+    font-size: 2.2vh;
     margin-top: 0px;
     margin-bottom: 1vh;
   }
   p {
-    font-size: 2vh;
+    font-size: 1.8vh;
     margin-top: 0px;
     margin-bottom: 0;
   }
   .ministry {
     font-family: 'Nanum Gothic', serif;
-    color: #f4f4f4;
-    background: linear-gradient(0deg, rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('../../assets/ministry.jpg');
+    background-color: #e4e4e4;
     background-size: cover;
-    height: 20vh;
-    width: 100vw;
-    text-align: center;
+    height: 12.5vh;
+    width: 90vw;
+    text-align: left;
     display: flex;
-    justify-content: center;
     align-items: center;
+    color: #797979;
     cursor: pointer;
+  }
+  .ministry-wrapper {
+    margin-left: 5vw;
+  }
+  .ministry-box {
+    height: 14vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6f6f6;
   }
   .demo-arrow-cls {
     float: right;
     position: absolute;
     margin-left: 10rem;
-    width: 4vh;
-    height: 4vh;
+    width: 1.5vh;
+    height: 1.5vh;
     background: transparent;
-    border-top: 0.5vh solid rgba(208, 206, 206, 0.789);
-    border-left: 0.5vh solid #f4f4f4;
+    border-top: 0.3vh solid #797979;
+    border-left: 0.3vh solid #797979;
     transition: all 0.3s ease-in-out;
     text-decoration: none;
     color: transparent;
+    right: 13vw !important;
   }
   .demo-arrow-cls.forward {
     transform: rotate(140deg);

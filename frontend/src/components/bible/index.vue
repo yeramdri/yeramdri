@@ -82,6 +82,7 @@ export default {
   height: 0px;
 }
 @media (min-width: 1025px){
+  /* desktop */
   .bible-search {
     height: 10vh;
     display: flex;
@@ -113,18 +114,23 @@ export default {
   }
 }
 @media (max-width: 1024px) {
+  /* mobile */
   .bible-search {
-    height: 10vh;
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .search-input {
-    font-size: 3.5vh;
-    padding-top: 0.5vh;
-    padding-left: 0.5vh;
-    padding-bottom: 0.5vh;
-    width: 80vw;
+    font-size: 15px;
+    padding-top: 5px;
+    padding-left: 3vw;
+    padding-bottom: 5px;
+    width: 72vw;
+    max-width: 1280px;
+    border: 1px solid rgba(185, 185, 185, 0.701);
+    border-radius: 5px;
+    box-shadow: 0.1vh 0.1vh 0.05vh rgba(128, 128, 128, 0.454);
   }
   .search-input:focus {
     outline: none;
