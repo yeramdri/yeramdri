@@ -17,6 +17,7 @@
 </template>
 <script>
 import Found from './found'
+import NotFound from './not-found'
 export default {
   props: ['list', 'length'],
   name: 'BibleCardContainer',
