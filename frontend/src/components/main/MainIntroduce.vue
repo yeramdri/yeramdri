@@ -1,8 +1,10 @@
 <template>
   <div class="introduce-box">
     <div class="introduce-content">
-      <h1>예람드리: 십자가, 일상에서</h1>
-      <h3>예배자들의 삶이 아름드리 꽃피우길</h3>
+      <div class="content-text">
+        <h1>예람드리</h1>
+        <h3>예배자들의 삶, 아름드리 꽃피우길.</h3>
+      </div>
     </div>
   </div>
 </template>
@@ -13,51 +15,45 @@ export default {
 </script>
 <style scoped>
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-
-@media (min-width: 992px) {
+@import url(https://fonts.googleapis.com/css?family=Do+Hyeon);
+@import url(https://fonts.googleapis.com/css?family=Gothic+A1);
+@media (min-width: 1025px) {
   .introduce-content {
-    background: linear-gradient(0deg,rgba(0,0,0,0.4), rgba(0,0, 0,0.4)), url("/assets/mainIntroduce.jpg");
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url('../../assets/mainIntroduceMobile.jpg');
+    height: 40vw;
+    margin-top: 7vh;
+    opacity: 0.9;
     background-size: cover;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    color: white;
-    text-align: left;
-    padding-top: 32vw;
-    padding-left: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .introduce-content > h1 {
+  .content-text > h1 {
+    font-size: 9vh;
+    margin-top: 0px;
+    margin-bottom: 2vh;
+    font-family: 'Nanum Gothic', serif;
+    font-weight: 700;
+    color: #f4f4f4;
+    text-align: center;
+  }
+  .content-text > h3 {
+    font-size: 6vh;
     margin-top: 0px;
     margin-bottom: 0px;
     font-family: 'Nanum Gothic', serif;
     font-weight: 700;
-    font-size: 4.5vw;
-    color: white;
-  }
-  .introduce-content > h3 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    font-family: 'Nanum Gothic', serif;
-    font-weight: 700;
-    font-size: 2.5vw;
-    color: #C4BD27;
-  }
-  .introduce-box {
-    position: relative;
-    width: 100%;
-    margin: 50px auto 0px auto;
-  }
-  .introduce-box:before {
-    content: "";
-    display: block;
-    padding-top: 66.7%;
+    color: rgb(216, 200, 100);
+    text-align: center;
   }
 }
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
+  /* mobile */
   .introduce-content {
-    background: linear-gradient(0deg,rgba(0,0,0,0.4), rgba(0,0, 0,0.4)), url("/assets/mainIntroduce.jpg");
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url('../../assets/mainIntroduceMobile.jpg');
+    opacity: 0.9;
     background-size: cover;
     position: absolute;
     top: 0px;
@@ -66,34 +62,39 @@ export default {
     bottom: 0px;
     color: white;
     text-align: left;
-    padding-top: 32vw;
-    padding-left: 5vw;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 10vh;
+    /* align-items: center; */
   }
-  .introduce-content > h1 {
+  .content-text > h1 {
+    font-size: 20px;
     margin-top: 0px;
-    margin-bottom: 0px;
-    font-size: 5vw;
+    margin-bottom: 1vh;
     font-family: 'Nanum Gothic', serif;
     font-weight: 700;
-    color: white;
+    color: #f4f4f4;
+    text-align: center;
   }
-  .introduce-content > h3 {
+  .content-text > h3 {
+    font-size: 12px;
     margin-top: 0px;
     margin-bottom: 0px;
-    font-size: 3vw;
     font-family: 'Nanum Gothic', serif;
     font-weight: 700;
-    color: #C4BD27;
+    color: rgb(216, 200, 100);
+    text-align: center;
   }
   .introduce-box {
     position: relative;
     width: 100%;
-    margin: 60px auto 0px auto;
+    height: 35vh;
+    margin: 0px auto;
   }
   .introduce-box:before {
-    content: "";
+    content: '';
     display: block;
-    padding-top: 66.7%;
   }
 }
 </style>
