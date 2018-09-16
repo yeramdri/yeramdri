@@ -25,6 +25,17 @@ app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')))
 
 app.use('/', index);
 
+app.post('/bible-card', function (request, response) {
+  MongoClient.connect(mongoUrl, {userNewUrlParser: true}, function (err, mongodb){
+    if (err) throw err;
+    const DB = mongodb.db('platform')
+    DB.collection('bibleCard').find({}).toArray(function (err, result) {
+      if (err) throw err;
+      response.send(result)
+    })
+  })
+})
+
 server.listen(6508, function (){
   console.log('Server running port 6508')
 })
