@@ -70,10 +70,10 @@ class Bible extends Component {
           <h3>YERAMDRI - 삶의 고백(A Confession of Life)</h3>
         </div>
         <div className={cx(`${moduleName}-recentContents`)}>
-          <h3>최근 컨텐츠</h3>
-          <div className={cx(`${moduleName}-contentsBox`)}>
+          <h3>최신 컨텐츠</h3>
+          <div>
           { this.state.recentContents.length ? this.renderContents() : <div> Loading </div>}
-            <div>
+            <div className={cx(`${moduleName}-downIcon`)}>
               <i className="fas fa-chevron-down" />
             </div>
           </div>
@@ -86,9 +86,9 @@ class Bible extends Component {
 const ContentCard = (props) => {
   const {content: { title, image }} = props
   return (
-    <div>
-      {title}
+    <div className={cx(`${moduleName}-contentCard`)}>
       <img src={image} alt="listImage" />
+      <p>{title}</p>
     </div>
   )
 }
