@@ -11,12 +11,18 @@ var index = require('./routes/index');
 var app = express();
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
-var cors = require('cors')
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-var corsOptions = {
-  origin: 'http://localhost:3000.com',
-  optionsSuccessStatus: 200
-}
+// var cors = require('cors')
+
+// var corsOptions = {
+//   origin: 'http://localhost:3000',
+//   optionsSuccessStatus: 200
+// }
 
 app.use(require('connect-history-api-fallback')())
 // view engine setup
@@ -31,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')))
 
 app.use('/', index);
-app.use(cors(corsOptions))
+// app.use(cors(corsOptions))
 
 app.post('/bible-card', function (request, response) {
   MongoClient.connect(mongoUrl, {userNewUrlParser: true}, function (err, mongodb){
