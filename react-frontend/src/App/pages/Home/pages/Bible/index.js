@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import classnames from 'classnames/bind'
+import axios from 'axios'
 
 import bibleHeaderImg from 'src/App/pages/Home/assets/bible-header.jpg'
+import { axiosConfig } from 'src/utils/axiosUtils'
 
 import css from './index.scss'
 const cx = classnames.bind(css)
@@ -12,11 +14,23 @@ class Bible extends Component {
     super(props)
 
     this.state = {
-      search: ''
+      search: '',
+
+      recentContents: []
     }
   }
 
+  componentDidMount() {
+    this.getRecentContents()
+  }
+
   handleChangeValue = e => this.setState({ [e.target.name]: e.target.value })
+
+  getRecentContents = () => {
+    axios.post('http://localhost:6508/bible-card', axiosConfig).then(res => {
+      this.setState({ recentContents: [...res.data] })
+    })
+  }
 
   render() {
     return (

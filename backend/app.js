@@ -14,7 +14,7 @@ var io = require('socket.io')(server)
 var cors = require('cors')
 
 var corsOptions = {
-  origin: 'http://localhost:3000.com',
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200
 }
 
