@@ -21,15 +21,20 @@ class Bible extends Component {
   }
 
   componentDidMount() {
-    this.getRecentContents()
+    this.getRecentlyContents()
   }
 
   handleChangeValue = e => this.setState({ [e.target.name]: e.target.value })
 
-  getRecentContents = () => {
-    axios.post('http://localhost:6508/bible-card', axiosConfig).then(res => {
-      this.setState({ recentContents: [...res.data] })
-    })
+  getRecentlyContents = () => {
+    axios
+      .post('http://localhost:6508/bible-card', axiosConfig)
+      .then(res => this.setState({ recentContents: [...res.data] }))
+      .catch(err => console.log(err))
+  }
+
+  renderContents = () => {
+    return this.state.recentContents.map((content) => <ContentCard key={content.id} content={content}/>)
   }
 
   render() {
@@ -67,9 +72,7 @@ class Bible extends Component {
         <div className={cx(`${moduleName}-recentContents`)}>
           <h3>최근 컨텐츠</h3>
           <div className={cx(`${moduleName}-contentsBox`)}>
-            <div>컨텐츠1</div>
-            <div>컨텐츠2</div>
-            <div>컨텐츠3</div>
+          { this.state.recentContents.length ? this.renderContents() : <div> Loading </div>}
             <div>
               <i className="fas fa-chevron-down" />
             </div>
@@ -78,6 +81,16 @@ class Bible extends Component {
       </div>
     )
   }
+}
+
+const ContentCard = (props) => {
+  const {content: { title, image }} = props
+  return (
+    <div>
+      {title}
+      <img src={image} alt="listImage" />
+    </div>
+  )
 }
 
 export default Bible
