@@ -8,6 +8,16 @@ const cx = classnames.bind(css)
 const moduleName = 'Bible'
 
 class Bible extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      search: ''
+    }
+  }
+
+  handleChangeValue = e => this.setState({ [e.target.name]: e.target.value })
+
   render() {
     return (
       <div className={cx(`${moduleName}`)}>
@@ -19,7 +29,11 @@ class Bible extends Component {
         <div className={cx(`${moduleName}-search`)}>
           <form>
             <div className={cx(`${moduleName}-search-inputWrapper`)}>
-              <input placeholder="Search Bible" />
+              <input
+                onChange={this.handleChangeValue}
+                placeholder="Search Bible"
+                name="search"
+              />
             </div>
             <div className={cx(`${moduleName}-search-icon`)}>
               <i className="fas fa-search" />
