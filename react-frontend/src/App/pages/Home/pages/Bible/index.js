@@ -5,6 +5,8 @@ import axios from 'axios'
 import bibleHeaderImg from 'src/App/pages/Home/assets/bible-header.jpg'
 import { axiosConfig } from 'src/utils/axiosUtils'
 
+import SearchBar from 'src/components/SearchBar'
+
 import css from './index.scss'
 const cx = classnames.bind(css)
 const moduleName = 'Bible'
@@ -46,18 +48,7 @@ class Bible extends Component {
           <h3>예수, 나를 향한 사랑의 시작</h3>
         </div>
         <div className={cx(`${moduleName}-search`)}>
-          <form>
-            <div className={cx(`${moduleName}-search-inputWrapper`)}>
-              <input
-                onChange={this.handleChangeValue}
-                placeholder="Search Bible"
-                name="search"
-              />
-            </div>
-            <div className={cx(`${moduleName}-search-icon`)}>
-              <i className="fas fa-search" />
-            </div>
-          </form>
+          <SearchBar onChange={this.handleChangeValue} />
         </div>
         <div className={cx(`${moduleName}-mainVideo`)}>
           <iframe

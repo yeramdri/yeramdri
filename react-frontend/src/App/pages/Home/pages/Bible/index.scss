@@ -25,39 +25,6 @@
     }
     box-shadow: rgba(17, 17, 17, 0.2) 0px 2px 2px 0px;
   }
-  &-search {
-    height: 48px;
-    form {
-      display: flex;
-      justify-content: center;
-      line-height: 48px;
-    }
-    &-inputWrapper {
-      padding-top: 5px;
-      input {
-        height: 18px;
-        padding-bottom: 4px;
-        border: none;
-        border-bottom: 1px solid #737373;
-        background-color: rgba(0, 0, 0, 0);
-        color: rgb(17, 17, 17);
-        cursor: text;
-        display: inline-block;
-        flex-grow: 1;
-        font-size: 15px;
-        width: 80vw;
-        &:focus {
-          outline: none;
-          border-bottom: 1.5px solid tomato;
-        }
-      }
-    }
-    &-icon {
-      color: gray;
-      padding-left: 10px;
-      padding-top: 5px;
-    }
-  }
   &-mainVideo {
     padding: 3vw;
     border-bottom: solid 1px rgba(136, 136, 136, 0.4);
@@ -84,10 +51,6 @@
       text-align: left;
       margin-top: 0;
     }
-  }
-
-  &-contentsBox {
-
   }
 
   &-contentCard {

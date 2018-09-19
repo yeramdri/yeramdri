@@ -1,0 +1,33 @@
+.SearchBar {
+  height: 48px;
+  form {
+    display: flex;
+    justify-content: center;
+    line-height: 48px;
+  }
+  &-inputWrapper {
+    padding-top: 5px;
+    input {
+      height: 18px;
+      padding-bottom: 4px;
+      border: none;
+      border-bottom: 1px solid #737373;
+      background-color: rgba(0, 0, 0, 0);
+      color: rgb(17, 17, 17);
+      cursor: text;
+      display: inline-block;
+      flex-grow: 1;
+      font-size: 15px;
+      width: 80vw;
+      &:focus {
+        outline: none;
+        border-bottom: 1.5px solid tomato;
+      }
+    }
+  }
+  &-icon {
+    color: gray;
+    padding-left: 10px;
+    padding-top: 5px;
+  }
+}
