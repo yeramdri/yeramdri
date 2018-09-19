@@ -1,6 +1,6 @@
 var express = require('express');
 var MongoClient = require('mongodb').MongoClient;
-var mongoUrl = "mongodb://localhost:27017/platform"
+var mongoUrl = "mongodb://yeramdri.com:27017/platform"
 var path = require('path');
 var fs = require('fs')
 var favicon = require('serve-favicon')
