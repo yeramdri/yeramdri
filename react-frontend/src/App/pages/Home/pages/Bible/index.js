@@ -28,6 +28,12 @@ class Bible extends Component {
 
   handleChangeValue = e => this.setState({ [e.target.name]: e.target.value })
 
+  handleSubmit = e => {
+    // api call
+    alert(`keyword submitted ${this.state.search}`)
+    // e.preventDefault()
+  }
+
   getRecentlyContents = () => {
     axios
       .post('http://localhost:6508/bible-card', axiosConfig)
@@ -48,7 +54,7 @@ class Bible extends Component {
           <h3>예수, 나를 향한 사랑의 시작</h3>
         </div>
         <div className={cx(`${moduleName}-search`)}>
-          <SearchBar onChange={this.handleChangeValue} />
+          <SearchBar onChange={this.handleChangeValue} onSubmit={this.handleSubmit} path={"bible/results"}/>
         </div>
         <div className={cx(`${moduleName}-mainVideo`)}>
           <iframe

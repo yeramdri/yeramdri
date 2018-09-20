@@ -11,9 +11,11 @@ class SearchResult extends Component {
   
   render() {
     return (
-      <div>
-        이건 서치result 컴포넌트야
+      <div className={cx(`${moduleName}`)}>
         <SearchBar />
+        <div className={cx(`${moduleName}-resultsBox`)}>
+          results Box
+        </div>
       </div>
     )
   }
