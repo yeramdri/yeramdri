@@ -1,9 +1,9 @@
 .SearchBar {
   height: 48px;
+  display: flex;
+  justify-content: center;
+  line-height: 48px;
   form {
-    display: flex;
-    justify-content: center;
-    line-height: 48px;
   }
   &-inputWrapper {
     padding-top: 5px;
