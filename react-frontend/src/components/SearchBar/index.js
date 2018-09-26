@@ -24,7 +24,7 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { onChange, onSubmit, path = '/bible/results' } = this.props
+    const { value, onChange, onSubmit, path = '/bible/results'} = this.props
 
     if (this.state.redirect) {
       return <Redirect {...this.state.redirect} />
@@ -38,6 +38,7 @@ class SearchBar extends Component {
             onKeyPress={this.handleKeyPress}
             placeholder="Search Bible"
             name="search"
+            value={value}
           />
         </div>
         <Link to={path} onClick={onSubmit} className={cx(`${moduleName}-icon`)}>
