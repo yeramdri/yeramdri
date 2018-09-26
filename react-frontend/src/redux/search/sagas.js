@@ -1,4 +1,5 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects'
+import { getContents } from 'src/api'
 import {
   SEARCH_KEYWORD,
   searchKeywordRequest,
@@ -7,11 +8,11 @@ import {
 } from './actions'
 
 function* searchKeywordFlow(action) {
-  yield put(searchKeywordRequest());
+  const keyword = action.keyword
+  yield put(searchKeywordRequest())
   try {
-    // yield call(api)
-    debugger;
-    yield put(searchKeywordSuccess())
+    const { data } = yield call(getContents, keyword)
+    yield put(searchKeywordSuccess(data))
   } catch (err) {
     yield put(searchKeywordFailure(err))
   }
