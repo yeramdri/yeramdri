@@ -50,7 +50,7 @@ app.post('/bible-card', function (request, response) {
         response.send(result)
       })
     } else {
-      DB.collection('bibleCard').find({tag: new RegExp(search, i)}).toArray(function (err, result) {
+      DB.collection('bibleCard').find({tag: new RegExp(search, 'i')}).toArray(function (err, result) {
         if (err) throw err;
         response.send(result)
       })
