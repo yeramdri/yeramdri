@@ -41,7 +41,7 @@ app.use('/', index);
 
 app.post('/bible-card', function (request, response) {
   let search = request.body.search
-  MongoClient.connect(mongoUrl, {userNewUrlParser: true}, function (err, mongodb){
+  MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
     if (err) throw err;
     const DB = mongodb.db('platform')
     if (search == "" || search == "undefined") {
