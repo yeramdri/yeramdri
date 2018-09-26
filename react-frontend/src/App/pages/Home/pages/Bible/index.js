@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
 import axios from 'axios'
 
@@ -92,13 +93,15 @@ class Bible extends Component {
 
 const ContentCard = props => {
   const {
-    content: { title, image }
+    content: { id, title, image }
   } = props
   return (
+    <Link to={`/bible/${id}`}>
     <div className={cx(`${moduleName}-contentCard`)}>
-      <img src={image} alt="listImage" />
-      <p>{title}</p>
-    </div>
+        <img src={image} alt="listImage" />
+        <p>{title}</p>
+      </div>
+    </Link>
   )
 }
 
