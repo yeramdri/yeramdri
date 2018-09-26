@@ -40,13 +40,21 @@ app.use('/', index);
 // app.use(cors(corsOptions))
 
 app.post('/bible-card', function (request, response) {
+  let search = request.body.search
   MongoClient.connect(mongoUrl, {userNewUrlParser: true}, function (err, mongodb){
     if (err) throw err;
     const DB = mongodb.db('platform')
-    DB.collection('bibleCard').find({}).toArray(function (err, result) {
-      if (err) throw err;
-      response.send(result)
-    })
+    if (search == "" || search == "undefined") {
+      DB.collection('bibleCard').find({}).toArray(function (err, result) {
+        if (err) throw err;
+        response.send(result)
+      })
+    } else {
+      DB.collection('bibleCard').find({tag: /.*search.*/}).toArray(function (err, result) {
+        if (err) throw err;
+        response.send(result)
+      })
+    }
   })
 })
 
