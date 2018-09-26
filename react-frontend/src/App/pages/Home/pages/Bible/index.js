@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import classnames from 'classnames/bind'
 import axios from 'axios'
 
 import bibleHeaderImg from 'src/App/pages/Home/assets/bible-header.jpg'
 import { axiosConfig } from 'src/utils/axiosUtils'
+import { searchKeyword } from 'src/redux/search/actions'
 
 import SearchBar from 'src/components/SearchBar'
 
@@ -28,11 +30,8 @@ class Bible extends Component {
 
   handleChangeValue = e => this.setState({ [e.target.name]: e.target.value })
 
-  handleSubmit = e => {
-    // api call
-    // this.props.searchKeyword
-    alert(`keyword submitted ${this.state.search}`)
-    // e.preventDefault()
+  handleSubmit = () => {
+    this.props.searchKeyword(this.state.search)
   }
 
   getRecentlyContents = () => {
@@ -43,7 +42,9 @@ class Bible extends Component {
   }
 
   renderContents = () => {
-    return this.state.recentContents.map((content) => <ContentCard key={content.id} content={content}/>)
+    return this.state.recentContents.map(content => (
+      <ContentCard key={content.id} content={content} />
+    ))
   }
 
   render() {
@@ -55,7 +56,11 @@ class Bible extends Component {
           <h3>예수, 나를 향한 사랑의 시작</h3>
         </div>
         <div className={cx(`${moduleName}-search`)}>
-          <SearchBar onChange={this.handleChangeValue} onSubmit={this.handleSubmit} path={"bible/results"}/>
+          <SearchBar
+            onChange={this.handleChangeValue}
+            onSubmit={this.handleSubmit}
+            path={'bible/results'}
+          />
         </div>
         <div className={cx(`${moduleName}-mainVideo`)}>
           <iframe
@@ -70,7 +75,11 @@ class Bible extends Component {
         <div className={cx(`${moduleName}-recentContents`)}>
           <h3>최신 컨텐츠</h3>
           <div>
-          { this.state.recentContents.length ? this.renderContents() : <div> Loading </div>}
+            {this.state.recentContents.length ? (
+              this.renderContents()
+            ) : (
+              <div> Loading </div>
+            )}
             <div className={cx(`${moduleName}-downIcon`)}>
               <i className="fas fa-chevron-down" />
             </div>
@@ -81,8 +90,10 @@ class Bible extends Component {
   }
 }
 
-const ContentCard = (props) => {
-  const {content: { title, image }} = props
+const ContentCard = props => {
+  const {
+    content: { title, image }
+  } = props
   return (
     <div className={cx(`${moduleName}-contentCard`)}>
       <img src={image} alt="listImage" />
@@ -91,4 +102,9 @@ const ContentCard = (props) => {
   )
 }
 
-export default Bible
+export default connect(
+  ({ search }) => ({ keyword: search.keyword }),
+  {
+    searchKeyword
+  }
+)(Bible)
