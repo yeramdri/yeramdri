@@ -30,6 +30,7 @@ class Bible extends Component {
 
   handleSubmit = e => {
     // api call
+    // this.props.searchKeyword
     alert(`keyword submitted ${this.state.search}`)
     // e.preventDefault()
   }
