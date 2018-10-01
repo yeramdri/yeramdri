@@ -31,7 +31,7 @@ app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')))
 
 app.use('/', index);
 
-app.get('/bible-card-result', function (request, response) {
+app.get('/bible-card/result', function (request, response) {
   let search = request.query.search
   // console.log(search)
   MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
