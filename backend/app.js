@@ -17,31 +17,42 @@ app.use(function(req, res, next) {
   next();
 });
 
-// var cors = require('cors')
-
-// var corsOptions = {
-//   origin: 'http://localhost:3000',
-//   optionsSuccessStatus: 200
-// }
-
-app.use(require('connect-history-api-fallback')())
+// app.use(require('connect-history-api-fallback')())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')))
 
 app.use('/', index);
-// app.use(cors(corsOptions))
 
+app.get('/bible-card/result', function (request, response) {
+  let search = request.query.search
+  // console.log(search)
+  MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
+    if (err) throw err;
+    const DB = mongodb.db('platform')
+    if (search == "" || search == "undefined") {
+      DB.collection('bibleCard').find({}).toArray(function (err, result) {
+        if (err) throw err;
+        response.send(result)
+      })
+    } else {
+      DB.collection('bibleCard').find({tag: new RegExp(search, 'i')}).toArray(function (err, result) {
+        if (err) throw err;
+        response.send(result)
+      })
+    }
+  })
+})
 app.post('/bible-card', function (request, response) {
   let search = request.body.search
-  MongoClient.connect(mongoUrl, {userNewUrlParser: true}, function (err, mongodb){
+  MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
     if (err) throw err;
     const DB = mongodb.db('platform')
     if (search == "" || search == "undefined") {
