@@ -28,6 +28,14 @@ class SearchResult extends Component {
     this.props.searchKeyword(this.state.search)
   }
 
+  renderSearchResults = () => {
+    const { searchData } = this.props
+    if (!searchData.length) return <div />
+    console.log(searchData)
+    debugger
+    // searchData.map()
+  }
+
   render() {
     return (
       <div className={cx(`${moduleName}`)}>
@@ -39,14 +47,16 @@ class SearchResult extends Component {
             this.state.isStartSearch ? this.state.search : this.props.keyword
           }
         />
-        <div className={cx(`${moduleName}-resultsBox`)}>results Box</div>
+        <div className={cx(`${moduleName}-resultsBox`)}>
+          {this.renderSearchResults()}
+        </div>
       </div>
     )
   }
 }
 
 export default connect(
-  ({ search }) => ({ keyword: search.keyword }),
+  ({ search }) => ({ keyword: search.keyword, searchData: search.data }),
   {
     searchKeyword
   }

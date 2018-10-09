@@ -37,7 +37,7 @@ class Bible extends Component {
 
   getRecentlyContents = () => {
     axios
-      .post('http://localhost:6508/bible-card', axiosConfig)
+      .get('http://localhost:6508/bible-card', axiosConfig)
       .then(res => this.setState({ recentContents: [...res.data] }))
       .catch(err => console.log(err))
   }
