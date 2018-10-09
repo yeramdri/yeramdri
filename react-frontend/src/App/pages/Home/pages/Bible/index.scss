@@ -27,6 +27,7 @@
   }
   &-mainVideo {
     padding: 3vw;
+    padding-top: 0;
     border-bottom: solid 1px rgba(136, 136, 136, 0.4);
 
     iframe {
@@ -54,8 +55,12 @@
   }
 
   &-contentCard {
-    display: flex;
     margin-bottom: 12px;
+    a {
+      display: flex;
+      text-decoration: none;
+      color: black;
+    }
     img {
       height: 90px;
       width: 160px;

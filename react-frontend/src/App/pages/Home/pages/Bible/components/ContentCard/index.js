@@ -12,12 +12,12 @@ const ContentCard = props => {
     content: { id, title, image }
   } = props
   return (
-    <Link to={`/bible/${id}`}>
-      <div className={cx(`${moduleName}-contentCard`)}>
+    <div className={cx(`${moduleName}-contentCard`)} onClick={()=> {alert(id)}}>
+      <Link to={`/bible/${id}`}>
         <img src={image} alt="listImage" />
         <p>{title}</p>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
 

@@ -1,13 +1,17 @@
 .ContentCard {
   &-contentCard {
-    display: flex;
     margin-bottom: 12px;
+    a {
+      display: flex;
+      text-decoration: none;
+      color: black;
+    }
     img {
       height: 90px;
       width: 160px;
       padding: 10px, 0;
     }
-    p{
+    p {
       margin: 0;
       font-size: 15px;
       padding-left: 8px;
