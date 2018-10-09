@@ -7,6 +7,7 @@ import { searchKeyword } from 'src/redux/search/actions'
 import SearchBar from 'src/components/SearchBar'
 
 import css from './index.scss'
+import ContentCard from '../components/ContentCard'
 const cx = classnames.bind(css)
 const moduleName = 'SearchResult'
 
@@ -31,9 +32,7 @@ class SearchResult extends Component {
   renderSearchResults = () => {
     const { searchData } = this.props
     if (!searchData.length) return <div />
-    console.log(searchData)
-    debugger
-    // searchData.map()
+    return searchData.map(content => <ContentCard content={content} />)
   }
 
   render() {
