@@ -9,9 +9,15 @@ import {
 
 function* loadAllContentsFlow() {
   yield put(loadAllContentsRequest())
+  try {
+    const { data } = yield call(getAllContents)
+    yield put(loadAllContentsSuccess(data))
+  } catch (err) {
+    yield put(loadAllContentsFailure(err))
+  }
 }
 
-export function* watchLoadAllContentsFlow(){
+export function* watchLoadAllContentsFlow() {
   yield takeEvery(LOAD_ALL_CONTENTS, loadAllContentsFlow)
 }
 
