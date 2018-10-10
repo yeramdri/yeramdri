@@ -32,7 +32,7 @@ class SearchResult extends Component {
   renderSearchResults = () => {
     const { searchData } = this.props
     if (!searchData.length) return <div />
-    return searchData.map(content => <ContentCard content={content} />)
+    return searchData.map(content => <ContentCard key={content.id} content={content} />)
   }
 
   render() {
