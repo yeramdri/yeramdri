@@ -1,0 +1,63 @@
+.ContentPage {
+  &-contentWrapper {
+    margin-top: 15px;
+  }
+  &-video {
+    width: 100vw;
+    height: 70vw;
+  }
+  &-post {
+    // background: olive;
+    margin: 0 15px;
+    text-align: left;
+    &-title {
+      margin: 0;
+      height: 40px;
+      line-height: 40px;
+      color: #262626;
+      font-size: 16px;
+    }
+    &-bibleRange {
+      margin-top: 3.5px;
+      margin-bottom: 3.5px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #000;
+    }
+    &-bibleText {
+      height: 20vh;
+      font-size: 1.9vh;
+      overflow: scroll;
+      margin-top: 0px;
+      color: #000;
+    }
+    &-sharing {
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+      color: #777;
+      font-size: 2vh;
+      &-question {
+        margin-top: 0;
+        margin-bottom: 1vh;
+      }
+      &-tag {
+        color: #003569;
+        font-size: 13px;
+      }
+      &-button {
+        border: 1px solid #dbdbdb;
+        width: 50vw;
+        padding: 1vh 3vh;
+        text-align: center;
+        border-radius: 3px;
+        color: #262626;
+        font-weight: 500;
+        font-size: 13px;
+        margin: 25px auto;
+        &:hover {
+         background: #dbdbdb48; 
+        }
+      }
+    }
+  }
+}
