@@ -36,16 +36,3 @@ app.use('/bible-card', bibleCard)
 server.listen(6508, function (){
   console.log('Server running port 6508')
 })
-MongoClient.connect(mongoUrl,{ useNewUrlParser: true }, function (err, mongodb) {
-  if (err) throw err;
-  const DB = mongodb.db('platform')
-  io.on('connection', function (socket) {
-    socket.emit('connect', 'ok')
-    socket.on('bible_card_data_req', function (data) {
-      DB.collection('bibleCard').find({}).toArray(function (err, result) {
-        if (err) throw err;
-        socket.emit('bibleCard', result)
-      })
-    })
-  })
-})
