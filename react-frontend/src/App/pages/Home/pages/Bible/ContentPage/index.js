@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import classnames from 'classnames/bind'
 
 import { loadAllContents } from 'src/redux/contents/actions'
+import { getCurrentContentId } from 'src/utils/contentsUtils'
 
 import css from './index.scss'
 const cx = classnames.bind(css)
@@ -16,14 +17,12 @@ class ContentPage extends Component {
   }
 
   componentDidMount() {
-    this.props.loadAllContents()
+    console.log(getCurrentContentId(document.URL))
   }
 
   render() {
-    console.log(this.props.allContents)
     return (
       <div className={cx(`${moduleName}`)}>
-        {/* <p>{this.props.currentContentId}</p> */}
         <div className={cx(`${moduleName}-contentWrapper`)}>
           <iframe
             className={cx(`${moduleName}-video`)}
@@ -73,12 +72,16 @@ class ContentPage extends Component {
               힘을 내길 바래요. 예수님이 그 곳에 함께 하실 것이고, 각자의 삶의
               현장에서 말씀대로 살아내려 애쓰는 동역자들이 있으니, 용기를 얻길!
             </p>
-            <span className={cx(`${moduleName}-post-sharing-tag`)}>#고지론</span>
+            <span className={cx(`${moduleName}-post-sharing-tag`)}>
+              #고지론
+            </span>
             <span className={cx(`${moduleName}-post-sharing-tag`)}>#성공</span>
             <span className={cx(`${moduleName}-post-sharing-tag`)}>#1등</span>
             <span className={cx(`${moduleName}-post-sharing-tag`)}>#노력</span>
             <span className={cx(`${moduleName}-post-sharing-tag`)}>#꿈</span>
-            <div className={cx(`${moduleName}-post-sharing-button`)}>원문 말씀 보러가기</div>
+            <div className={cx(`${moduleName}-post-sharing-button`)}>
+              원문 말씀 보러가기
+            </div>
           </div>
         </div>
       </div>
