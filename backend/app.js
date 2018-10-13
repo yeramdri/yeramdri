@@ -30,6 +30,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')))
 
 app.use('/', index);
+app.get('/bible-card/result/:id', function (request, response) {
+  let card_id = parseInt(request.params.id);
+  console.log(typeof(card_id))
+  MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
+    if (err) throw err;
+    const DB = mongodb.db('platform')
+    DB.collection('bibleCard').find({id: card_id}).toArray(function (err, result) {
+      if (err) throw err;
+      response.send(result)
+    })
+  })
+})
 
 app.get('/bible-card/result', function (request, response) {
   let search = request.query.search
