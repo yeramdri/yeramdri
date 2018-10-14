@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
 
-import { setCurrentContent } from 'src/redux/contents/actions'
-
 import css from './index.scss'
 
 const cx = classnames.bind(css)
@@ -21,12 +19,7 @@ class ContentCard extends Component {
       content: { id, title, image }
     } = this.props
     return (
-      <div
-        className={cx(`${moduleName}-contentCard`)}
-        onClick={() => {
-          this.props.setCurrentContent(id)
-        }}
-      >
+      <div className={cx(`${moduleName}-contentCard`)}>
         <Link to={`/bible/${id}`}>
           <img src={image} alt="listImage" />
           <p>{title}</p>
@@ -38,5 +31,5 @@ class ContentCard extends Component {
 
 export default connect(
   () => ({}),
-  { setCurrentContent }
+  {}
 )(ContentCard)

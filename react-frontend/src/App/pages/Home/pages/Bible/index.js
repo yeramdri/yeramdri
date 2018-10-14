@@ -31,6 +31,7 @@ class Bible extends Component {
 
   handleChangeValue = e => this.setState({ [e.target.name]: e.target.value })
 
+  // 레거시
   handleSubmit = () => {
     this.props.searchKeyword(this.state.search)
   }
@@ -60,7 +61,7 @@ class Bible extends Component {
           <SearchBar
             onChange={this.handleChangeValue}
             onSubmit={this.handleSubmit}
-            path={'bible/results'}
+            path={`/bible/results?search=${this.state.search}`}
           />
         </div>
         <div className={cx(`${moduleName}-mainVideo`)}>

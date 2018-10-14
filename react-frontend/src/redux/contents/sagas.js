@@ -1,10 +1,14 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects'
-import { getAllContents } from 'src/api'
+import { getAllContents, getContents } from 'src/api'
 import {
   LOAD_ALL_CONTENTS,
   loadAllContentsRequest,
   loadAllContentsSuccess,
-  loadAllContentsFailure
+  loadAllContentsFailure,
+  LOAD_KEYWORD_CONTENTS,
+  loadKeywordContentsRequest,
+  loadKeywordContentsSuccess,
+  loadKeywordContentsFailure
 } from './actions'
 
 function* loadAllContentsFlow() {
@@ -21,6 +25,23 @@ export function* watchLoadAllContentsFlow() {
   yield takeEvery(LOAD_ALL_CONTENTS, loadAllContentsFlow)
 }
 
+
+
+
+function* loadKeywordContentsFlow(action) {
+  yield put(loadKeywordContentsRequest())
+  try {
+    const { data } = yield call(getContents, action.keyword )
+    yield put(loadKeywordContentsSuccess(data))
+  } catch (err) {
+    yield put(loadKeywordContentsFailure(err))
+  }
+}
+
+export function* watchLoadKeywordContentsFlow() {
+  yield takeEvery(LOAD_KEYWORD_CONTENTS, loadKeywordContentsFlow)
+}
+
 export default function* contentsRoot() {
-  yield all([watchLoadAllContentsFlow()])
+  yield all([watchLoadAllContentsFlow(), watchLoadKeywordContentsFlow()])
 }

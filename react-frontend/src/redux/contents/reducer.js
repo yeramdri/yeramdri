@@ -1,21 +1,19 @@
 import {
-  SET_CURRENT_CONTENT,
   LOAD_ALL_CONTENTS_REQUEST,
   LOAD_ALL_CONTENTS_SUCCESS,
-  LOAD_ALL_CONTENTS_FAILURE
+  LOAD_ALL_CONTENTS_FAILURE,
+  LOAD_KEYWORD_CONTENTS_REQUEST,
+  LOAD_KEYWORD_CONTENTS_SUCCESS,
+  LOAD_KEYWORD_CONTENTS_FAILURE
 } from './actions'
 
 const contents = (
-  state = { currentContentId: null, allContents: [], loading: false },
+  state = { allContents: [], keywordContents: [], loading: false, err: null },
   action
 ) => {
   switch (action.type) {
-    case SET_CURRENT_CONTENT:
-      return {
-        ...state,
-        currentContentId: action.id
-      }
     case LOAD_ALL_CONTENTS_REQUEST:
+    case LOAD_KEYWORD_CONTENTS_REQUEST:
       return {
         ...state,
         loading: true
@@ -26,10 +24,18 @@ const contents = (
         allContents: [...action.data],
         loading: false
       }
-    case LOAD_ALL_CONTENTS_FAILURE:
+    case LOAD_KEYWORD_CONTENTS_SUCCESS:
       return {
         ...state,
+        keywordContents: [...action.data],
         loading: false
+      }
+    case LOAD_ALL_CONTENTS_FAILURE:
+    case LOAD_KEYWORD_CONTENTS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        err: { ...action.err }
       }
     default:
       return state

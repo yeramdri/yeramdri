@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import classnames from 'classnames/bind'
-
-import { searchKeyword } from 'src/redux/search/actions'
+import { connect } from 'react-redux'
 
 import SearchBar from 'src/components/SearchBar'
+import { loadKeywordContents } from 'src/redux/contents/actions'
 
 import css from './index.scss'
 import ContentCard from '../components/ContentCard'
@@ -20,19 +19,32 @@ class SearchResult extends Component {
       isStartSearch: false
     }
   }
+
+  componentDidUpdate() {
+    console.log('update')
+  }
+
+  componentDidMount() {
+    console.log('몇번 실행됨?')
+    this.props.loadKeywordContents(this.getSearchedKeyword())
+  }
+
   handleChangeValue = e => {
     this.setState({ [e.target.name]: e.target.value })
     this.setState({ isStartSearch: true })
   }
 
-  handleSubmit = () => {
-    this.props.searchKeyword(this.state.search)
+  getSearchedKeyword = () => {
+    const [, keyword] = document.URL.split('=')
+    return decodeURI(keyword)
   }
 
   renderSearchResults = () => {
-    const { searchData } = this.props
-    if (!searchData.length) return <div />
-    return searchData.map(content => <ContentCard key={content.id} content={content} />)
+    const { keywordContents } = this.props
+    if (!keywordContents.length) return <div />
+    return keywordContents.map(content => (
+      <ContentCard key={content.id} content={content} />
+    ))
   }
 
   render() {
@@ -41,9 +53,11 @@ class SearchResult extends Component {
         <SearchBar
           onChange={this.handleChangeValue}
           onSubmit={this.handleSubmit}
-          path={'bible/results'}
+          path={`/bible/results?search=${this.state.search}`}
           value={
-            this.state.isStartSearch ? this.state.search : this.props.keyword
+            this.state.isStartSearch
+              ? this.state.search
+              : this.getSearchedKeyword()
           }
         />
         <div className={cx(`${moduleName}-resultsBox`)}>
@@ -55,8 +69,10 @@ class SearchResult extends Component {
 }
 
 export default connect(
-  ({ search }) => ({ keyword: search.keyword, searchData: search.data }),
+  ({ contents }) => ({
+    keywordContents: contents.keywordContents
+  }),
   {
-    searchKeyword
+    loadKeywordContents
   }
 )(SearchResult)

@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/bible/results',
     component: SearchResult,
-    exact: true
+    // exact: true
   },
   {
     path: '/bible/:id',
