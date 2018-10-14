@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')))
 
 app.use('/', index);
-app.use('/bible-card', bibleCard)
+app.use('/bible-card', bibleCard);
 
 server.listen(6508, function (){
   console.log('Server running port 6508')

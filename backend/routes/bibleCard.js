@@ -24,15 +24,12 @@ router.post('/', function (request, response) {
 })
 router.get('/result', function (request, response) {
   let search = request.query.search
-  // console.log(search)
   MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
     if (err) throw err;
     const DB = mongodb.db('platform')
+    search = search.trim()
     if (search == "" || search == "undefined") {
-      DB.collection('bibleCard').find({}).toArray(function (err, result) {
-        if (err) throw err;
-        response.send(result)
-      })
+      response.send("Not Contents")
     } else {
       DB.collection('bibleCard').find({tag: new RegExp(search, 'i')}).toArray(function (err, result) {
         if (err) throw err;
