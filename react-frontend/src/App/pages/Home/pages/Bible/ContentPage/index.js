@@ -66,14 +66,31 @@ class ContentPage extends Component {
       returnComponent = (
         <div className={cx(`${moduleName}`)}>
           <div className={cx(`${moduleName}-contentWrapper`)}>
-            <iframe
+            {content.multimedia.map(media => {
+              if (media.type === 'video') {
+                return (
+                  <iframe
+                    className={cx(`${moduleName}-video`)}
+                    title="introduceVideo"
+                    src={media.url}
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
+                )
+              } else if (media.type === 'image') {
+                return <img src={media.url} alt="mediaImg" />
+              }
+              return <div />
+            })}
+            {/* <iframe
               className={cx(`${moduleName}-video`)}
               title="introduceVideo"
               src={content.contentVideo}
               frameBorder="0"
               allow="autoplay; encrypted-media"
               allowFullScreen
-            />
+            /> */}
           </div>
           <div className={cx(`${moduleName}-post`)}>
             <h3 className={cx(`${moduleName}-post-title`)}>{content.title}</h3>
