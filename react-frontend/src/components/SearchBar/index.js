@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import classnames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router'
@@ -23,20 +24,9 @@ class SearchBar extends Component {
     e.preventDefault()
     // 액션을 날린다. => redux의 state가 바뀌게 되므로, 화면이 갱실 될 것이다.
     this.props.loadKeywordContents('')
-
-    // this.setState({redirect: {to: {'/bible-card/result?search=${this.props.value}'}} })
-    // debugger
-    // this.setState({
-    //   redirect: { to: `/bible/result?search=${this.props.value}` }
-    // })
-    // axios
-    //   .get(`http://localhost:6508/bible-card/result?search=${this.props.value}`)
-    //   .then(res => {
-    //     console.log(res)
-    //   })
   }
 
-  getSearchedKeyword = (path) => {
+  getSearchedKeyword = path => {
     const [, keyword] = path.split('=')
     return keyword
   }
@@ -49,10 +39,14 @@ class SearchBar extends Component {
     }
 
     return (
-      <form onSubmit={(e) => {
-        e.preventDefault()
-        this.props.loadKeywordContents('')
-      }} className={cx(`${moduleName}`)}>
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          // this.props.loadKeywordContents(this.getSearchedKeyword(path))
+          this.props.history.push(this.props.path)
+        }}
+        className={cx(`${moduleName}`)}
+      >
         <div className={cx(`${moduleName}-inputWrapper`)}>
           <input
             onChange={onChange}
@@ -61,22 +55,27 @@ class SearchBar extends Component {
             value={value}
           />
         </div>
-        <Link to={path} onClick={() => {
-          this.props.loadKeywordContents(this.getSearchedKeyword(path))
-        }} className={cx(`${moduleName}-icon`)}>
+        <Link
+          to={path}
+          onClick={() => {
+            this.props.loadKeywordContents(this.getSearchedKeyword(path))
+          }}
+          className={cx(`${moduleName}-icon`)}
+        >
           <i className="fas fa-search" />
         </Link>
-        <input type="submit" />
-        {/* <button></button> */}
       </form>
     )
   }
 }
 
-export default connect(({ contents }) => {
-  return {
-    keywordContents: contents.keywordContents
+export default withRouter(connect(
+  ({ contents }) => {
+    return {
+      keywordContents: contents.keywordContents
+    }
+  },
+  {
+    loadKeywordContents
   }
-},{
-  loadKeywordContents
-})(SearchBar)
+)(SearchBar))

@@ -31,11 +31,6 @@ class Bible extends Component {
 
   handleChangeValue = e => this.setState({ [e.target.name]: e.target.value })
 
-  // 레거시
-  handleSubmit = () => {
-    this.props.searchKeyword(this.state.search)
-  }
-
   getRecentlyContents = () => {
     axios
       .post('http://localhost:6508/bible-card', axiosConfig)
@@ -60,7 +55,6 @@ class Bible extends Component {
         <div className={cx(`${moduleName}-search`)}>
           <SearchBar
             onChange={this.handleChangeValue}
-            onSubmit={this.handleSubmit}
             path={`/bible/results?search=${this.state.search}`}
           />
         </div>
