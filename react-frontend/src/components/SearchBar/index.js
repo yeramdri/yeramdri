@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import classnames from 'classnames/bind'
-import { Link } from 'react-router-dom'
-import { Redirect } from 'react-router'
-import { connect } from 'react-redux'
-
-import { loadKeywordContents } from 'src/redux/contents/actions'
 
 import css from './index.scss'
 const cx = classnames.bind(css)
@@ -16,66 +11,48 @@ class SearchBar extends Component {
     super(props)
 
     this.state = {
-      redirect: null
+      search: this.getIntialSearch()
     }
   }
 
-  handleSubmit(e) {
-    e.preventDefault()
-    // 액션을 날린다. => redux의 state가 바뀌게 되므로, 화면이 갱실 될 것이다.
-    this.props.loadKeywordContents('')
+  getIntialSearch = () => {
+    const searchKeyword = this.getSearchedKeyword(document.URL)
+    if (searchKeyword === 'undefined') {
+      return ''
+    } else {
+      return searchKeyword
+    }
   }
 
-  getSearchedKeyword = path => {
-    const [, keyword] = path.split('=')
-    return keyword
+  getSearchedKeyword = urlPath => {
+    const [, keyword] = urlPath.split('=')
+    return decodeURI(keyword)
+  }
+
+  handleChange = e => this.setState({ search: e.target.value })
+
+  handleSubmit = e => {
+    e.preventDefault()
+    this.props.history.push(this.props.path + this.state.search)
   }
 
   render() {
-    const { value, onChange, onSubmit, path } = this.props
-
-    if (this.state.redirect) {
-      return <Redirect {...this.state.redirect} />
-    }
-
     return (
-      <form
-        onSubmit={e => {
-          e.preventDefault()
-          // this.props.loadKeywordContents(this.getSearchedKeyword(path))
-          this.props.history.push(this.props.path)
-        }}
-        className={cx(`${moduleName}`)}
-      >
+      <form onSubmit={this.handleSubmit} className={cx(`${moduleName}`)}>
         <div className={cx(`${moduleName}-inputWrapper`)}>
           <input
-            onChange={onChange}
+            onChange={this.handleChange}
             placeholder="Search Bible"
             name="search"
-            value={value}
+            value={this.state.search}
           />
         </div>
-        <Link
-          to={path}
-          onClick={() => {
-            this.props.loadKeywordContents(this.getSearchedKeyword(path))
-          }}
-          className={cx(`${moduleName}-icon`)}
-        >
+        <button className={cx(`${moduleName}-icon`)}>
           <i className="fas fa-search" />
-        </Link>
+        </button>
       </form>
     )
   }
 }
 
-export default withRouter(connect(
-  ({ contents }) => {
-    return {
-      keywordContents: contents.keywordContents
-    }
-  },
-  {
-    loadKeywordContents
-  }
-)(SearchBar))
+export default withRouter(SearchBar)

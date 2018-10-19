@@ -14,28 +14,22 @@ class SearchResult extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      search: '',
-      isStartSearch: false
+    this.state = {}
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location.search !== prevProps.location.search) {
+      const keyword = this.getSearchedKeyword(this.props.location.search)
+      this.props.loadKeywordContents(keyword)
     }
   }
 
-  componentDidUpdate() {
-    console.log('update')
-  }
-
   componentDidMount() {
-    console.log('몇번 실행됨?')
-    this.props.loadKeywordContents(this.getSearchedKeyword())
+    this.props.loadKeywordContents(this.getSearchedKeyword(document.URL))
   }
 
-  handleChangeValue = e => {
-    this.setState({ [e.target.name]: e.target.value })
-    this.setState({ isStartSearch: true })
-  }
-
-  getSearchedKeyword = () => {
-    const [, keyword] = document.URL.split('=')
+  getSearchedKeyword = urlPath => {
+    const [, keyword] = urlPath.split('=')
     return decodeURI(keyword)
   }
 
@@ -50,16 +44,7 @@ class SearchResult extends Component {
   render() {
     return (
       <div className={cx(`${moduleName}`)}>
-        <SearchBar
-          onChange={this.handleChangeValue}
-          onSubmit={this.handleSubmit}
-          path={`/bible/results?search=${this.state.search}`}
-          value={
-            this.state.isStartSearch
-              ? this.state.search
-              : this.getSearchedKeyword()
-          }
-        />
+        <SearchBar path={`/bible/results?search=`} />
         <div className={cx(`${moduleName}-resultsBox`)}>
           {this.renderSearchResults()}
         </div>

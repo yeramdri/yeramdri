@@ -19,8 +19,6 @@ class Bible extends Component {
     super(props)
 
     this.state = {
-      search: '',
-
       recentContents: []
     }
   }
@@ -28,8 +26,6 @@ class Bible extends Component {
   componentDidMount() {
     this.getRecentlyContents()
   }
-
-  handleChangeValue = e => this.setState({ [e.target.name]: e.target.value })
 
   getRecentlyContents = () => {
     axios
@@ -53,10 +49,7 @@ class Bible extends Component {
           <h3>예수, 나를 향한 사랑의 시작</h3>
         </div>
         <div className={cx(`${moduleName}-search`)}>
-          <SearchBar
-            onChange={this.handleChangeValue}
-            path={`/bible/results?search=${this.state.search}`}
-          />
+          <SearchBar path={`/bible/results?search=`} />
         </div>
         <div className={cx(`${moduleName}-mainVideo`)}>
           <iframe
