@@ -40,7 +40,6 @@ router.get('/result', function (request, response) {
 })
 router.get('/result/:id', function (request, response) {
   let card_id = parseInt(request.params.id);
-  console.log(typeof(card_id))
   MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
     if (err) throw err;
     const DB = mongodb.db('platform')
