@@ -15,7 +15,8 @@ class ContentPage extends Component {
     super(props)
 
     this.state = {
-      content: null
+      content: null,
+      contentIndex: 0
     }
   }
 
@@ -31,6 +32,20 @@ class ContentPage extends Component {
     axios.get(`http://localhost:6508/bible-card/result/${id}`).then(res => {
       const [content] = res.data
       this.setState({ content })
+    })
+  }
+
+  nextContentItem = () => {
+    // const newIndex = this.state.property.index+1;
+    this.setState({
+      contentIndex: this.state.contentIndex + 1
+    })
+  }
+
+  prevContentItem = () => {
+    // const newIndex = this.state.property.index-1;
+    this.setState({
+      contentIndex: this.state.contentIndex - 1
     })
   }
 
@@ -65,24 +80,53 @@ class ContentPage extends Component {
     } else {
       returnComponent = (
         <div className={cx(`${moduleName}`)}>
-          <div className={cx(`${moduleName}-contentWrapper`)}>
-            {content.multimedia.map(media => {
-              if (media.type === 'video') {
-                return (
-                  <iframe
-                    className={cx(`${moduleName}-video`)}
-                    title="introduceVideo"
-                    src={media.url}
-                    frameBorder="0"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                  />
-                )
-              } else if (media.type === 'image') {
-                return <img src={media.url} alt="mediaImg" />
-              }
-              return <div />
-            })}
+          <button
+            onClick={() => this.nextContentItem()}
+            // disabled={property.index === data.properties.length-1}
+          >
+            Next
+          </button>
+          <button
+            onClick={() => this.prevContentItem()}
+            // disabled={property.index === 0}
+          >
+            Prev
+          </button>
+
+          <div className={cx(`${moduleName}-contentCardSlider`)}>
+            <div
+              className={cx(`${moduleName}-contentCardSlider-wrapper`)}
+              style={{
+                transform: `translateX(-${this.state.contentIndex * 15 *
+                  (100 / content.multiMedia.length)}%)`
+                //selectedContentIndex
+              }}
+            >
+              {content.multiMedia.map((media, id) => {
+                // 아래의 코드들이 카드 컴포넌트가 되어야 한다.
+                if (media.type === 'video') {
+                  return (
+                    <div className={cx(`${moduleName}-contentCard`)} key={id}>
+                      <iframe
+                        className={cx(`${moduleName}-video`)}
+                        title="introduceVideo"
+                        src={media.url}
+                        frameBorder="0"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                      />
+                    </div>
+                  )
+                } else if (media.type === 'image') {
+                  return (
+                    <div className={cx(`${moduleName}-contentCard`)} key={id}>
+                      <img src={media.url} alt="mediaImg" />
+                    </div>
+                  )
+                }
+                return <div />
+              })}
+            </div>
             {/* <iframe
               className={cx(`${moduleName}-video`)}
               title="introduceVideo"

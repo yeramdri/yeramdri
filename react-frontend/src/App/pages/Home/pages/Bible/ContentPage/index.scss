@@ -1,6 +1,29 @@
 .ContentPage {
-  &-contentWrapper {
-    margin-top: 15px;
+  &-contentCardSlider {
+    position: relative;
+
+    &-wrapper {
+      // background: tomato;
+      // position: absolute;
+      margin-top: 15px;
+      display: flex;
+      transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      //컨텐츠의 실제적인 크기
+      width: 100vw;
+      height: 100vw;
+      overflow: none;
+    }
+  }
+
+  &-contentCard {
+    flex: 1;
+    width: 100vw;
+    height: 100vw;
+    transition: opacity 300ms linear, border-color 300ms linear, background-color 300ms linear,transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    img {
+      width: 100vw;
+      height: 100vw;
+    }
   }
   &-video {
     width: 100vw;
