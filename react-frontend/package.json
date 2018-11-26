@@ -104,5 +104,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "proxy": {
+    "http://localhost:6508": {
+      "target": "http://localhost:6508/"
+    }
   }
 }
