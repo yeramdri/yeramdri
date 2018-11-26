@@ -97,7 +97,8 @@ class ContentPage extends Component {
             <div
               className={cx(`${moduleName}-contentCardSlider-wrapper`)}
               style={{
-                transform: `translateX(-${this.state.contentIndex * 15 *
+                transform: `translateX(-${this.state.contentIndex *
+                  15 *
                   (100 / content.multiMedia.length)}%)`
                 //selectedContentIndex
               }}
@@ -119,7 +120,12 @@ class ContentPage extends Component {
                   )
                 } else if (media.type === 'image') {
                   return (
-                    <div className={cx(`${moduleName}-contentCard`)} key={id}>
+                    <div
+                      // id={id}
+                      className={cx(`${moduleName}-contentCard`)}
+                      // style={{ visibility: id === this.state.contentIndex ? 'visible' : 'hidden' }}
+                      key={id}
+                    >
                       <img src={media.url} alt="mediaImg" />
                     </div>
                   )
