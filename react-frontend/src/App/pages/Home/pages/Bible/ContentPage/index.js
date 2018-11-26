@@ -7,6 +7,8 @@ import { loadAllContents } from 'src/redux/contents/actions'
 import { getCurrentContentId } from 'src/utils/contentsUtils'
 
 import css from './index.scss'
+import ContentCard from './ContentCard'
+
 const cx = classnames.bind(css)
 const moduleName = 'ContentPage'
 
@@ -36,14 +38,12 @@ class ContentPage extends Component {
   }
 
   nextContentItem = () => {
-    // const newIndex = this.state.property.index+1;
     this.setState({
       contentIndex: this.state.contentIndex + 1
     })
   }
 
   prevContentItem = () => {
-    // const newIndex = this.state.property.index-1;
     this.setState({
       contentIndex: this.state.contentIndex - 1
     })
@@ -81,16 +81,16 @@ class ContentPage extends Component {
       returnComponent = (
         <div className={cx(`${moduleName}`)}>
           <button
-            onClick={() => this.nextContentItem()}
-            // disabled={property.index === data.properties.length-1}
-          >
-            Next
-          </button>
-          <button
             onClick={() => this.prevContentItem()}
-            // disabled={property.index === 0}
+            disabled={this.state.contentIndex === 0}
           >
             Prev
+          </button>
+          <button
+            onClick={() => this.nextContentItem()}
+            disabled={this.state.contentIndex === content.multiMedia.length - 1}
+          >
+            Next
           </button>
 
           <div className={cx(`${moduleName}-contentCardSlider`)}>
@@ -100,47 +100,12 @@ class ContentPage extends Component {
                 transform: `translateX(-${this.state.contentIndex *
                   15 *
                   (100 / content.multiMedia.length)}%)`
-                //selectedContentIndex
               }}
             >
-              {content.multiMedia.map((media, id) => {
-                // 아래의 코드들이 카드 컴포넌트가 되어야 한다.
-                if (media.type === 'video') {
-                  return (
-                    <div className={cx(`${moduleName}-contentCard`)} key={id}>
-                      <iframe
-                        className={cx(`${moduleName}-video`)}
-                        title="introduceVideo"
-                        src={media.url}
-                        frameBorder="0"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                      />
-                    </div>
-                  )
-                } else if (media.type === 'image') {
-                  return (
-                    <div
-                      // id={id}
-                      className={cx(`${moduleName}-contentCard`)}
-                      // style={{ visibility: id === this.state.contentIndex ? 'visible' : 'hidden' }}
-                      key={id}
-                    >
-                      <img src={media.url} alt="mediaImg" />
-                    </div>
-                  )
-                }
-                return <div />
-              })}
+              {content.multiMedia.map((media, id) => (
+                <ContentCard media={media} key={id} />
+              ))}
             </div>
-            {/* <iframe
-              className={cx(`${moduleName}-video`)}
-              title="introduceVideo"
-              src={content.contentVideo}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            /> */}
           </div>
           <div className={cx(`${moduleName}-post`)}>
             <h3 className={cx(`${moduleName}-post-title`)}>{content.title}</h3>
