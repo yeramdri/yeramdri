@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import { loadAllContents } from 'src/redux/contents/actions'
 import { getCurrentContentId } from 'src/utils/contentsUtils'
+import ArrowButton from 'src/components/ArrowButton'
 
 import css from './index.scss'
 import ContentCard from './ContentCard'
@@ -94,6 +95,16 @@ class ContentPage extends Component {
           </button>
 
           <div className={cx(`${moduleName}-contentCardSlider`)}>
+            <ArrowButton
+              onClick={() => this.prevContentItem()}
+              disabled={this.state.contentIndex === 0}
+            />
+            <ArrowButton
+              onClick={() => this.nextContentItem()}
+              disabled={
+                this.state.contentIndex === content.multiMedia.length - 1
+              }
+            />
             <div
               className={cx(`${moduleName}-contentCardSlider-wrapper`)}
               style={{
