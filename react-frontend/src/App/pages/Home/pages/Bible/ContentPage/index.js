@@ -98,18 +98,20 @@ class ContentPage extends Component {
             <ArrowButton
               onClick={() => this.prevContentItem()}
               disabled={this.state.contentIndex === 0}
+              direction={'left'}
             />
             <ArrowButton
               onClick={() => this.nextContentItem()}
               disabled={
                 this.state.contentIndex === content.multiMedia.length - 1
               }
+              direction={'right'}
             />
             <div
               className={cx(`${moduleName}-contentCardSlider-wrapper`)}
               style={{
                 transform: `translateX(-${this.state.contentIndex *
-                  15 *
+                  14 *
                   (100 / content.multiMedia.length)}%)`
               }}
             >
