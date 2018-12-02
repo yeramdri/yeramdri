@@ -81,32 +81,23 @@ class ContentPage extends Component {
     } else {
       returnComponent = (
         <div className={cx(`${moduleName}`)}>
-          <button
-            onClick={() => this.prevContentItem()}
-            disabled={this.state.contentIndex === 0}
-          >
-            Prev
-          </button>
-          <button
-            onClick={() => this.nextContentItem()}
-            disabled={this.state.contentIndex === content.multiMedia.length - 1}
-          >
-            Next
-          </button>
-
           <div className={cx(`${moduleName}-contentCardSlider`)}>
-            <ArrowButton
-              onClick={() => this.prevContentItem()}
-              disabled={this.state.contentIndex === 0}
-              direction={'left'}
-            />
-            <ArrowButton
-              onClick={() => this.nextContentItem()}
-              disabled={
-                this.state.contentIndex === content.multiMedia.length - 1
-              }
-              direction={'right'}
-            />
+            <div className={cx(`${moduleName}-contentCardSlider-leftArrow`)}>
+              <ArrowButton
+                onClick={() => this.prevContentItem()}
+                disabled={this.state.contentIndex === 0}
+                direction={'left'}
+              />
+            </div>
+            <div className={cx(`${moduleName}-contentCardSlider-rightArrow`)}>
+              <ArrowButton
+                onClick={() => this.nextContentItem()}
+                disabled={
+                  this.state.contentIndex === content.multiMedia.length - 1
+                }
+                direction={'right'}
+              />
+            </div>
             <div
               className={cx(`${moduleName}-contentCardSlider-wrapper`)}
               style={{
