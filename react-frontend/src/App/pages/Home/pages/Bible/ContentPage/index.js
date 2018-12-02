@@ -5,6 +5,7 @@ import axios from 'axios'
 
 import { loadAllContents } from 'src/redux/contents/actions'
 import { getCurrentContentId } from 'src/utils/contentsUtils'
+import ArrowButton from 'src/components/ArrowButton'
 
 import css from './index.scss'
 import ContentCard from './ContentCard'
@@ -80,25 +81,28 @@ class ContentPage extends Component {
     } else {
       returnComponent = (
         <div className={cx(`${moduleName}`)}>
-          <button
-            onClick={() => this.prevContentItem()}
-            disabled={this.state.contentIndex === 0}
-          >
-            Prev
-          </button>
-          <button
-            onClick={() => this.nextContentItem()}
-            disabled={this.state.contentIndex === content.multiMedia.length - 1}
-          >
-            Next
-          </button>
-
           <div className={cx(`${moduleName}-contentCardSlider`)}>
+            <div className={cx(`${moduleName}-contentCardSlider-leftArrow`)}>
+              <ArrowButton
+                onClick={() => this.prevContentItem()}
+                disabled={this.state.contentIndex === 0}
+                direction={'left'}
+              />
+            </div>
+            <div className={cx(`${moduleName}-contentCardSlider-rightArrow`)}>
+              <ArrowButton
+                onClick={() => this.nextContentItem()}
+                disabled={
+                  this.state.contentIndex === content.multiMedia.length - 1
+                }
+                direction={'right'}
+              />
+            </div>
             <div
               className={cx(`${moduleName}-contentCardSlider-wrapper`)}
               style={{
                 transform: `translateX(-${this.state.contentIndex *
-                  15 *
+                  14 *
                   (100 / content.multiMedia.length)}%)`
               }}
             >
