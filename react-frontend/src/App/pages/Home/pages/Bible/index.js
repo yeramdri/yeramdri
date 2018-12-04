@@ -54,7 +54,7 @@ class Bible extends Component {
         <div className={cx(`${moduleName}-mainVideo`)}>
           <iframe
             title="introduceVideo"
-            src="https://www.youtube.com/embed/9xmdxhnIDT8"
+            src="https://www.youtube.com/embed/9xmdxhnIDT8?showinfo=0"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen

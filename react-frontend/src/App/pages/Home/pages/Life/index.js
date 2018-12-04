@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
 
 // 삶 이미지로 바꾸기
-import bibleHeaderImg from 'src/App/pages/Home/assets/bible-header.jpg'
+import lifeHeaderImg from 'src/App/pages/Home/assets/life-header.jpg'
 import SearchBar from 'src/components/SearchBar'
 
 import css from './index.scss'
@@ -29,22 +29,22 @@ class Life extends Component {
     return (
       <div className={cx(`${moduleName}`)}>
         <div className={cx(`${moduleName}-head`)}>
-          <img src={bibleHeaderImg} alt="bible-header-img" />
-          <h1>BIBLE</h1>
+          <img src={lifeHeaderImg} alt="life-header-img" />
+          <h1>Life</h1>
           <h3>일상을 살아가기</h3>
         </div>
         <div className={cx(`${moduleName}-search`)}>
-          <SearchBar path={`/bible/results?search=`} />
+          <SearchBar path={`/life/results?search=`} />
         </div>
         <div className={cx(`${moduleName}-mainVideo`)}>
           <iframe
             title="introduceVideo"
-            src="https://www.youtube.com/embed/9xmdxhnIDT8"
+            src="https://www.youtube.com/embed/MlaVZuUvNwE?showinfo=0"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen
           />
-          <h3>YERAMDRI - 삶의 고백(A Confession of Life)</h3>
+          <h3>YERAMDRI - 일상의 예배(Daily Worship)</h3>
         </div>
         <div className={cx(`${moduleName}-recentContents`)}>
           <h3>최신 컨텐츠</h3>
