@@ -8,7 +8,7 @@ import { getCurrentContentId } from 'src/utils/contentsUtils'
 import ArrowButton from 'src/components/ArrowButton'
 
 import css from './index.scss'
-import ContentCard from './ContentCard'
+import Content from './Content'
 
 const cx = classnames.bind(css)
 const moduleName = 'ContentPage'
@@ -107,7 +107,7 @@ class ContentPage extends Component {
               }}
             >
               {content.multiMedia.map((media, id) => (
-                <ContentCard media={media} key={id} />
+                <Content media={media} key={id} />
               ))}
             </div>
           </div>

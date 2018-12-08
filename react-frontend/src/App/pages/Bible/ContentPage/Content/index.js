@@ -4,9 +4,9 @@ import classnames from 'classnames/bind'
 import css from './index.scss'
 
 const cx = classnames.bind(css)
-const moduleName = 'ContentCard'
+const moduleName = 'Content'
 
-const ContentCard = ({ media }) => {
+const Content = ({ media }) => {
   return (
     <div className={cx(`${moduleName}`)}>
       {media.type === 'video' ? (
@@ -25,4 +25,4 @@ const ContentCard = ({ media }) => {
   )
 }
 
-export default ContentCard
+export default Content

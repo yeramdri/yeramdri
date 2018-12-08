@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
 import axios from 'axios'
 
@@ -9,6 +8,7 @@ import { axiosConfig } from 'src/utils/axiosUtils'
 import { searchKeyword } from 'src/redux/search/actions'
 
 import SearchBar from 'src/components/SearchBar'
+import ContentCard from 'src/components/ContentCard'
 
 import css from './index.scss'
 const cx = classnames.bind(css)
@@ -77,20 +77,6 @@ class Bible extends Component {
       </div>
     )
   }
-}
-
-const ContentCard = props => {
-  const {
-    content: { id, title, image }
-  } = props
-  return (
-    <div className={cx(`${moduleName}-contentCard`)}>
-      <Link to={`/bible/${id}`}>
-        <img src={image} alt="listImage" />
-        <p>{title}</p>
-      </Link>
-    </div>
-  )
 }
 
 export default connect(

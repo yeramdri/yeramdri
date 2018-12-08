@@ -6,7 +6,7 @@ import SearchBar from 'src/components/SearchBar'
 import { loadKeywordContents } from 'src/redux/contents/actions'
 
 import css from './index.scss'
-import ContentCard from '../components/ContentCard'
+import ContentCard from 'src/components/ContentCard'
 const cx = classnames.bind(css)
 const moduleName = 'SearchResult'
 
