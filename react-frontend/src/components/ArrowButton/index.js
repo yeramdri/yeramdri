@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames/bind'
 
 import css from './index.scss'
-import leftArrow from '../assets/leftArrow.png'
+import leftArrow from 'src/assets/leftArrow.png'
 
 const cx = classnames.bind(css)
 const moduleName = 'ArrowButton'

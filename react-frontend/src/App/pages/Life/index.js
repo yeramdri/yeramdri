@@ -1,37 +1,21 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
-import axios from 'axios'
 
-import bibleHeaderImg from 'src/App/pages/Home/assets/bible-header.jpg'
-import { axiosConfig } from 'src/utils/axiosUtils'
-import { searchKeyword } from 'src/redux/search/actions'
-
+import lifeHeaderImg from 'src/assets/life-header.jpg'
 import SearchBar from 'src/components/SearchBar'
 
 import css from './index.scss'
 const cx = classnames.bind(css)
-const moduleName = 'Bible'
+const moduleName = 'Life'
 
-class Bible extends Component {
+class Life extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       recentContents: []
     }
-  }
-
-  componentDidMount() {
-    this.getRecentlyContents()
-  }
-
-  getRecentlyContents = () => {
-    axios
-      .post('http://localhost:6508/bible-card', axiosConfig)
-      .then(res => this.setState({ recentContents: [...res.data] }))
-      .catch(err => console.log(err))
   }
 
   renderContents = () => {
@@ -44,22 +28,22 @@ class Bible extends Component {
     return (
       <div className={cx(`${moduleName}`)}>
         <div className={cx(`${moduleName}-head`)}>
-          <img src={bibleHeaderImg} alt="bible-header-img" />
-          <h1>BIBLE</h1>
-          <h3>예수, 나를 향한 사랑의 시작</h3>
+          <img src={lifeHeaderImg} alt="life-header-img" />
+          <h1>Life</h1>
+          <h3>일상을 살아가기</h3>
         </div>
         <div className={cx(`${moduleName}-search`)}>
-          <SearchBar path={`/bible/results?search=`} />
+          <SearchBar path={`/life/results?search=`} />
         </div>
         <div className={cx(`${moduleName}-mainVideo`)}>
           <iframe
             title="introduceVideo"
-            src="https://www.youtube.com/embed/9xmdxhnIDT8?showinfo=0"
+            src="https://www.youtube.com/embed/MlaVZuUvNwE?showinfo=0"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen
           />
-          <h3>YERAMDRI - 삶의 고백(A Confession of Life)</h3>
+          <h3>YERAMDRI - 일상의 예배(Daily Worship)</h3>
         </div>
         <div className={cx(`${moduleName}-recentContents`)}>
           <h3>최신 컨텐츠</h3>
@@ -93,9 +77,4 @@ const ContentCard = props => {
   )
 }
 
-export default connect(
-  ({ search }) => ({ keyword: search.keyword }),
-  {
-    searchKeyword
-  }
-)(Bible)
+export default Life

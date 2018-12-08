@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
 
-import yeramdriLogo from 'src/App/pages/Home/assets/yeramdri-logo.svg'
+import yeramdriLogo from 'src/assets/yeramdri-logo.svg'
 
 import css from './Header.scss'
 const cx = classnames.bind(css)
