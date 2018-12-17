@@ -36,10 +36,12 @@ export const LOAD_KEYWORD_CONTENTS_REQUEST = `${MODULE_NAME}/LOAD_KEYWORD_CONTEN
 export const LOAD_KEYWORD_CONTENTS_SUCCESS = `${MODULE_NAME}/LOAD_KEYWORD_CONTENTS_SUCCESS`
 export const LOAD_KEYWORD_CONTENTS_FAILURE = `${MODULE_NAME}/LOAD_KEYWORD_CONTENTS_FAILURE`
 
-export function loadKeywordContents(keyword) {
+export function loadKeywordContents(keyword, category) {
+  debugger
   return {
     type: LOAD_KEYWORD_CONTENTS,
-    keyword
+    keyword,
+    category
   }
 }
 

@@ -7,7 +7,7 @@ import bibleHeaderImg from 'src/assets/bible-header.jpg'
 import { axiosConfig } from 'src/utils/axiosUtils'
 import { searchKeyword } from 'src/redux/search/actions'
 
-import SearchBar from 'src/components/SearchBar'
+import SearchBar from 'src/components/SearchBar/SearchBar'
 import ContentCard from 'src/components/ContentCard'
 
 import css from './index.scss'
@@ -29,7 +29,8 @@ class Bible extends Component {
 
   getRecentlyContents = () => {
     axios
-      .post('http://localhost:6508/bible-card', axiosConfig)
+      // .post('http://localhost:6508/bible-card', axiosConfig)
+      .post('http://172.20.10.4:6508/bible-card', axiosConfig)
       .then(res => this.setState({ recentContents: [...res.data] }))
       .catch(err => console.log(err))
   }

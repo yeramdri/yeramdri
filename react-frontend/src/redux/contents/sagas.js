@@ -28,10 +28,11 @@ export function* watchLoadAllContentsFlow() {
 
 
 
-function* loadKeywordContentsFlow(action) {
+function* loadKeywordContentsFlow({keyword, category}) {
+  console.log(category)
   yield put(loadKeywordContentsRequest())
   try {
-    const { data } = yield call(getContents, action.keyword )
+    const { data } = yield call(getContents, { keyword , category } )
     yield put(loadKeywordContentsSuccess(data))
   } catch (err) {
     yield put(loadKeywordContentsFailure(err))

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
 
 import lifeHeaderImg from 'src/assets/life-header.jpg'
-import SearchBar from 'src/components/SearchBar'
+import SearchBar from 'src/components/SearchBar/SearchBar'
 
 import css from './index.scss'
 const cx = classnames.bind(css)

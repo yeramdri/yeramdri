@@ -1,7 +1,7 @@
 import Main from './pages/Main';
 import Bible from './pages/Bible';
 import Life from './pages/Life';
-import SearchResult from './pages/SearchResult'
+import SearchResult from './pages/SearchResult/SearchResult'
 import ContentPage from './pages/Bible/ContentPage'
 
 const routes = [
@@ -23,9 +23,13 @@ const routes = [
     component: Bible,
   },
   {
+    path: '/life/results',
+    component: SearchResult,
+  },
+  {
     path: '/life',
     component: Life,
-  }
+  },
 ];
 
 export default routes;
