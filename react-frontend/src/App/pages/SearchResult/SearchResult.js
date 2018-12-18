@@ -19,20 +19,22 @@ class SearchResult extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      const keyword = this.getSearchedKeyword(this.props.location.search)
-      const [, category ] = this.props.location.pathname.split('/')
-      console.log(category)
-      this.props.loadKeywordContents(keyword, category)
+      this.getKeywordContents(this.props.location.search)
     }
   }
 
   componentDidMount() {
-    const [, category ] = this.props.location.pathname.split('/')
-    this.props.loadKeywordContents(this.getSearchedKeyword(document.URL), category)
+    this.getKeywordContents(document.URL)
+  }
+
+  getKeywordContents = urlPath => {
+    const keyword = this.getSearchedKeyword(urlPath)
+    const [, category] = this.props.location.pathname.split('/')
+    this.props.loadKeywordContents(keyword, category)
   }
 
   getSearchedKeyword = urlPath => {
-    const [, keyword] = urlPath.split('=')
+    const [, keyword] = urlPath.split('search=')
     return decodeURI(keyword)
   }
 

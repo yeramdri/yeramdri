@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-export function getContents(keyword, type) {
-  console.log(type, keyword)
-  debugger
+export function getContents({ keyword, category }) {
   return axios
-    .get(`http://localhost:6508/${type}-card/result?search=${keyword}`)
+    .get(`http://localhost:6508/${category}-card/result?search=${keyword}`)
     .then(res => res)
-    .catch(err => console.log(err))
+    .catch(err => {
+      throw err
+    })
 }
 
 export function getAllContents() {
