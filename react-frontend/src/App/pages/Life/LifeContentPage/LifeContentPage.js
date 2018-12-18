@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import { getCurrentContentId } from 'src/utils/contentsUtils'
 import Content from 'src/components/Content'
+import ArrowButton from 'src/components/ArrowButton'
 
 import css from './LifeContentPage.scss'
 
@@ -35,7 +36,11 @@ class LifeContentPage extends Component {
   // TODO: 삶, 말씀 에서 사용중이다. util로 분리 하자. className같은건 어떻게 해야할까..?
   renderTags = tag => {
     return tag.split(',').map((tag, index) => {
-      return <span key={index} className={cx(`${moduleName}-tag`)}>#{tag} &nbsp;</span>
+      return (
+        <span key={index} className={cx(`${moduleName}-tag`)}>
+          #{tag} &nbsp;
+        </span>
+      )
     })
   }
 
@@ -44,6 +49,13 @@ class LifeContentPage extends Component {
     return content ? (
       <div className={cx(`${moduleName}`)}>
         <div className={cx(`${moduleName}-ContentWrapper`)}>
+          {/* ArrowButton css를 이렇게 할 수 밖에 없는가....? 가독성과 사용성을 높일 수는 없을까.. */}
+          <div className={cx(`${moduleName}-leftArrow`)}>
+            <ArrowButton direction={'left'} />
+          </div>
+          <div className={cx(`${moduleName}-rightArrow`)}>
+            <ArrowButton direction={'right'} />
+          </div>
           {content.multiMedia.map((media, id) => (
             <Content media={media} key={id} />
           ))}

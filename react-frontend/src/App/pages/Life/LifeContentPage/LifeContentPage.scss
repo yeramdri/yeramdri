@@ -4,6 +4,18 @@
     margin-top: 15px;
     display: flex;
   }
+  &-leftArrow {
+    position: absolute;
+    top: 42%;
+    left: 10px;
+    z-index: 1000;
+  }
+  &-rightArrow {
+    position: absolute;
+    top: 42%;
+    right: 10px;
+    z-index: 1000;
+  }
   &-postWrapper {
     margin: 0 15px;
     padding-bottom: 3rem;
