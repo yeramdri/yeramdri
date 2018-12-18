@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import classnames from 'classnames/bind'
 import axios from 'axios'
 
-import { loadAllContents } from 'src/redux/contents/actions'
 import { getCurrentContentId } from 'src/utils/contentsUtils'
 import ArrowButton from 'src/components/ArrowButton'
 
@@ -33,7 +31,7 @@ class ContentPage extends Component {
 
   getBibleContent(id) {
     axios.get(`http://localhost:6508/bible-card/result/${id}`).then(res => {
-    // axios.get(`http://172.20.10.4:6508/bible-card/result/${id}`).then(res => {
+      // axios.get(`http://172.20.10.4:6508/bible-card/result/${id}`).then(res => {
       const [content] = res.data
       this.setState({ content })
     })
@@ -144,12 +142,4 @@ class ContentPage extends Component {
   }
 }
 
-export default connect(
-  ({ contents }) => ({
-    currentContentId: contents.currentContentId,
-    allContents: contents.allContents
-  }),
-  {
-    loadAllContents
-  }
-)(ContentPage)
+export default ContentPage

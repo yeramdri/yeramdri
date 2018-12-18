@@ -16,7 +16,8 @@ class LifeContentPage extends Component {
     super(props)
 
     this.state = {
-      content: null
+      content: null,
+      contentIndex: 0
     }
   }
 
@@ -30,6 +31,18 @@ class LifeContentPage extends Component {
         data: [content]
       } = res
       this.setState({ content })
+    })
+  }
+
+  nextContentItem = () => {
+    this.setState({
+      contentIndex: this.state.contentIndex + 1
+    })
+  }
+
+  prevContentItem = () => {
+    this.setState({
+      contentIndex: this.state.contentIndex - 1
     })
   }
 
@@ -48,14 +61,29 @@ class LifeContentPage extends Component {
     const { content } = this.state
     return content ? (
       <div className={cx(`${moduleName}`)}>
-        <div className={cx(`${moduleName}-ContentWrapper`)}>
+        <div className={cx(`${moduleName}-leftArrow`)}>
+          <ArrowButton
+            direction={'left'}
+            onClick={this.prevContentItem}
+            disabled={this.state.contentIndex === 0}
+          />
+        </div>
+        <div className={cx(`${moduleName}-rightArrow`)}>
+          <ArrowButton
+            direction={'right'}
+            onClick={this.nextContentItem}
+            disabled={this.state.contentIndex === content.multiMedia.length - 1}
+          />
+        </div>
+        <div
+          className={cx(`${moduleName}-ContentWrapper`)}
+          style={{
+            transform: `translateX(-${this.state.contentIndex *
+              10 *
+              (100 / content.multiMedia.length)}%)`
+          }}
+        >
           {/* ArrowButton css를 이렇게 할 수 밖에 없는가....? 가독성과 사용성을 높일 수는 없을까.. */}
-          <div className={cx(`${moduleName}-leftArrow`)}>
-            <ArrowButton direction={'left'} />
-          </div>
-          <div className={cx(`${moduleName}-rightArrow`)}>
-            <ArrowButton direction={'right'} />
-          </div>
           {content.multiMedia.map((media, id) => (
             <Content media={media} key={id} />
           ))}
