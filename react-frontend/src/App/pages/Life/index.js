@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
+import axios from 'axios'
 
+import { axiosConfig } from 'src/utils/axiosUtils'
 import lifeHeaderImg from 'src/assets/life-header.jpg'
 import SearchBar from 'src/components/SearchBar/SearchBar'
+import ContentCard from 'src/components/ContentCard'
 
 import css from './index.scss'
 const cx = classnames.bind(css)
@@ -14,12 +16,35 @@ class Life extends Component {
     super(props)
 
     this.state = {
-      recentContents: []
+      recentContents: [],
+      recentContentsNumber: 3
     }
   }
 
+  componentDidMount() {
+    this.getRecentlyContents()
+  }
+
+  getRecentlyContents = () => {
+    axios
+      .post('http://172.20.10.4:6508/life-card', axiosConfig)
+      .then(res => this.setState({ recentContents: [...res.data] }))
+      .catch(err => console.log(err))
+  }
+
+  showMoreContents = () => {
+    this.setState({ recentContentsNumber: this.state.recentContentsNumber + 3 })
+  }
+
+  isHideArrow = () => {
+    const {recentContents, recentContentsNumber} = this.state
+    return recentContents.length <= recentContentsNumber
+  }
+
   renderContents = () => {
-    return this.state.recentContents.map(content => (
+    const { recentContents, recentContentsNumber } = this.state
+    const slicedContents = recentContents.slice(0, recentContentsNumber)
+    return slicedContents.map(content => (
       <ContentCard key={content.id} content={content} />
     ))
   }
@@ -53,28 +78,17 @@ class Life extends Component {
             ) : (
               <div> Loading </div>
             )}
-            <div className={cx(`${moduleName}-downIcon`)}>
-              <i className="fas fa-chevron-down" />
+            <div className={cx(`${moduleName}-downIcon`, {hide: this.isHideArrow()})}>
+              <i
+                className="fas fa-chevron-down"
+                onClick={this.showMoreContents}
+              />
             </div>
           </div>
         </div>
       </div>
     )
   }
-}
-
-const ContentCard = props => {
-  const {
-    content: { id, title, image }
-  } = props
-  return (
-    <div className={cx(`${moduleName}-contentCard`)}>
-      <Link to={`/bible/${id}`}>
-        <img src={image} alt="listImage" />
-        <p>{title}</p>
-      </Link>
-    </div>
-  )
 }
 
 export default Life
