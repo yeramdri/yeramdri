@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
 import axios from 'axios'
 
-import bibleHeaderImg from 'src/App/pages/Home/assets/bible-header.jpg'
+import bibleHeaderImg from 'src/assets/bible-header.jpg'
 import { axiosConfig } from 'src/utils/axiosUtils'
 import { searchKeyword } from 'src/redux/search/actions'
 
-import SearchBar from 'src/components/SearchBar'
+import SearchBar from 'src/components/SearchBar/SearchBar'
+import ContentCard from 'src/components/ContentCard'
 
 import css from './index.scss'
 const cx = classnames.bind(css)
@@ -29,7 +29,8 @@ class Bible extends Component {
 
   getRecentlyContents = () => {
     axios
-      .post('http://localhost:6508/bible-card', axiosConfig)
+      // .post('http://localhost:6508/bible-card', axiosConfig)
+      .post('http://172.20.10.4:6508/bible-card', axiosConfig)
       .then(res => this.setState({ recentContents: [...res.data] }))
       .catch(err => console.log(err))
   }
@@ -54,7 +55,7 @@ class Bible extends Component {
         <div className={cx(`${moduleName}-mainVideo`)}>
           <iframe
             title="introduceVideo"
-            src="https://www.youtube.com/embed/9xmdxhnIDT8"
+            src="https://www.youtube.com/embed/9xmdxhnIDT8?showinfo=0"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -77,20 +78,6 @@ class Bible extends Component {
       </div>
     )
   }
-}
-
-const ContentCard = props => {
-  const {
-    content: { id, title, image }
-  } = props
-  return (
-    <div className={cx(`${moduleName}-contentCard`)}>
-      <Link to={`/bible/${id}`}>
-        <img src={image} alt="listImage" />
-        <p>{title}</p>
-      </Link>
-    </div>
-  )
 }
 
 export default connect(

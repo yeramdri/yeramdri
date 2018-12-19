@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import classnames from 'classnames/bind'
 import { connect } from 'react-redux'
 
-import SearchBar from 'src/components/SearchBar'
+import SearchBar from 'src/components/SearchBar/SearchBar'
 import { loadKeywordContents } from 'src/redux/contents/actions'
 
-import css from './index.scss'
-import ContentCard from '../components/ContentCard'
+import css from './SearchResult.scss'
+import ContentCard from 'src/components/ContentCard'
 const cx = classnames.bind(css)
 const moduleName = 'SearchResult'
 
@@ -19,17 +19,22 @@ class SearchResult extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.search !== prevProps.location.search) {
-      const keyword = this.getSearchedKeyword(this.props.location.search)
-      this.props.loadKeywordContents(keyword)
+      this.getKeywordContents(this.props.location.search)
     }
   }
 
   componentDidMount() {
-    this.props.loadKeywordContents(this.getSearchedKeyword(document.URL))
+    this.getKeywordContents(document.URL)
+  }
+
+  getKeywordContents = urlPath => {
+    const keyword = this.getSearchedKeyword(urlPath)
+    const [, category] = this.props.location.pathname.split('/')
+    this.props.loadKeywordContents(keyword, category)
   }
 
   getSearchedKeyword = urlPath => {
-    const [, keyword] = urlPath.split('=')
+    const [, keyword] = urlPath.split('search=')
     return decodeURI(keyword)
   }
 
@@ -42,9 +47,10 @@ class SearchResult extends Component {
   }
 
   render() {
+    const page = document.URL.split('/')[3]
     return (
       <div className={cx(`${moduleName}`)}>
-        <SearchBar path={`/bible/results?search=`} />
+        <SearchBar path={`/${page}/results?search=`} />
         <div className={cx(`${moduleName}-resultsBox`)}>
           {this.renderSearchResults()}
         </div>

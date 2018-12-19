@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
 
@@ -16,12 +17,14 @@ class ContentCard extends Component {
 
   render() {
     const {
-      content: { id, title, image }
+      content: { id, title, thumbnail },
+      location
     } = this.props
+    const [, category] = location.pathname.split('/')
     return (
       <div className={cx(`${moduleName}-contentCard`)}>
-        <Link to={`/bible/${id}`}>
-          <img src={image} alt="listImage" />
+        <Link to={`/${category}/${id}`}>
+          <img src={thumbnail} alt="listImage" />
           <p>{title}</p>
         </Link>
       </div>
@@ -29,7 +32,4 @@ class ContentCard extends Component {
   }
 }
 
-export default connect(
-  () => ({}),
-  {}
-)(ContentCard)
+export default withRouter(ContentCard)

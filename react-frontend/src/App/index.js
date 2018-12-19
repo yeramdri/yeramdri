@@ -1,26 +1,24 @@
-import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import classnames from "classnames/bind";
+import React, { Component, Fragment } from 'react'
+import { hot } from 'react-hot-loader'
+import { Switch, Route, withRouter } from 'react-router-dom'
 
-import css from './index.scss';
-import routes from './routes';
+import Header from 'src/components/Header/Header'
 
-const cx = classnames.bind(css);
-const moduleName = "App";
+import routes from './routes'
 
 class App extends Component {
   render() {
     return (
-      <div className={cx(`${moduleName}`)}>
+      <Fragment>
+        <Header />
         <Switch>
-          {routes.map(({...routeProps }) => (
+          {routes.map(({ ...routeProps }) => (
             <Route {...routeProps} key={routeProps.path || ''} />
           ))}
         </Switch>
-      </div>
-    );
+      </Fragment>
+    )
   }
 }
 
-export default hot(module)(withRouter(App));
+export default hot(module)(withRouter(App))

@@ -1,0 +1,41 @@
+.LifeContentPage {
+  text-align: start;
+  overflow-x: hidden;
+  &-ContentWrapper {
+    margin-top: 15px;
+    display: flex;
+    transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+  &-leftArrow {
+    position: absolute;
+    top: 42%;
+    left: 10px;
+    z-index: 1000;
+  }
+  &-rightArrow {
+    position: absolute;
+    top: 42%;
+    right: 10px;
+    z-index: 1000;
+  }
+  &-postWrapper {
+    margin: 0 15px;
+    padding-bottom: 3rem;
+  }
+  &-title {
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+    color: #262626;
+    font-size: 2.4vh;
+  }
+  &-content {
+    margin: 0;
+    padding-bottom: 5px;
+    font-size: 2vh;
+  }
+  &-tag {
+    color: #003569;
+    font-size: 1.95vh;
+  }
+}

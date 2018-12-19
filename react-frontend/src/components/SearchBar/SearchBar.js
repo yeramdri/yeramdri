@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import classnames from 'classnames/bind'
 
-import css from './index.scss'
+import css from './SearchBar.scss'
 const cx = classnames.bind(css)
 const moduleName = 'SearchBar'
 
@@ -43,7 +43,7 @@ class SearchBar extends Component {
         <div className={cx(`${moduleName}-inputWrapper`)}>
           <input
             onChange={this.handleChange}
-            placeholder="Search Bible"
+            placeholder="Search"
             name="search"
             value={this.state.search}
           />
