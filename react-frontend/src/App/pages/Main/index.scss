@@ -1,0 +1,50 @@
+.Main {
+  &-cover {
+    background: url('../../../assets/yeramdri-cover.jpg');
+    background-size: cover;
+    height: 45vh;
+    padding: 100px 0px;
+    box-sizing: border-box;
+  }
+  &-title {
+    margin: 0;
+    color: #fcc2d7;
+    font-weight: 300;
+  }
+  &-subTitle {
+    margin: 0;
+    color: #495057;
+  }
+  &-buttonContainer {
+    padding: 1rem;
+  }
+  &-button {
+    position: relative;
+    height: 4.5rem;
+    background: #e9ecef;
+    margin: 1rem;
+    border-radius: 5px;
+    h3 {
+      margin: 0;
+      line-height: 4.5rem;
+      font-weight: 400;
+    }
+    i {
+      position: absolute;
+      top: 1.75rem;
+      right: 1.5rem;
+    }
+  }
+}
+
+.bible {
+  color: #98d0d0;
+}
+
+.life {
+  color: #d8c864;
+}
+
+.ministry {
+  color: #797979;
+}
