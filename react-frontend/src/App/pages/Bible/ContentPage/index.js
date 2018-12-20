@@ -30,7 +30,7 @@ class ContentPage extends Component {
   }
 
   getBibleContent(id) {
-    axios.get(`http://13.209.190.90:6508/bible-card/result/${id}`).then(res => {
+    axios.get(`https://www.yeramdri.com/bible-card/result/${id}`).then(res => {
       const [content] = res.data
       this.setState({ content })
     })
