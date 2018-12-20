@@ -19,7 +19,8 @@ class Bible extends Component {
     super(props)
 
     this.state = {
-      recentContents: []
+      recentContents: [],
+      recentContentsNumber: 3
     }
   }
 
@@ -29,14 +30,24 @@ class Bible extends Component {
 
   getRecentlyContents = () => {
     axios
-      // .post('http://localhost:6508/bible-card', axiosConfig)
-      .post('http://172.20.10.4:6508/bible-card', axiosConfig)
+      .post('http://localhost:6508/bible-card', axiosConfig)
       .then(res => this.setState({ recentContents: [...res.data] }))
       .catch(err => console.log(err))
   }
 
+  showMoreContents = () => {
+    this.setState({ recentContentsNumber: this.state.recentContentsNumber + 3 })
+  }
+
+  isHideArrow = () => {
+    const {recentContents, recentContentsNumber} = this.state
+    return recentContents.length <= recentContentsNumber
+  }
+
   renderContents = () => {
-    return this.state.recentContents.map(content => (
+    const { recentContents, recentContentsNumber } = this.state
+    const slicedContents = recentContents.slice(0, recentContentsNumber)
+    return slicedContents.map(content => (
       <ContentCard key={content.id} content={content} />
     ))
   }
@@ -70,8 +81,11 @@ class Bible extends Component {
             ) : (
               <div> Loading </div>
             )}
-            <div className={cx(`${moduleName}-downIcon`)}>
-              <i className="fas fa-chevron-down" />
+            <div className={cx(`${moduleName}-downIcon`, {hide: this.isHideArrow()})}>
+              <i
+                className="fas fa-chevron-down"
+                onClick={this.showMoreContents}
+              />
             </div>
           </div>
         </div>
