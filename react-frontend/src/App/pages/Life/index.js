@@ -27,7 +27,7 @@ class Life extends Component {
 
   getRecentlyContents = () => {
     axios
-      .post('http://172.20.10.4:6508/life-card', axiosConfig)
+      .post('https://www.yeramdri.com/life-card', axiosConfig)
       .then(res => this.setState({ recentContents: [...res.data] }))
       .catch(err => console.log(err))
   }
