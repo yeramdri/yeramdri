@@ -48,6 +48,13 @@ class ContentPage extends Component {
     })
   }
 
+  // contentCard 부분과 완전히 같은 코드... 어떻게 리팩토링해야할까...
+  searchTag = tag => () => {
+    const { location, push } = this.props.history
+    const [, category] = location.pathname.split('/')
+    push(`/${category}/results?search=${tag}`)
+  }
+
   renderBibleQuestion(bibleQuestions) {
     return bibleQuestions.map(question => {
       return (
@@ -64,7 +71,11 @@ class ContentPage extends Component {
   renderTags(tag) {
     return tag.split(',').map((tag, index) => {
       return (
-        <span className={cx(`${moduleName}-post-sharing-tag`)} key={index}>
+        <span
+          onClick={this.searchTag(tag)}
+          className={cx(`${moduleName}-post-sharing-tag`)}
+          key={index}
+        >
           #{tag} &nbsp;
         </span>
       )

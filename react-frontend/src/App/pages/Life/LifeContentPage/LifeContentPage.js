@@ -46,7 +46,7 @@ class LifeContentPage extends Component {
     })
   }
 
-  // TODO: 삶, 말씀 에서 사용중이다. util로 분리 하자. className같은건 어떻게 해야할까..?
+  // TODO: 삶, 말씀, ContentCard 에서 사용중이다. util로 분리 하자. className같은건 어떻게 해야할까..?, 어떤 폴더에 어떤 파일명으로 해야할 지도 모르겠다...
   renderTags = tag => {
     return tag.split(',').map((tag, index) => {
       return (

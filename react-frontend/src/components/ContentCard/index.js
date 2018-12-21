@@ -15,19 +15,39 @@ class ContentCard extends Component {
     this.state = {}
   }
 
+  searchTag = tag => e => {
+    const { location, push } = this.props.history
+    const [, category] = location.pathname.split('/')
+    push(`/${category}/results?search=${tag}`)
+    e.preventDefault()
+  }
+
+  renderTags = tag => {
+    return tag.split(',').map((tag, index) => {
+      return <span onClick={this.searchTag(tag)} key={index}>#{tag}</span>
+    })
+  }
+
   render() {
     const {
-      content: { id, title, thumbnail },
+      content: { id, title, thumbnail, tag },
       location
     } = this.props
     const [, category] = location.pathname.split('/')
     return (
-      <div className={cx(`${moduleName}-contentCard`)}>
-        <Link to={`/${category}/${id}`}>
-          <img src={thumbnail} alt="listImage" />
-          <p>{title}</p>
-        </Link>
-      </div>
+      <Link to={`/${category}/${id}`}>
+        <div className={cx(`${moduleName}`)}>
+          <img
+            className={cx(`${moduleName}-img`)}
+            src={thumbnail}
+            alt="listImage"
+          />
+          <div className={cx(`${moduleName}-right`)}>
+            <p>{title}</p>
+            {this.renderTags(tag)}
+          </div>
+        </div>
+      </Link>
     )
   }
 }
