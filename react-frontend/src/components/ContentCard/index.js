@@ -15,9 +15,16 @@ class ContentCard extends Component {
     this.state = {}
   }
 
+  searchTag = tag => e => {
+    const { location, push } = this.props.history
+    const [, category] = location.pathname.split('/')
+    push(`/${category}/results?search=${tag}`)
+    e.preventDefault()
+  }
+
   renderTags = tag => {
     return tag.split(',').map((tag, index) => {
-      return <span key={index}>#{tag}</span>
+      return <span onClick={this.searchTag(tag)} key={index}>#{tag}</span>
     })
   }
 
