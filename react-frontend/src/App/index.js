@@ -27,7 +27,7 @@ class App extends Component {
           sidebar={<SideNavbar/>}
           open={this.state.sidebarOpen}
           onSetOpen={this.onSetSidebarOpen}
-          styles={{ sidebar: { background: 'rgba(0, 0, 0, 0.8)' } }}
+          styles={{ overlay: { background: "#ffffff62" } }}
         >
           <Header toggleSidebar={() => this.onSetSidebarOpen(true)} />
           <Switch>

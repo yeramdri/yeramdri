@@ -9,15 +9,23 @@ const moduleName = 'SideNavbar';
 const SideNavbar = () => {
   return (
     <div className={cx(`${moduleName}`)}>
-      <h3>
-        <Link to="/bible">말씀</Link>
-      </h3>
-      <h3>
-        <Link to="/life">삶</Link>
-      </h3>
-      <h3 onClick={() => {alert('준비중 입니다 :)')}}>
-        사역
-      </h3>
+      <p className={cx(`${moduleName}-title`)}>
+        <Link to="/bible">말씀.</Link>
+      </p>
+      <p className={cx(`${moduleName}-title`)}>
+        <Link to="/life">삶.</Link>
+      </p>
+      <p
+        className={cx(`${moduleName}-title`)}
+        onClick={() => {alert('준비중 입니다 :)')}}
+      >
+        사역.
+      </p>
+      
+      <p className={cx(`${moduleName}-underTitle`)}>
+        예배자들의 삶이<br/>
+        아름드리 꽃 피우길.
+      </p>
     </div>
   )
 }
