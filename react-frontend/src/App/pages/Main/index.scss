@@ -1,19 +1,26 @@
 .Main {
-  &-cover {
-    background: url('../../../assets/yeramdri-cover.jpg');
-    background-size: cover;
-    height: 45vh;
-    padding: 100px 0px;
-    box-sizing: border-box;
-  }
-  &-title {
-    margin: 0;
-    color: #fcc2d7;
-    font-weight: 300;
-  }
-  &-subTitle {
-    margin: 0;
-    color: #495057;
+  
+  &-words {
+    margin: 24px 0 0 30px;
+    &-title {
+      height: 28px;
+      text-align: left;
+      font-family: NanumMyeongjo;
+      font-size: 24px;
+      font-weight: 600;
+      color: #fd9297;
+    }
+    &-subTitle {
+      height: 70px;
+      margin: 36px 0 0 0;
+      text-align: left;
+      font-family: NanumMyeongjo;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.75;
+      letter-spacing: -0.3px;
+      color: #c5c8cf;
+    }
   }
   &-buttonContainer {
     padding: 1rem;
