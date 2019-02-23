@@ -10,6 +10,36 @@ const cx = classnames.bind(css)
 const moduleName = 'Main'
 
 class Main extends Component {
+
+  renderButtons = () => {
+    const buttonData = [
+      {
+        type: 'bible',
+        img: bibleImg,
+        title: '말씀',
+        subTitle: '예수, 나를 향한 사랑의 시작'
+      },
+      {
+        type: 'life',
+        img: lifeImg,
+        title: '삶',
+        subTitle: '하나님과 함께하는 일상들'
+      }
+    ];
+
+    return buttonData.map(({type, img, title, subTitle}) => (
+      <Link to={`/${type}`}>
+        <div className={cx(`${moduleName}-button`)}>
+          <div className={cx(`${moduleName}-button-imgWrapper`)}>
+            <img src={img} alt='buttonImg' />
+          </div>
+          <h3 className={cx(`${type}`)}>{title}</h3>
+          <p>{subTitle}</p>
+        </div>
+      </Link>
+    ))
+  }
+
   render() {
     return (
       <div className={cx(`${moduleName}`)}>
@@ -23,24 +53,7 @@ class Main extends Component {
           <SearchBar placeholder="#말씀, #삶, #사역" />
         </div>
         <div className={cx(`${moduleName}-buttonContainer`)}>
-          <Link to="/bible">
-            <div className={cx(`${moduleName}-button`)}>
-              <div className={cx(`${moduleName}-button-imgWrapper`)}>
-                <img src={bibleImg} alt='bibleImg' />
-              </div>
-              <h3 className={cx("bible")}>말씀</h3>
-              <p>예수, 나를 향한 사랑의 시작</p>
-            </div>
-          </Link>
-          <Link to="/life">
-            <div className={cx(`${moduleName}-button`, 'life')}>
-              <div className={cx(`${moduleName}-button-imgWrapper`)}>
-                <img src={lifeImg} alt='lifeImg' />
-              </div>
-              <h3>삶</h3>
-              <p>일상을 살아가는 크리스천 청년</p>
-            </div>
-          </Link>
+          {this.renderButtons()}
           <div>
             <div
               className={cx(`${moduleName}-button`, `${moduleName}-button-last`, 'ministry')}
@@ -52,7 +65,7 @@ class Main extends Component {
                 <img src={ministryImg} alt='ministryImg' />
               </div>
               <h3>사역</h3>
-              <p>예수, 나를 향한 사랑의 시작</p>
+              <p>복음을 들고, 사랑을 품고</p>
             </div>
           </div>
         </div>
