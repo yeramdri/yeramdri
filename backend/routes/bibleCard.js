@@ -27,11 +27,12 @@ router.get('/result', function (request, response) {
   MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
     if (err) throw err;
     const DB = mongodb.db('platform')
+    const mySort = { id: -1 } 
     search = search.trim()
     if (search == "" || search == "undefined") {
       response.send("Not Contents")
     } else {
-      DB.collection('bibleCard').find({tag: new RegExp(search, 'i')}).toArray(function (err, result) {
+      DB.collection('bibleCard').find({tag: new RegExp(search, 'i')}).sort(mySort).toArray(function (err, result) {
         if (err) throw err;
         response.send(result)
       })
@@ -43,7 +44,8 @@ router.get('/result/:id', function (request, response) {
   MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
     if (err) throw err;
     const DB = mongodb.db('platform')
-    DB.collection('bibleCard').find({id: card_id}).toArray(function (err, result) {
+    const mySort = { id: -1 }
+    DB.collection('bibleCard').find({id: card_id}).sort(mySort).toArray(function (err, result) {
       if (err) throw err;
       response.send(result)
     })
