@@ -1,18 +1,20 @@
-var express = require('express');
-var MongoClient = require('mongodb').MongoClient;
-var mongoUrl = "mongodb://yeramdri.com:27017/platform"
-var path = require('path');
-var fs = require('fs')
-var favicon = require('serve-favicon')
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
-var index = require('./routes/index');
-var bibleCard = require('./routes/bibleCard');
-var lifeCard = require('./routes/lifeCard')
-var app = express();
-var server = require('http').Server(app)
-var io = require('socket.io')(server)
+require('dotenv').config()
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const favicon = require('serve-favicon')
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+
+const index = require('./routes/index');
+const bibleCard = require('./routes/bibleCard');
+const card = require('./routes/Card');
+const lifeCard = require('./routes/lifeCard');
+
+const app = express();
+const port = process.env.PORT || 6508;
+
 // var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
 // app.use(redirectToHTTPS([/13.209.190.90/]));
 app.use(function(req, res, next) {
@@ -21,22 +23,28 @@ app.use(function(req, res, next) {
   next();
 });
 
-// app.use(require('connect-history-api-fallback')())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')));
+
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true})
+.then(() => console.log('Successfully connected to mongodb'))
+.catch(e => console.error(e))
+
 app.use('/', index);
 app.use('/bible-card', bibleCard);
+app.use('/card', card);
 app.use('/life-card', lifeCard);
 
 
-server.listen(6508, function (){
-  console.log('Server running port 6508')
+app.listen(port, function (){
+  console.log(`Server running port ${port}`)
 })
