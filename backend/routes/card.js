@@ -9,19 +9,10 @@ router.get('/result', function (request, response) {
         if (err) throw err;
         const DB = mongodb.db('platform');
         const mySort = { created_at: -1 }
-        search = search.trim();
-        if (search == "" || search == "undefined") {
-            DB.collection('card').find({}).sort(mySort).toArray(function (err, result) {
-                if (err) throw err;
-                response.send(result)
-            })
-            // response.send("Not Contents")
-        } else {
-            DB.collection('card').find({tag: new RegExp(search, 'i')}).sort(mySort).toArray(function (err, result) {
-                if (err) throw err;
-                response.send(result)
-            })
-        }
+        DB.collection('card').find({}).sort(mySort).toArray(function (err, result) {
+            if (err) throw err;
+            response.send(result)
+        })
     })
 });
 
