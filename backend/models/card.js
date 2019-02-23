@@ -4,16 +4,12 @@ const cardSchema = new mongoose.Schema({
   id: Number,
   type: String,
   typeId: Number,
-  createdAt: Date,
+  createdAt:{type: Date, default: Date.now},
   thumbnail: String,
   title: String,
   content: String,
   tag: String,
-  multiMedia: {
-    id: Number,
-    type: String,
-    url: String
-  }
+  multiMedia: Array
 }, {
   strict: false,
   timestamps: false,
