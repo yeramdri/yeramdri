@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import classnames from 'classnames/bind'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 import SearchBar from 'src/components/SearchBar/SearchBar'
-import { loadKeywordContents } from 'src/redux/contents/actions'
+import {loadKeywordContents} from 'src/redux/contents/actions'
 
 import css from './SearchResult.scss'
 import ContentCard from 'src/components/ContentCard'
@@ -11,7 +11,7 @@ const cx = classnames.bind(css)
 const moduleName = 'SearchResult'
 
 class SearchResult extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {}
@@ -39,7 +39,7 @@ class SearchResult extends Component {
   }
 
   renderSearchResults = () => {
-    const { keywordContents } = this.props
+    const {keywordContents} = this.props
     if (!keywordContents.length) return <div />
     return keywordContents.map(content => (
       <ContentCard key={content.id} content={content} />
@@ -47,10 +47,13 @@ class SearchResult extends Component {
   }
 
   render() {
-    const page = document.URL.split('/')[3]
+    const page = document.URL.split('/')[3];
+    const path = page.indexOf('results') === -1
+      ?`/${page}/results?search=`
+      : `/results?search=`;
     return (
       <div className={cx(`${moduleName}`)}>
-        <SearchBar path={`/${page}/results?search=`} />
+        <SearchBar path={path} />
         <div className={cx(`${moduleName}-resultsBox`)}>
           {this.renderSearchResults()}
         </div>
@@ -60,7 +63,7 @@ class SearchResult extends Component {
 }
 
 export default connect(
-  ({ contents }) => ({
+  ({contents}) => ({
     keywordContents: contents.keywordContents
   }),
   {

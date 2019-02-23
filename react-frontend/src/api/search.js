@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export function getContents({ keyword, category }) {
-  const path = category === 'global'
+  const path = category === 'results'
     ? `http://localhost:6508/card/result?search=${keyword}`
     : `http://localhost:6508/card/${category}/result?search=${keyword}`
   return axios

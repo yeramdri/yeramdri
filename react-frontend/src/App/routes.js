@@ -12,6 +12,10 @@ const routes = [
     component: Main,
   },
   {
+    path: '/results',
+    component: SearchResult,
+  },
+  {
     path: '/bible/results',
     component: SearchResult,
   },
@@ -34,11 +38,7 @@ const routes = [
   {
     path: '/life',
     component: Life,
-  },
-  {
-    path: '/global/results',
-    component: SearchResult,
-  },
+  }
 ];
 
 export default routes;

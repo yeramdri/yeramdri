@@ -104,7 +104,7 @@ class Main extends Component {
         </div>
         <div className={cx(`${moduleName}-searchbarWrapper`)}>
           <SearchBar
-            path={`/global/results?search=`}
+            path={`/results?search=`}
             placeholder="#말씀, #삶, #사역" />
         </div>
         <div className={cx(`${moduleName}-buttonContainer`)}>
