@@ -14,9 +14,17 @@ const sortById = { id: -1 }
  *       200:
  *         description: 성공
  */
-router.get('/', function (request, response){
+router.get('/', function (request, response) {
   card.find({}).sort(sortById).then((cards) => {
     response.send(cards)
+  });
+})
+
+router.post('/', function (request, response) {
+  const body = request.body;
+  let cardInsert = new card(body, false);
+  cardInsert.save().then(()=>{
+    response.sendStatus(200);
   });
 })
 
@@ -61,6 +69,13 @@ router.get('/bible', function (request, response) {
   })
 })
 
+router.get('/bible/:id', function (request, response) {
+  card.find({type: 'bible', typeId: Number(request.params.id)})
+  .then((card) => {
+    response.send(cards)
+  })
+})
+
 /**
  * @swagger
  * /card/bible/result:
@@ -98,6 +113,14 @@ router.get('/bible/result', function (request, response) {
 router.get('/life', function (request, response) {
   card.find({type: 'life'})
   .sort(sortById).then((cards) =>{
+    response.send(cards)
+  })
+})
+
+
+router.get('/life/:id', function (request, response) {
+  card.find({type: 'life', typeId: Number(request.params.id)})
+  .then((card) => {
     response.send(cards)
   })
 })
