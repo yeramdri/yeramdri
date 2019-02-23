@@ -1,5 +1,4 @@
 .Main {
-  
   &-words {
     margin: 24px 0 24px 30px;
     &-title {
@@ -67,6 +66,21 @@
       color: #4a4a4ac0;
     }
   }
+  &-contents {
+    padding: 0 8px;
+    &-title {
+      padding: 0 0 0 16px;
+      text-align: left;
+      font-family: NanumSquareR;
+      font-size: 12px;
+      color: #4a4a4ac0;
+    }
+    &-downIcon {
+      padding: 0 0 10px 0;
+      font-size: 20px;
+      color: #d9dbe1;
+    }
+  }
 }
 
 .bible {
@@ -79,4 +93,8 @@
 
 .ministry {
   color: #be4bdb;
+}
+
+.hide {
+  display: none;
 }

@@ -68,14 +68,14 @@ class Main extends Component {
 
   renderContents = () => (
     <div className={cx(`${moduleName}-contents`)}>
-      <p>최신컨텐츠</p>
+      <p className={cx(`${moduleName}-contents-title`)}>최신컨텐츠</p>
       <div>
         {this.state.recentContents.length ? (
           this.renderContentCards()
         ) : (
             <div> Loading </div>
           )}
-        <div className={cx(`${moduleName}-downIcon`, {hide: this.isHideArrow()})}>
+        <div className={cx(`${moduleName}-contents-downIcon`, {hide: this.isHideArrow()})}>
           <i
             className="fas fa-chevron-down"
             onClick={this.showMoreContents}
