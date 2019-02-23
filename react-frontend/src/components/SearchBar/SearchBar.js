@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import React, {Component} from 'react'
+import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import classnames from 'classnames/bind'
 
@@ -8,7 +8,7 @@ const cx = classnames.bind(css)
 const moduleName = 'SearchBar'
 
 class SearchBar extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -30,7 +30,7 @@ class SearchBar extends Component {
     return decodeURI(keyword)
   }
 
-  handleChange = e => this.setState({ search: e.target.value })
+  handleChange = e => this.setState({search: e.target.value})
 
   handleSubmit = e => {
     e.preventDefault()
@@ -38,26 +38,32 @@ class SearchBar extends Component {
   }
 
   render() {
+    const {placeholder} = this.props
     return (
-      <form onSubmit={this.handleSubmit} className={cx(`${moduleName}`)}>
-        <div className={cx(`${moduleName}-inputWrapper`)}>
-          <input
-            onChange={this.handleChange}
-            placeholder="Search"
-            name="search"
-            value={this.state.search}
-          />
-        </div>
+      <form
+        className={cx(`${moduleName}`)}
+        onSubmit={this.handleSubmit}>
         <button className={cx(`${moduleName}-icon`)}>
           <i className="fas fa-search" />
         </button>
+        <input
+          onChange={this.handleChange}
+          placeholder={placeholder}
+          name="search"
+          value={this.state.search}
+        />
       </form>
     )
   }
 }
 
 SearchBar.propTypes = {
-  path: PropTypes.string.isRequired
+  path: PropTypes.string.isRequired,
+  placeholder: PropTypes.string
+}
+
+SearchBar.defaultProps = {
+  placeholder: 'Search'
 }
 
 export default withRouter(SearchBar)

@@ -1,7 +1,7 @@
 .Main {
   
   &-words {
-    margin: 24px 0 0 30px;
+    margin: 24px 0 24px 30px;
     &-title {
       height: 28px;
       text-align: left;
@@ -22,6 +22,11 @@
       color: #c5c8cf;
     }
   }
+  
+  &-searchbarWrapper {
+    margin: 0 24px;
+  }
+  
   &-buttonContainer {
     padding: 1rem;
   }

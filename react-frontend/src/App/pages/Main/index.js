@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
-
+import SearchBar from 'src/components/SearchBar';
 import css from './index.scss'
 const cx = classnames.bind(css)
 const moduleName = 'Main'
@@ -15,6 +15,9 @@ class Main extends Component {
           <p className={cx(`${moduleName}-words-subTitle`)}>
             예배자들의 삶이<br/>아름드리 꽃피우길
           </p>
+        </div>
+        <div className={cx(`${moduleName}-searchbarWrapper`)}>
+          <SearchBar placeholder="#말씀, #삶, #사역"/>
         </div>
         <div className={cx(`${moduleName}-buttonContainer`)}>
           <Link to="/bible">
