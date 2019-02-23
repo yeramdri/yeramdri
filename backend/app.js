@@ -8,9 +8,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
-const bibleCard = require('./routes/bibleCard');
 const card = require('./routes/card');
-const lifeCard = require('./routes/lifeCard');
 
 const app = express();
 const port = process.env.PORT || 6508;
