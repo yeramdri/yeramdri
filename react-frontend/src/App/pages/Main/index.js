@@ -23,7 +23,7 @@ class Main extends Component {
   
   getRecentlyContents = () => {
     axios
-    .get('http://localhost:6508/card/result')
+    .get('http://localhost:6508/card/')
     .then(res=> this.setState({recentContents: [...res.data]}))
     .catch(err => console.log(err))
   }
@@ -53,8 +53,8 @@ class Main extends Component {
       }
     ];
 
-    return buttonData.map(({type, img, title, subTitle}) => (
-      <Link to={`/${type}`}>
+    return buttonData.map(({type, img, title, subTitle}, i) => (
+      <Link to={`/${type}`} key={i}>
         <div className={cx(`${moduleName}-button`)}>
           <div className={cx(`${moduleName}-button-imgWrapper`)}>
             <img src={img} alt='buttonImg' />
@@ -103,7 +103,9 @@ class Main extends Component {
           </p>
         </div>
         <div className={cx(`${moduleName}-searchbarWrapper`)}>
-          <SearchBar placeholder="#말씀, #삶, #사역" />
+          <SearchBar
+            path={`/global/results?search=`}
+            placeholder="#말씀, #삶, #사역" />
         </div>
         <div className={cx(`${moduleName}-buttonContainer`)}>
           {this.renderButtons()}
