@@ -28,35 +28,55 @@
   }
   
   &-buttonContainer {
-    padding: 1rem;
+    padding: 20px 18px 25px 18px;
+    overflow: scroll;
+    display: flex;
+    &::-webkit-scrollbar { 
+      display: none; 
+    }
   }
   &-button {
-    position: relative;
-    height: 4.5rem;
-    background: #e9ecef;
-    margin: 1rem;
-    border-radius: 5px;
-    h3 {
-      margin: 0;
-      line-height: 4.5rem;
-      font-weight: 400;
+    display: inline-block;
+    width: 311px;
+    height: 178px;
+    margin: 0 6px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 30px -3px rgba(0, 0, 0, 0.15);
+    text-align: left;
+    overflow: hidden;
+    &-imgWrapper {
+      height: 98px;
+      overflow: hidden;
+      img {
+        width: 311px;
+      }
     }
-    i {
-      position: absolute;
-      top: 1.75rem;
-      right: 1.5rem;
+    &-last {
+      margin: 0 24px 0 6px;
+    }
+    h3 {
+      margin: 15px 0 0 20px;
+      font-family: NanumSquareEB;
+      font-size: 18px;
+    }
+    p {
+      margin: 12px 0 0 16px;
+      font-family: NanumSquareR;
+      font-size: 13px;
+      color: #4a4a4ac0;
     }
   }
 }
 
 .bible {
-  color: #98d0d0;
+  color: #fc747b;
 }
 
 .life {
-  color: #d8c864;
+  color: #349dee;
 }
 
 .ministry {
-  color: #797979;
+  color: #be4bdb;
 }
