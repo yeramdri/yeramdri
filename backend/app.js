@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const bibleCard = require('./routes/bibleCard');
-const card = require('./routes/Card');
+const card = require('./routes/card');
 const lifeCard = require('./routes/lifeCard');
 
 const app = express();
