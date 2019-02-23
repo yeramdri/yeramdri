@@ -6,6 +6,7 @@ const cardSchema = new mongoose.Schema({
   typeId: Number,
   createdAt: Date,
   thumbnail: String,
+  title: String,
   content: String,
   tag: String,
   multiMedia: {

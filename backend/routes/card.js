@@ -3,12 +3,34 @@ const router = express.Router();
 const card = require('../models/card');
 const sortById = { id: -1 }
 
+/**
+ * @swagger
+ * /card:
+ *   get:
+ *     summary: 전체 카드 리스트 불러오기
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ */
 router.get('/', function (request, response){
   card.find({}).sort(sortById).then((cards) => {
     response.send(cards)
   });
 })
 
+/**
+ * @swagger
+ * /card/result:
+ *   get:
+ *     summary: 태그 검색 카드 리스트 불러오기
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ */
 router.get('/result', function (request, response) {
   const search = request.query.search.trim();
   if (search == "" || search == undefined) {
@@ -21,6 +43,17 @@ router.get('/result', function (request, response) {
   }
 })
 
+/**
+ * @swagger
+ * /card/bible:
+ *   get:
+ *     summary: 말씀 카드 전체 리스트 불러오기
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ */
 router.get('/bible', function (request, response) {
   card.find({type: 'bible'})
   .sort(sortById).then((cards) => {
@@ -28,6 +61,17 @@ router.get('/bible', function (request, response) {
   })
 })
 
+/**
+ * @swagger
+ * /card/bible/result:
+ *   get:
+ *     summary: 태그 검색 말씀 카드 리스트 불러오기
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ */
 router.get('/bible/result', function (request, response) {
   const search = request.query.search.trim();
   if (search == "" || search == undefined) {
@@ -40,6 +84,17 @@ router.get('/bible/result', function (request, response) {
   }
 })
 
+/**
+ * @swagger
+ * /card/life:
+ *   get:
+ *     summary: 삶 카드 전체 리스트 불러오기
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ */
 router.get('/life', function (request, response) {
   card.find({type: 'life'})
   .sort(sortById).then((cards) =>{
@@ -47,6 +102,17 @@ router.get('/life', function (request, response) {
   })
 })
 
+/**
+ * @swagger
+ * /card/life/result:
+ *   get:
+ *     summary: 태그 검색 삶 카드 리스트 불러오기
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ */
 router.get('/life/result', function (request, response) {
   const search = request.query.search.trim();
   if (search == "" || search == undefined) {
@@ -58,4 +124,5 @@ router.get('/life/result', function (request, response) {
     })
   }
 })
+
 module.exports = router;
