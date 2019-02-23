@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-// import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
+import React, {Component} from 'react'
+import {withRouter} from 'react-router'
+import {Link} from 'react-router-dom'
 import classnames from 'classnames/bind'
 
 import css from './index.scss'
@@ -10,32 +9,29 @@ const cx = classnames.bind(css)
 const moduleName = 'ContentCard'
 
 class ContentCard extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {}
   }
 
-  searchTag = tag => e => {
-    const { location, push } = this.props.history
-    const [, category] = location.pathname.split('/')
-    push(`/${category}/results?search=${tag}`)
+  searchTag = (tag, type) => e => {
+    const {push} = this.props.history
+    push(`/${type}/results?search=${tag}`)
     e.preventDefault()
   }
 
-  renderTags = tag => {
-    return tag.split(',').map((tag, index) => {
-      return <span onClick={this.searchTag(tag)} key={index}>#{tag}</span>
-    })
+  renderTags = (tag, type) => {
+    return tag.split(',').map((tag, index) => (
+      <span onClick={this.searchTag(tag, type)} key={index}>#{tag}</span>
+    ))
   }
 
   render() {
     const {
-      content: { id, title, thumbnail, tag },
-      location
+      content: {type, typeId, title, thumbnail, tag}
     } = this.props
-    const [, category] = location.pathname.split('/')
     return (
-      <Link to={`/${category}/${id}`}>
+      <Link to={`/${type}/${typeId}`}>
         <div className={cx(`${moduleName}`)}>
           <img
             className={cx(`${moduleName}-img`)}
@@ -44,7 +40,7 @@ class ContentCard extends Component {
           />
           <div className={cx(`${moduleName}-right`)}>
             <p>{title}</p>
-            {this.renderTags(tag)}
+            {this.renderTags(tag, type)}
           </div>
         </div>
       </Link>
