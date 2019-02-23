@@ -71,7 +71,7 @@ router.get('/bible', function (request, response) {
 
 router.get('/bible/:id', function (request, response) {
   card.find({type: 'bible', typeId: Number(request.params.id)})
-  .then((card) => {
+  .then((cards) => {
     response.send(cards)
   })
 })
@@ -120,7 +120,7 @@ router.get('/life', function (request, response) {
 
 router.get('/life/:id', function (request, response) {
   card.find({type: 'life', typeId: Number(request.params.id)})
-  .then((card) => {
+  .then((cards) => {
     response.send(cards)
   })
 })
