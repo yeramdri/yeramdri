@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import classnames from 'classnames/bind'
+import axios from 'axios'
 import SearchBar from 'src/components/SearchBar';
+import ContentCard from 'src/components/ContentCard'
 import bibleImg from 'src/assets/bible-card.jpg';
 import lifeImg from 'src/assets/life-card2.jpg';
 import ministryImg from 'src/assets/ministry-card.jpg';
@@ -10,6 +12,30 @@ const cx = classnames.bind(css)
 const moduleName = 'Main'
 
 class Main extends Component {
+  state = {
+    recentContents: [],
+    recentContentsNumber: 3
+  }
+  
+  componentDidMount() {
+    this.getRecentlyContents()
+  }
+  
+  getRecentlyContents = () => {
+    axios
+    .get('http://localhost:6508/card/result')
+    .then(res=> this.setState({recentContents: [...res.data]}))
+    .catch(err => console.log(err))
+  }
+  
+  showMoreContents = () => {
+    this.setState({ recentContentsNumber: this.state.recentContentsNumber + 3 })
+  }
+  
+  isHideArrow = () => {
+    const {recentContents, recentContentsNumber} = this.state
+    return recentContents.length <= recentContentsNumber
+  }
 
   renderButtons = () => {
     const buttonData = [
@@ -40,6 +66,33 @@ class Main extends Component {
     ))
   }
 
+  renderContents = () => (
+    <div className={cx(`${moduleName}-contents`)}>
+      <p>최신컨텐츠</p>
+      <div>
+        {this.state.recentContents.length ? (
+          this.renderContentCards()
+        ) : (
+            <div> Loading </div>
+          )}
+        <div className={cx(`${moduleName}-downIcon`, {hide: this.isHideArrow()})}>
+          <i
+            className="fas fa-chevron-down"
+            onClick={this.showMoreContents}
+          />
+        </div>
+      </div>
+    </div>
+  )
+  
+  renderContentCards = () => {
+    const { recentContents, recentContentsNumber } = this.state
+    const slicedContents = recentContents.slice(0, recentContentsNumber)
+    return slicedContents.map(content => (
+      <ContentCard key={content.id} content={content} />
+    ))
+  };
+
   render() {
     return (
       <div className={cx(`${moduleName}`)}>
@@ -69,6 +122,7 @@ class Main extends Component {
             </div>
           </div>
         </div>
+        {this.renderContents()}
       </div>
     )
   }
