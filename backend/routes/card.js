@@ -1,56 +1,61 @@
 const express = require('express');
 const router = express.Router();
-var MongoClient = require('mongodb').MongoClient;
-var mongoUrl = "mongodb://yeramdri.com:27017/platform"
+const card = require('../models/card');
+const sortById = { id: -1 }
 
-router.post('/', function (request, response) {
-    let search = request.body.search
-    MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
-      if (err) throw err;
-      const DB = mongodb.db('platform')
-      if (search == "" || search == "undefined") {
-        DB.collection('card').find({}).toArray(function (err, result) {
-          if (err) throw err;
-          response.send(result)
-        })
-      } else {
-        DB.collection('card').find({tag: new RegExp(search, 'i')}).toArray(function (err, result) {
-          if (err) throw err;
-          response.send(result)
-        })
-      }
+router.get('/', function (request, response){
+  card.find({}).sort(sortById).then((cards) => {
+    response.send(cards)
+  });
+})
+
+router.get('/result', function (request, response) {
+  const search = request.query.search.trim();
+  if (search == "" || search == undefined) {
+    response.sendStatus(404)
+  } else {
+    card.find({tag: new RegExp(search, 'i')})
+    .sort(sortById).then((cards) => {
+      response.send(cards)
     })
-  })
+  }
+})
 
-  router.get('/result', function (request, response) {
-    let search = request.query.search
-    MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
-      if (err) throw err;
-      const DB = mongodb.db('platform')
-      const mySort = { id: -1 } 
-      search = search.trim()
-      if (search == "" || search == "undefined") {
-        response.send("Not Contents")
-      } else {
-        DB.collection('card').find({tag: new RegExp(search, 'i')}).sort(mySort).toArray(function (err, result) {
-          if (err) throw err;
-          response.send(result)
-        })
-      }
+router.get('/bible', function (request, response) {
+  card.find({type: 'bible'})
+  .sort(sortById).then((cards) => {
+    response.send(cards)
+  })
+})
+
+router.get('/bible/result', function (request, response) {
+  const search = request.query.search.trim();
+  if (search == "" || search == undefined) {
+    response.sendStatus(404)
+  } else {
+    card.find({type: 'bible', tag: new RegExp(search, 'i')})
+    .sort(sortById).then((cards) => {
+      response.send(cards)
     })
-  })
+  }
+})
 
-router.get('/result/:id', function (request, response) {
-    let card_id = parseInt(request.params.id);
-    MongoClient.connect(mongoUrl, {useNewUrlParser: true}, function (err, mongodb){
-      if (err) throw err;
-      const DB = mongodb.db('platform')
-      const mySort = { id: -1 }
-      DB.collection('card').find({id: card_id}).sort(mySort).toArray(function (err, result) {
-        if (err) throw err;
-        response.send(result)
-      })
+router.get('/life', function (request, response) {
+  card.find({type: 'life'})
+  .sort(sortById).then((cards) =>{
+    response.send(cards)
+  })
+})
+
+router.get('/life/result', function (request, response) {
+  const search = request.query.search.trim();
+  if (search == "" || search == undefined) {
+    response.sendStatus(404)
+  } else {
+    card.find({type: 'life', tag: new RegExp(search, 'i')})
+    .sort(sortById).then((cards) => {
+      response.send(cards)
     })
-  })
-
+  }
+})
 module.exports = router;

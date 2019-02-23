@@ -40,9 +40,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 .catch(e => console.error(e));
 
 app.use('/', index);
-app.use('/bible-card', bibleCard);
 app.use('/card', card);
-app.use('/life-card', lifeCard);
 
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerOption = require('./swagger');
