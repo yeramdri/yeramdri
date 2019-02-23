@@ -35,15 +35,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')));
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true})
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 .then(() => console.log('Successfully connected to mongodb'))
-.catch(e => console.error(e))
+.catch(e => console.error(e));
 
 app.use('/', index);
 app.use('/bible-card', bibleCard);
 app.use('/card', card);
 app.use('/life-card', lifeCard);
 
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerOption = require('./swagger');
+const swaggerSpec = swaggerJSDoc(swaggerOption);
+const swaggerUI = require('swagger-ui-express');
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 
 app.listen(port, function (){
   console.log(`Server running port ${port}`)
