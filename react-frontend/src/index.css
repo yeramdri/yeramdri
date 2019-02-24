@@ -1,4 +1,6 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
 body {
   margin: 0;
   padding: 0;
@@ -41,6 +43,6 @@ input {
   -webkit-appearance: none;
 }
 
-h1, p {
+h1, h3, p {
   margin: 0;
 }

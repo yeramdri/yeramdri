@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import classnames from 'classnames/bind'
 import axios from 'axios'
 
-import { getCurrentContentId } from 'src/utils/contentsUtils'
+import {getCurrentContentId} from 'src/utils/contentsUtils'
 import Content from 'src/components/Content'
 import ArrowButton from 'src/components/ArrowButton'
 
@@ -12,7 +12,7 @@ const cx = classnames.bind(css)
 const moduleName = 'LifeContentPage'
 
 class LifeContentPage extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -30,7 +30,7 @@ class LifeContentPage extends Component {
       const {
         data: [content]
       } = res
-      this.setState({ content })
+      this.setState({content})
     })
   }
 
@@ -58,45 +58,49 @@ class LifeContentPage extends Component {
   }
 
   render() {
-    const { content } = this.state
+    const {content} = this.state
     return content ? (
       <div className={cx(`${moduleName}`)}>
-        <div className={cx(`${moduleName}-leftArrow`)}>
-          <ArrowButton
-            direction={'left'}
-            onClick={this.prevContentItem}
-            disabled={this.state.contentIndex === 0}
-          />
-        </div>
-        <div className={cx(`${moduleName}-rightArrow`)}>
-          <ArrowButton
-            direction={'right'}
-            onClick={this.nextContentItem}
-            disabled={this.state.contentIndex === content.multiMedia.length - 1}
-          />
-        </div>
-        <div
-          className={cx(`${moduleName}-ContentWrapper`)}
-          style={{
-            transform: `translateX(-${this.state.contentIndex *
-              10 *
-              (100 / content.multiMedia.length)}%)`
-          }}
-        >
-          {/* ArrowButton css를 이렇게 할 수 밖에 없는가....? 가독성과 사용성을 높일 수는 없을까.. */}
-          {content.multiMedia.map((media, id) => (
-            <Content media={media} key={id} />
-          ))}
+        <div className={cx(`${moduleName}-main`)}>
+          <div className={cx(`${moduleName}-leftArrow`)}>
+            <ArrowButton
+              direction={'left'}
+              onClick={this.prevContentItem}
+              disabled={this.state.contentIndex === 0}
+            />
+          </div>
+          <div className={cx(`${moduleName}-rightArrow`)}>
+            <ArrowButton
+              direction={'right'}
+              onClick={this.nextContentItem}
+              disabled={this.state.contentIndex === content.multiMedia.length - 1}
+            />
+          </div>
+          <div
+            className={cx(`${moduleName}-ContentWrapper`)}
+            style={{
+              transform: `translateX(-${this.state.contentIndex *
+                10 *
+                (100 / content.multiMedia.length)}%)`
+            }}
+          >
+            {/* ArrowButton css를 이렇게 할 수 밖에 없는가....? 가독성과 사용성을 높일 수는 없을까.. */}
+            {content.multiMedia.map((media, id) => (
+              <Content media={media} key={id} />
+            ))}
+          </div>
+          <h3 className={cx(`${moduleName}-title`)}>{content.title}</h3>
         </div>
         <div className={cx(`${moduleName}-postWrapper`)}>
-          <h3 className={cx(`${moduleName}-title`)}>{content.title}</h3>
           <p className={cx(`${moduleName}-content`)}>{content.content}</p>
-          {this.renderTags(content.tag)}
+          <div className={cx(`${moduleName}-tagWrapepr`)}>
+            {this.renderTags(content.tag)}
+          </div>
         </div>
       </div>
     ) : (
-      <h1>Loading</h1>
-    )
+        <h1>Loading</h1>
+      )
   }
 }
 
