@@ -1,9 +1,11 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f6f6f6;
+  background-color: #ffffff;
   text-align: center;
 }
 
@@ -41,6 +43,6 @@ input {
   -webkit-appearance: none;
 }
 
-p {
+h1, h3, p {
   margin: 0;
 }

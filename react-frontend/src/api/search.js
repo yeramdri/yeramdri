@@ -1,8 +1,11 @@
 import axios from 'axios'
 
 export function getContents({ keyword, category }) {
+  const path = category === 'results'
+    ? `https://www.yeramdri.com/card/result?search=${keyword}`
+    : `https://www.yeramdri.com/card/${category}/result?search=${keyword}`
   return axios
-    .get(`https://www.yeramdri.com/${category}-card/result?search=${keyword}`)
+    .get(path)
     .then(res => res)
     .catch(err => {
       throw err

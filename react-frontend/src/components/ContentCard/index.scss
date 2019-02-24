@@ -1,26 +1,40 @@
 .ContentCard {
-  margin-bottom: 12px;
+  margin: 16px;
+  height: 88px;
   display: flex;
   &-img {
-    height: 90px;
-    width: 160px;
+    height: 88px;
+    width: 94px;
+    border-radius: 5px;
+    border: 1px solid #4a4a4a2d;
     padding: 10px, 0;
   }
   &-right {
     text-align: left;
-    padding-left: 8px;
+    padding: 0 0 0 12px;
+    overflow: hidden;
     p {
-      font-size: 15px;
+      max-height: 46px;
+      margin-top: 4px;
+      margin-bottom: 5px;
+      font-family: NanumSquareB;
+      font-size: 13px;
+      line-height: 1.77;
+      color: #4a4a4a;
+      overflow: hidden;
+      white-space: nowrap; 
+      text-overflow: ellipsis;
     }
     span {
+      padding: 5px 8px;
+      border-radius: 5px;
+      background-color: #f8f8fb;
       display: inline-block;
-      font-size: 12px;
-      color: #868e96;
-      background: white;
-      padding: 0 3px;
-      margin-right: 5px;
-      border-radius: 3px;
-      font-weight: 100;
+      margin: 0 4px;
+      height: 10px;
+      font-family: OpenSans;
+      font-size: 10px;
+      text-align: center;
     }
   }
 }

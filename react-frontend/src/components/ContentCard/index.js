@@ -1,41 +1,54 @@
-import React, { Component } from 'react'
-// import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
+import React, {Component} from 'react'
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router'
+import {Link} from 'react-router-dom'
 import classnames from 'classnames/bind'
+import {searchKeyword} from 'src/redux/search/actions'
 
 import css from './index.scss'
 
 const cx = classnames.bind(css)
 const moduleName = 'ContentCard'
-
+const TYPE_COLOR = {
+  bible: '#fc747b',
+  life: '#349dee',
+  ministry: '#be4bdb'
+}
 class ContentCard extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {}
   }
 
-  searchTag = tag => e => {
-    const { location, push } = this.props.history
-    const [, category] = location.pathname.split('/')
-    push(`/${category}/results?search=${tag}`)
+  handleClick = (tag, type) => e => {
+    // this.props.searchKeyword(tag, type)
+    this.searchTag(tag,type)
     e.preventDefault()
   }
+  
+  searchTag = (tag, type) => {
+    const {push} = this.props.history
+    push(`/${type}/results?search=${tag}`)
+  }
 
-  renderTags = tag => {
-    return tag.split(',').map((tag, index) => {
-      return <span onClick={this.searchTag(tag)} key={index}>#{tag}</span>
-    })
+  renderTags = (tag, type) => {
+    return tag.split(',').map((tag, index) => (
+      <span
+        onClick={this.handleClick(tag, type)}
+        style={{color: TYPE_COLOR[type]}}
+        key={index}
+      >
+        #{tag}
+      </span>
+    ))
   }
 
   render() {
     const {
-      content: { id, title, thumbnail, tag },
-      location
+      content: {type, typeId, title, thumbnail, tag}
     } = this.props
-    const [, category] = location.pathname.split('/')
     return (
-      <Link to={`/${category}/${id}`}>
+      <Link to={`/${type}/${typeId}`}>
         <div className={cx(`${moduleName}`)}>
           <img
             className={cx(`${moduleName}-img`)}
@@ -44,7 +57,7 @@ class ContentCard extends Component {
           />
           <div className={cx(`${moduleName}-right`)}>
             <p>{title}</p>
-            {this.renderTags(tag)}
+            {this.renderTags(tag, type)}
           </div>
         </div>
       </Link>
@@ -52,4 +65,6 @@ class ContentCard extends Component {
   }
 }
 
-export default withRouter(ContentCard)
+export default connect(()=>({}),{
+  searchKeyword
+})(withRouter(ContentCard))
