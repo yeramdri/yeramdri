@@ -23,7 +23,7 @@ class Main extends Component {
   
   getRecentlyContents = () => {
     axios
-    .get('http://localhost:6508/card/')
+    .get('https://www.yeramdri.com/card/')
     .then(res=> this.setState({recentContents: [...res.data]}))
     .catch(err => console.log(err))
   }
