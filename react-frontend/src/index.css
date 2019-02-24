@@ -41,6 +41,6 @@ input {
   -webkit-appearance: none;
 }
 
-h1, p {
+h1, h3, p {
   margin: 0;
 }

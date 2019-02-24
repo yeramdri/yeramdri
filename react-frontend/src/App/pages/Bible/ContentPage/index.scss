@@ -1,9 +1,19 @@
 .ContentPage {
+  &-contentCardSliderWrapper {
+    box-shadow: 0 6px 30px -15px rgba(41, 57, 72, 0.2);
+    &-title {
+      padding: 13px 0 18px 24px;
+      font-family: NanumSquareEB;
+      font-size: 14px;
+      text-align: left;
+      color: #4a4a4a;
+    }
+  }
   &-contentCardSlider {
     position: relative;
     overflow-x: hidden;
+    // border-bottom: 1px solid #e8e9ee5d;
     &-wrapper {
-      margin-top: 15px;
       display: flex;
       transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
     }
@@ -24,13 +34,6 @@
   &-post {
     margin: 0 15px;
     text-align: left;
-    &-title {
-      margin: 0;
-      height: 40px;
-      line-height: 40px;
-      color: #262626;
-      font-size: 16px;
-    }
     &-bibleRange {
       margin-top: 3.5px;
       margin-bottom: 3.5px;
@@ -41,7 +44,6 @@
     &-bibleText {
       height: 20vh;
       font-size: 1.9vh;
-      overflow: scroll;
       margin-top: 0px;
       color: #000;
     }
@@ -76,4 +78,12 @@
       }
     }
   }
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+.visible {
+  
 }
