@@ -16,6 +16,12 @@ class SearchBar extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.state.search !== this.getIntialSearch()) {
+      this.setState({search: this.getIntialSearch()})
+    }
+  }
+
   getIntialSearch = () => {
     const searchKeyword = this.getSearchedKeyword(document.URL)
     if (searchKeyword === 'undefined') {
