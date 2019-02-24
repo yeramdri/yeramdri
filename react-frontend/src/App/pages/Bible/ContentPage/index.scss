@@ -12,7 +12,6 @@
   &-contentCardSlider {
     position: relative;
     overflow-x: hidden;
-    // border-bottom: 1px solid #e8e9ee5d;
     &-wrapper {
       display: flex;
       transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
@@ -32,23 +31,26 @@
   }
 
   &-post {
-    margin: 0 15px;
+    margin: 0 24px;
     text-align: left;
     &-bibleRange {
-      margin-top: 3.5px;
-      margin-bottom: 3.5px;
+      margin: 20px 0 16px 0;
       font-weight: 500;
       font-size: 14px;
-      color: #000;
+      color: #383e44;
+      font-family: NanumSquareB;
+      line-height: 1.71;
     }
     &-bibleTextWrapper {
       position: relative;
     }
     &-bibleText {
-      height: 20vh;
-      font-size: 1.9vh;
       margin-top: 0px;
-      color: #000;
+      height: 170px;
+      font-family: NanumSquareR;
+      font-size: 14px;
+      line-height: 1.71;
+      color: #383e44;
     }
     &-sharing {
       margin-top: 1vh;
@@ -81,7 +83,7 @@
       }
     }
   }
-  &-downIcon {
+  &-arrowIcon {
     padding: 15px 0 3px 0;
     border-bottom: 1px solid #e8e9ee;
     color: #95a4b3;

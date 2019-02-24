@@ -88,22 +88,23 @@ class ContentPage extends Component {
   }
 
   renderBibleText = ({bibleContent}) => {
+    const {bibleTextVisible} = this.state
     return (
       <div className={cx(`${moduleName}-post-bibleTextWrapper`)}>
         <p
           className={cx(`${moduleName}-post-bibleText`,
-            this.state.bibleTextVisible ? 'visible' : 'hidden')}
+            bibleTextVisible ? 'visible' : 'hidden')}
         >
           {bibleContent}
         </p>
-        <div className={cx(`background`)} />
+        {!bibleTextVisible && <div className={cx(`background`)} />}
         <div
-          className={cx(`${moduleName}-downIcon`)}
+          className={cx(`${moduleName}-arrowIcon`)}
           onClick={this.toggleBibleText}
         >
-          <p>더 보기</p>
+          {!bibleTextVisible && <p>더 보기</p>}
           <i
-            className="fas fa-chevron-down"
+            className={`fas fa-chevron-${bibleTextVisible ? 'up' : 'down'}`}
           />
         </div>
       </div>
