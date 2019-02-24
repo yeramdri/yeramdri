@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import classnames from 'classnames/bind'
 import axios from 'axios'
 
-import { axiosConfig } from 'src/utils/axiosUtils'
-import lifeHeaderImg from 'src/assets/life-header.jpg'
 import SearchBar from 'src/components/SearchBar/SearchBar'
 import ContentCard from 'src/components/ContentCard'
 
@@ -12,7 +10,7 @@ const cx = classnames.bind(css)
 const moduleName = 'Life'
 
 class Life extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -27,13 +25,13 @@ class Life extends Component {
 
   getRecentlyContents = () => {
     axios
-      .post('https://www.yeramdri.com/life-card', axiosConfig)
-      .then(res => this.setState({ recentContents: [...res.data] }))
+      .get('http://localhost:6508/card/life')
+      .then(res => this.setState({recentContents: [...res.data]}))
       .catch(err => console.log(err))
   }
 
   showMoreContents = () => {
-    this.setState({ recentContentsNumber: this.state.recentContentsNumber + 3 })
+    this.setState({recentContentsNumber: this.state.recentContentsNumber + 3})
   }
 
   isHideArrow = () => {
@@ -42,7 +40,7 @@ class Life extends Component {
   }
 
   renderContents = () => {
-    const { recentContents, recentContentsNumber } = this.state
+    const {recentContents, recentContentsNumber} = this.state
     const slicedContents = recentContents.slice(0, recentContentsNumber)
     return slicedContents.map(content => (
       <ContentCard key={content.id} content={content} />
@@ -52,32 +50,35 @@ class Life extends Component {
   render() {
     return (
       <div className={cx(`${moduleName}`)}>
-        <div className={cx(`${moduleName}-head`)}>
-          <img src={lifeHeaderImg} alt="life-header-img" />
+        <div className={cx(`${moduleName}-main`)}>
           <h1>Life</h1>
-          <h3>일상을 살아가기</h3>
-        </div>
-        <div className={cx(`${moduleName}-search`)}>
+          <p className={cx(`${moduleName}-main-subTitle`)}>
+            하나님과 함께하는 일상들
+          </p>
           <SearchBar path={`/life/results?search=`} />
-        </div>
-        <div className={cx(`${moduleName}-mainVideo`)}>
-          <iframe
-            title="introduceVideo"
-            src="https://www.youtube.com/embed/MlaVZuUvNwE?showinfo=0"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          />
-          <h3>YERAMDRI - 일상의 예배(Daily Worship)</h3>
+          <div className={cx(`${moduleName}-main-iframeWrapper`)}>
+            <iframe
+              title="introduceVideo"
+              src="https://www.youtube.com/embed/MlaVZuUvNwE?showinfo=0"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            />
+          </div>
+          <p className={cx(`${moduleName}-main-explain`)}>
+            YERAMDRI - 일상의 예배(Daily Worship)
+          </p>
         </div>
         <div className={cx(`${moduleName}-recentContents`)}>
-          <h3>최신 컨텐츠</h3>
+          <p className={cx(`${moduleName}-recentContents-title`)}>
+            최신 컨텐츠
+          </p>
           <div>
             {this.state.recentContents.length ? (
               this.renderContents()
             ) : (
-              <div> Loading </div>
-            )}
+                <div> Loading </div>
+              )}
             <div className={cx(`${moduleName}-downIcon`, {hide: this.isHideArrow()})}>
               <i
                 className="fas fa-chevron-down"
