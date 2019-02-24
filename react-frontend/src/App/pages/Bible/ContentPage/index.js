@@ -101,7 +101,7 @@ class ContentPage extends Component {
           className={cx(`${moduleName}-downIcon`)}
           onClick={this.toggleBibleText}
         >
-          <p>더보기</p>
+          <p>더 보기</p>
           <i
             className="fas fa-chevron-down"
           />
