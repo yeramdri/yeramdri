@@ -7,7 +7,11 @@ import css from './index.scss'
 
 const cx = classnames.bind(css)
 const moduleName = 'ContentCard'
-
+const TYPE_COLOR = {
+  bible: '#fc747b',
+  life: '#349dee',
+  ministry: '#be4bdb'
+}
 class ContentCard extends Component {
   constructor (props) {
     super(props)
@@ -22,7 +26,13 @@ class ContentCard extends Component {
 
   renderTags = (tag, type) => {
     return tag.split(',').map((tag, index) => (
-      <span onClick={this.searchTag(tag, type)} key={index}>#{tag}</span>
+      <span
+        onClick={this.searchTag(tag, type)}
+        style={{color: TYPE_COLOR[type]}}
+        key={index}
+      >
+        #{tag}
+      </span>
     ))
   }
 

@@ -2,10 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import classnames from 'classnames/bind'
 import axios from 'axios'
-
-import {axiosConfig} from 'src/utils/axiosUtils'
 import {searchKeyword} from 'src/redux/search/actions'
-
 import SearchBar from 'src/components/SearchBar/SearchBar'
 import ContentCard from 'src/components/ContentCard'
 
@@ -29,7 +26,7 @@ class Bible extends Component {
 
   getRecentlyContents = () => {
     axios
-      .post('https://www.yeramdri.com/bible-card', axiosConfig)
+      .get('http://localhost:6508/card/bible')
       .then(res => this.setState({recentContents: [...res.data]}))
       .catch(err => console.log(err))
   }
@@ -73,7 +70,9 @@ class Bible extends Component {
           </p>
         </div>
         <div className={cx(`${moduleName}-recentContents`)}>
-          <h3>최신 컨텐츠</h3>
+          <p className={cx(`${moduleName}-recentContents-title`)}>
+            최신 컨텐츠
+          </p>
           <div>
             {this.state.recentContents.length ? (
               this.renderContents()
