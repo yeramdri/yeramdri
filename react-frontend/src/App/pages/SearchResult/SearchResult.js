@@ -49,11 +49,13 @@ class SearchResult extends Component {
   render() {
     const page = document.URL.split('/')[3];
     const path = page.indexOf('results') === -1
-      ?`/${page}/results?search=`
+      ? `/${page}/results?search=`
       : `/results?search=`;
     return (
       <div className={cx(`${moduleName}`)}>
-        <SearchBar path={path} />
+        <div className={cx(`${moduleName}-searchWrapper`)}>
+          <SearchBar path={path} />
+        </div>
         <div className={cx(`${moduleName}-resultsBox`)}>
           {this.renderSearchResults()}
         </div>

@@ -1,8 +1,9 @@
 .SearchResult {
+  &-searchWrapper {
+    padding: 15px 24px;
+    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.5);
+  }
   &-resultsBox {
-    border-top: 1px solid hsla(0,0%,53.3%,.4);
-    border-bottom: 1px solid hsla(0,0%,53.3%,.4);
-    padding: 3vw;
-    padding-bottom: 0;
+    border-bottom: 1px solid rgba(135, 135, 135, 0.171);
   }
 }

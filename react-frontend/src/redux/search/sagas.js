@@ -8,10 +8,10 @@ import {
 } from './actions'
 
 function* searchKeywordFlow(action) {
-  const keyword = action.keyword
+  const {keyword, category} = action
   yield put(searchKeywordRequest())
   try {
-    const { data } = yield call(getContents, keyword)
+    const { data } = yield call(getContents, {keyword, category})
     yield put(searchKeywordSuccess(data))
   } catch (err) {
     yield put(searchKeywordFailure(err))

@@ -1,28 +1,45 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux';
 import {withRouter} from 'react-router'
 import {Link} from 'react-router-dom'
 import classnames from 'classnames/bind'
+import {searchKeyword} from 'src/redux/search/actions'
 
 import css from './index.scss'
 
 const cx = classnames.bind(css)
 const moduleName = 'ContentCard'
-
+const TYPE_COLOR = {
+  bible: '#fc747b',
+  life: '#349dee',
+  ministry: '#be4bdb'
+}
 class ContentCard extends Component {
   constructor (props) {
     super(props)
     this.state = {}
   }
 
-  searchTag = (tag, type) => e => {
+  handleClick = (tag, type) => e => {
+    // this.props.searchKeyword(tag, type)
+    this.searchTag(tag,type)
+    e.preventDefault()
+  }
+  
+  searchTag = (tag, type) => {
     const {push} = this.props.history
     push(`/${type}/results?search=${tag}`)
-    e.preventDefault()
   }
 
   renderTags = (tag, type) => {
     return tag.split(',').map((tag, index) => (
-      <span onClick={this.searchTag(tag, type)} key={index}>#{tag}</span>
+      <span
+        onClick={this.handleClick(tag, type)}
+        style={{color: TYPE_COLOR[type]}}
+        key={index}
+      >
+        #{tag}
+      </span>
     ))
   }
 
@@ -48,4 +65,6 @@ class ContentCard extends Component {
   }
 }
 
-export default withRouter(ContentCard)
+export default connect(()=>({}),{
+  searchKeyword
+})(withRouter(ContentCard))

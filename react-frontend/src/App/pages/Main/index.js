@@ -99,7 +99,7 @@ class Main extends Component {
         <div className={cx(`${moduleName}-words`)}>
           <h1 className={cx(`${moduleName}-words-title`)}>예람드리</h1>
           <p className={cx(`${moduleName}-words-subTitle`)}>
-            예배자들의 삶이<br />아름드리 꽃피우길
+            예배자들의 삶이<br/>아름드리 꽃피우길
           </p>
         </div>
         <div className={cx(`${moduleName}-searchbarWrapper`)}>
