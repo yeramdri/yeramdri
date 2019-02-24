@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import classnames from 'classnames/bind'
 import axios from 'axios'
 
@@ -87,6 +87,29 @@ class ContentPage extends Component {
     })
   }
 
+  renderBibleText = ({bibleContent}) => {
+    return (
+      <div className={cx(`${moduleName}-post-bibleTextWrapper`)}>
+        <p
+          className={cx(`${moduleName}-post-bibleText`,
+            this.state.bibleTextVisible ? 'visible' : 'hidden')}
+        >
+          {bibleContent}
+        </p>
+        <div className={cx(`background`)} />
+        <div
+          className={cx(`${moduleName}-downIcon`)}
+          onClick={this.toggleBibleText}
+        >
+          <p>더보기</p>
+          <i
+            className="fas fa-chevron-down"
+          />
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const {content} = this.state
     let returnComponent
@@ -133,18 +156,7 @@ class ContentPage extends Component {
               {content.bibleTitle1}
               {content.bibleTitle2}절
             </p>
-            <p
-              className={cx(`${moduleName}-post-bibleText`,
-                this.state.bibleTextVisible? 'visible' : 'hidden')}
-            >
-              {content.bibleContent}
-            </p>
-            <div className={cx(`${moduleName}-downIcon`)}>
-              <i
-                className="fas fa-chevron-down"
-                onClick={this.toggleBibleText}
-              />
-            </div>
+            {this.renderBibleText(content)}
             <div className={cx(`${moduleName}-post-sharing`)}>
               {this.renderBibleQuestion(content.bibleQuestion)}
               <p className={cx(`${moduleName}-post-sharing-advice`)}>
