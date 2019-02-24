@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import classnames from 'classnames/bind'
 import axios from 'axios'
 
@@ -81,7 +81,7 @@ class ContentPage extends Component {
           className={cx(`${moduleName}-post-sharing-tag`)}
           key={index}
         >
-          #{tag} &nbsp;
+          #{tag}
         </span>
       )
     })
@@ -163,7 +163,9 @@ class ContentPage extends Component {
               <p className={cx(`${moduleName}-post-sharing-advice`)}>
                 {content.bibleAdvice}
               </p>
-              {this.renderTags(content.tag)}
+              <div className={cx(`${moduleName}-post-sharing-tagWrapper`)}>
+                {this.renderTags(content.tag)}
+              </div>
               <button
                 className={cx(`${moduleName}-post-sharing-button`)}
                 onClick={() => {
