@@ -69,13 +69,6 @@ router.get('/bible', function (request, response) {
   })
 })
 
-router.get('/bible/:id', function (request, response) {
-  card.find({type: 'bible', typeId: Number(request.params.id)})
-  .then((cards) => {
-    response.send(cards)
-  })
-})
-
 /**
  * @swagger
  * /card/bible/result:
@@ -101,6 +94,24 @@ router.get('/bible/result', function (request, response) {
 
 /**
  * @swagger
+ * /card/bible/:id:
+ *   get:
+ *     summary: 특정 id의 말씀 카드 리스트 불러오기
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ */
+router.get('/bible/:id', function (request, response) {
+  card.find({type: 'bible', typeId: Number(request.params.id)})
+  .then((cards) => {
+    response.send(cards)
+  })
+})
+
+/**
+ * @swagger
  * /card/life:
  *   get:
  *     summary: 삶 카드 전체 리스트 불러오기
@@ -117,13 +128,6 @@ router.get('/life', function (request, response) {
   })
 })
 
-
-router.get('/life/:id', function (request, response) {
-  card.find({type: 'life', typeId: Number(request.params.id)})
-  .then((cards) => {
-    response.send(cards)
-  })
-})
 
 /**
  * @swagger
@@ -146,6 +150,24 @@ router.get('/life/result', function (request, response) {
       response.send(cards)
     })
   }
+})
+
+/**
+ * @swagger
+ * /card/life/:id:
+ *   get:
+ *     summary: 특정 id의 삶 카드 전체 리스트 불러오기
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ */
+router.get('/life/:id', function (request, response) {
+  card.find({type: 'life', typeId: Number(request.params.id)})
+  .then((cards) => {
+    response.send(cards)
+  })
 })
 
 module.exports = router;
