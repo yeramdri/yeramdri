@@ -26,7 +26,6 @@ class LifeContentPage extends Component {
   }
 
   getLifeContent(id) {
-    console.log(id)
     axios.get(`http://localhost:6508/card/life/${id}`).then(res => {
       const {
         data: [content]
