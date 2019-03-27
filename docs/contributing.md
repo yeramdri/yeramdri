@@ -49,13 +49,11 @@
 
 > [`git worktree`](https://git-scm.com/docs/git-worktree) 명령어를 활용하면, 동시에 여러 브랜치의 코드를 쉽게 리뷰할 수 있습니다.
 
-> [git worktree 로 여러 브랜치를 동시에 작업하기](../docs/blog/2017/git-worktree.md) 포스트를 참고하세요.
-
 ### 문서 작성하기
 
 * 프로젝트와 관련이 있는 문서는 각 프로젝트의 `docs` 디렉토리에 생성해 주세요.
 * 문서는 문서 **그 자체로** 이해가 될 수 있어야 합니다. `image` 와 링크를 최대한 활용해 주세요.
   * 너무 큰 이미지는 문서를 읽는데 오히려 방해가 될 수 있습니다.
   * `<kbd><img width="400" src="<URL>"/></kbd>` 태그 활용해 이미지의 크기를 적절하게 조절할 수 있습니다.
-  * 이미지의 `height` 가 너무 커서 조절이 어렵다면, `<details><summary></summary></details>` 태그를 활용해 [이미지를 감췄다가 필요한 경우 확인할 수 있습니다.](https://github.com/riiid/www/blob/master/experiments/intro-history/README.md#snapshots)
+  * 이미지의 `height` 가 너무 커서 조절이 어렵다면, `<details><summary></summary></details>` 태그를 활용해 이미지를 감췄다가 필요한 경우 확인할 수 있습니다.
 * 문서를 [이미지로 시작하는 것을 고려해 주세요](../docs/README.md). 나중에 문서를 기억해 내는데 도움을 줄 수 있습니다. ([ClipArt ETC](https://etc.usf.edu/clipart/) 의 이미지가 github flavored markdown 과 잘 어울립니다.) 문서에 고풍스러움도 추가됩니다. :trollface:

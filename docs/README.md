@@ -5,7 +5,7 @@
 # docs
 
 * [contributing](./contributing.md)
-* [commit template](./commit-template.md)
+* [commit template](./commit-template)
 * [style convention](./style-convention.md)
 * [monorepo](./monorepo.md)
 * [alumni](./alumni.md) : `yeramdri` 저장소를 만들었던 사람들
