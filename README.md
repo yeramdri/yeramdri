@@ -1,8 +1,9 @@
 <h1 align="center">
   <br/>
-  <img alt="spider_web" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f578.png">
+  <br/>
   <br/>
   Yeramdri ✝️
+  <br/>
   <br/>
   <br/>
 
@@ -10,7 +11,7 @@
 
 ###### [새로오셨나요?](docs/newbie.md) | [문서보기](docs/)
 
-> 예람드리의 :spider_web: 을 만듭니다.
+> 예람드리의 소프트웨어를 만듭니다.
 
 ## development
 

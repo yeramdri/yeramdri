@@ -12,7 +12,7 @@
 
 `yeramdri` 를 만들었던 사람들.
 
-## livelikeabe
+## livelikeabel
 
 <img align="right" width="100" src="https://avatars0.githubusercontent.com/u/29794325?s=400&u=073f7b17d9bd2946a85cc0d30cc0b647553f16eb&v=4"/>
 
