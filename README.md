@@ -1,13 +1,24 @@
-# Yeramdri Web Site
-    Frontend: Vue.js + Webpack
-    Backend: Node.js + Express
-    DB: MySQL, MongoDB
-    OS: Ubuntu 16.04.04 LTS
-# Start
-> <https://github.com/livelikeabel/yeramdri-web-project/wiki/01.-Start>
-# Installation
-> <https://github.com/livelikeabel/yeramdri-web-project/wiki/02.-Installation>
-# Vue.js SSR
-> <https://github.com/livelikeabel/yeramdri-web-project/wiki/03.-Vue.js-SSR>
-# Favicon
-> <https://github.com/livelikeabel/yeramdri-web-project/wiki/04.-Favicon>
+<h1 align="center">
+  <br/>
+  <br/>
+  <br/>
+  Yeramdri ✝️
+  <br/>
+  <br/>
+  <br/>
+
+</h1>
+
+###### [문서보기](docs/)
+
+> 예람드리의 소프트웨어를 만듭니다.
+
+## development
+
+`yeramdri-web-project` 는 웹 프로젝트들이 모인 [monorepo](docs/monorepo.md) 입니다.
+
+```
+$ git clone https://github.com/livelikeabel/yeramdri-web-project
+$ cd react-frontend
+$ yarn
+```
