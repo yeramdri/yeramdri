@@ -21,15 +21,20 @@ app.use(function(req, res, next) {
   next();
 });
 
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerOption = require('./swagger');
+const swaggerSpec = swaggerJSDoc(swaggerOption);
+const swaggerUI = require('swagger-ui-express');
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'views', 'favicon.ico')));
 
 mongoose.Promise = global.Promise;
@@ -37,15 +42,9 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 .then(() => console.log('Successfully connected to mongodb'))
 .catch(e => console.error(e));
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/card', card);
-
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerOption = require('./swagger');
-const swaggerSpec = swaggerJSDoc(swaggerOption);
-const swaggerUI = require('swagger-ui-express');
-
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 
 app.listen(port, function (){
   console.log(`Server running port ${port}`)
