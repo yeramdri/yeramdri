@@ -9,7 +9,10 @@ const cardSchema = new mongoose.Schema({
   title: String,
   content: String,
   tag: String,
-  multiMedia: Array
+  multiMedia: Array,
+  bibleSection: String,
+  scripture: String,
+  originalLink: String
 }, {
   strict: false,
   timestamps: false,
