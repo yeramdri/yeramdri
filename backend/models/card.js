@@ -7,7 +7,7 @@ const cardSchema = new mongoose.Schema({
   createdAt:{type: Date, default: Date.now},
   thumbnail: String,
   title: String,
-  content: String,
+  description: String,
   tag: String,
   multiMedia: Array,
   bibleSection: String,

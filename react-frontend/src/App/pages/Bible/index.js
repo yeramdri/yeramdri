@@ -26,7 +26,7 @@ class Bible extends Component {
 
   getRecentlyContents = () => {
     axios
-      .get('https://www.yeramdri.com/card/bible')
+      .get('http://localhost:6508/card/bible')
       .then(res => this.setState({recentContents: [...res.data]}))
       .catch(err => console.log(err))
   }

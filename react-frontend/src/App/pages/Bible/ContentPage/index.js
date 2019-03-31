@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
 import classnames from 'classnames/bind'
 import axios from 'axios'
-
-import {getCurrentContentId} from 'src/utils/contentsUtils'
+import {linkRedirect} from 'src/utils'
+import {getCurrentContentId, searchTag} from 'src/utils/contentsUtils'
 import ArrowButton from 'src/components/ArrowButton'
-
 import css from './index.scss'
 import Content from './Content'
 
@@ -26,12 +25,8 @@ class ContentPage extends Component {
     this.getBibleContent(getCurrentContentId(document.URL))
   }
 
-  linkRedirect(contentLink) {
-    window.location.href = contentLink
-  }
-
   getBibleContent(id) {
-    axios.get(`https://www.yeramdri.com/card/bible/${id}`).then(res => {
+    axios.get(`http://localhost:6508/card/bible/${id}`).then(res => {
       const [content] = res.data
       this.setState({content})
     })
@@ -49,35 +44,16 @@ class ContentPage extends Component {
     })
   }
 
-  // contentCard 부분과 완전히 같은 코드... 어떻게 리팩토링해야할까...
-  searchTag = tag => () => {
-    const {location, push} = this.props.history
-    const [, category] = location.pathname.split('/')
-    push(`/${category}/results?search=${tag}`)
-  }
-
   toggleBibleText = () => {
     this.setState({bibleTextVisible: !this.state.bibleTextVisible})
   }
 
-  renderBibleQuestion(bibleQuestions) {
-    return bibleQuestions.map(question => {
-      return (
-        <p
-          className={cx(`${moduleName}-post-sharing-question`)}
-          key={question.id}
-        >
-          {question.id}. {question.text}
-        </p>
-      )
-    })
-  }
-
   renderTags(tag) {
+    const {history: {location: {pathname}, push}} = this.props;
     return tag.split(',').map((tag, index) => {
       return (
         <span
-          onClick={this.searchTag(tag)}
+          onClick={()=>searchTag(tag, pathname, push)}
           className={cx(`${moduleName}-post-sharing-tag`)}
           key={index}
         >
@@ -87,7 +63,7 @@ class ContentPage extends Component {
     })
   }
 
-  renderBibleText = ({bibleContent}) => {
+  _renderBibleText = scripture => {
     const {bibleTextVisible} = this.state
     return (
       <div className={cx(`${moduleName}-post-bibleTextWrapper`)}>
@@ -95,7 +71,7 @@ class ContentPage extends Component {
           className={cx(`${moduleName}-post-bibleText`,
             bibleTextVisible ? 'visible' : 'hidden')}
         >
-          {bibleContent}
+          {scripture}
         </p>
         {!bibleTextVisible && <div className={cx(`background`)} />}
         <div
@@ -117,6 +93,10 @@ class ContentPage extends Component {
     if (!content) {
       returnComponent = <h1>Loading</h1>
     } else {
+      const {
+        bibleSection, description, multiMedia,
+        originalLink, scripture, tag, title
+      } = content;
       returnComponent = (
         <div className={cx(`${moduleName}`)}>
           <div className={cx(`${moduleName}-contentCardSliderWrapper`)}>
@@ -132,7 +112,7 @@ class ContentPage extends Component {
                 <ArrowButton
                   onClick={() => this.nextContentItem()}
                   disabled={
-                    this.state.contentIndex === content.multiMedia.length - 1
+                    this.state.contentIndex === multiMedia.length - 1
                   }
                   direction={'right'}
                 />
@@ -142,36 +122,29 @@ class ContentPage extends Component {
                 style={{
                   transform: `translateX(-${this.state.contentIndex *
                     14 *
-                    (100 / content.multiMedia.length)}%)`
+                    (100 / multiMedia.length)}%)`
                 }}
               >
-                {content.multiMedia.map((media, id) => (
+                {multiMedia.map((media, id) => (
                   <Content media={media} key={id} />
                 ))}
               </div>
             </div>
-            <h3 className={cx(`${moduleName}-contentCardSliderWrapper-title`)}>{content.title}</h3>
+            <h3 className={cx(`${moduleName}-contentCardSliderWrapper-title`)}>{title}</h3>
           </div>
           <div className={cx(`${moduleName}-post`)}>
-            <p className={cx(`${moduleName}-post-bibleRange`)}>
-              {content.bibleTitle1}
-              {content.bibleTitle2}절
-            </p>
-            {this.renderBibleText(content)}
+            <p className={cx(`${moduleName}-post-bibleRange`)}>{bibleSection}</p>
+            {this._renderBibleText(scripture)}
             <div className={cx(`${moduleName}-post-sharing`)}>
-              {this.renderBibleQuestion(content.bibleQuestion)}
               <p className={cx(`${moduleName}-post-sharing-advice`)}>
-                {content.bibleAdvice}
+                {description}
               </p>
               <div className={cx(`${moduleName}-post-sharing-tagWrapper`)}>
-                {this.renderTags(content.tag)}
+                {this.renderTags(tag)}
               </div>
               <button
                 className={cx(`${moduleName}-post-sharing-button`)}
-                onClick={() => {
-                  this.linkRedirect(content.link)
-                }}
-              >
+                onClick={() => linkRedirect(originalLink)}>
                 원문 말씀 보러가기
               </button>
             </div>
