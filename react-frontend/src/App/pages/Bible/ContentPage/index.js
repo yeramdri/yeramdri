@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import classnames from 'classnames/bind'
-import axios from 'axios'
+import {connect} from 'react-redux';
+import classnames from 'classnames/bind';
+import {loadContent} from 'src/redux/contents/actions';
 import {linkRedirect} from 'src/utils'
-import {getCurrentContentId, searchTag} from 'src/utils/contentsUtils'
+import {searchTag} from 'src/utils/contentsUtils'
 import ArrowButton from 'src/components/ArrowButton'
 import css from './index.scss'
 import Content from './Content'
@@ -22,14 +23,13 @@ class ContentPage extends Component {
   }
 
   componentDidMount() {
-    this.getBibleContent(getCurrentContentId(document.URL))
+    this._loadContent()
   }
 
-  getBibleContent(id) {
-    axios.get(`http://localhost:6508/card/bible/${id}`).then(res => {
-      const [content] = res.data
-      this.setState({content})
-    })
+  _loadContent = () => {
+    const {loadContent, match: {url}} = this.props;
+    const [, category, id] = url.split('/');
+    loadContent(category, id)
   }
 
   nextContentItem = () => {
@@ -53,7 +53,7 @@ class ContentPage extends Component {
     return tag.split(',').map((tag, index) => {
       return (
         <span
-          onClick={()=>searchTag(tag, pathname, push)}
+          onClick={() => searchTag(tag, pathname, push)}
           className={cx(`${moduleName}-post-sharing-tag`)}
           key={index}
         >
@@ -88,72 +88,76 @@ class ContentPage extends Component {
   }
 
   render() {
-    const {content} = this.state
-    let returnComponent
-    if (!content) {
-      returnComponent = <h1>Loading</h1>
-    } else {
-      const {
+    const {
+      contentState: {pending, fulfilled},
+      content: {
         bibleSection, description, multiMedia,
         originalLink, scripture, tag, title
-      } = content;
-      returnComponent = (
-        <div className={cx(`${moduleName}`)}>
-          <div className={cx(`${moduleName}-contentCardSliderWrapper`)}>
-            <div className={cx(`${moduleName}-contentCardSlider`)}>
-              <div className={cx(`${moduleName}-contentCardSlider-leftArrow`)}>
-                <ArrowButton
-                  onClick={() => this.prevContentItem()}
-                  disabled={this.state.contentIndex === 0}
-                  direction={'left'}
-                />
+      }
+    } = this.props;
+    return (
+      <div className={cx(`${moduleName}`)}>
+        {pending && <h1>Loading</h1>}
+        {fulfilled &&
+          <div>
+            <div className={cx(`${moduleName}-contentCardSliderWrapper`)}>
+              <div className={cx(`${moduleName}-contentCardSlider`)}>
+                <div className={cx(`${moduleName}-contentCardSlider-leftArrow`)}>
+                  <ArrowButton
+                    onClick={() => this.prevContentItem()}
+                    disabled={this.state.contentIndex === 0}
+                    direction={'left'}
+                  />
+                </div>
+                <div className={cx(`${moduleName}-contentCardSlider-rightArrow`)}>
+                  <ArrowButton
+                    onClick={() => this.nextContentItem()}
+                    disabled={
+                      this.state.contentIndex === multiMedia.length - 1
+                    }
+                    direction={'right'}
+                  />
+                </div>
+                <div
+                  className={cx(`${moduleName}-contentCardSlider-wrapper`)}
+                  style={{
+                    transform: `translateX(-${this.state.contentIndex *
+                      14 *
+                      (100 / multiMedia.length)}%)`
+                  }}
+                >
+                  {multiMedia.map((media, id) => (
+                    <Content media={media} key={id} />
+                  ))}
+                </div>
               </div>
-              <div className={cx(`${moduleName}-contentCardSlider-rightArrow`)}>
-                <ArrowButton
-                  onClick={() => this.nextContentItem()}
-                  disabled={
-                    this.state.contentIndex === multiMedia.length - 1
-                  }
-                  direction={'right'}
-                />
-              </div>
-              <div
-                className={cx(`${moduleName}-contentCardSlider-wrapper`)}
-                style={{
-                  transform: `translateX(-${this.state.contentIndex *
-                    14 *
-                    (100 / multiMedia.length)}%)`
-                }}
-              >
-                {multiMedia.map((media, id) => (
-                  <Content media={media} key={id} />
-                ))}
+              <h3 className={cx(`${moduleName}-contentCardSliderWrapper-title`)}>{title}</h3>
+            </div>
+            <div className={cx(`${moduleName}-post`)}>
+              <p className={cx(`${moduleName}-post-bibleRange`)}>{bibleSection}</p>
+              {this._renderBibleText(scripture)}
+              <div className={cx(`${moduleName}-post-sharing`)}>
+                <p className={cx(`${moduleName}-post-sharing-advice`)}>
+                  {description}
+                </p>
+                <div className={cx(`${moduleName}-post-sharing-tagWrapper`)}>
+                  {this.renderTags(tag)}
+                </div>
+                <button
+                  className={cx(`${moduleName}-post-sharing-button`)}
+                  onClick={() => linkRedirect(originalLink)}>
+                  원문 말씀 보러가기
+            </button>
               </div>
             </div>
-            <h3 className={cx(`${moduleName}-contentCardSliderWrapper-title`)}>{title}</h3>
           </div>
-          <div className={cx(`${moduleName}-post`)}>
-            <p className={cx(`${moduleName}-post-bibleRange`)}>{bibleSection}</p>
-            {this._renderBibleText(scripture)}
-            <div className={cx(`${moduleName}-post-sharing`)}>
-              <p className={cx(`${moduleName}-post-sharing-advice`)}>
-                {description}
-              </p>
-              <div className={cx(`${moduleName}-post-sharing-tagWrapper`)}>
-                {this.renderTags(tag)}
-              </div>
-              <button
-                className={cx(`${moduleName}-post-sharing-button`)}
-                onClick={() => linkRedirect(originalLink)}>
-                원문 말씀 보러가기
-              </button>
-            </div>
-          </div>
-        </div>
-      )
-    }
-    return returnComponent
+        }
+      </div>
+    )
   }
 }
 
-export default ContentPage
+const mapStateToProps = ({contents: {content, contentState}}) => ({content, contentState});
+const mapDispatchToProps = {loadContent};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContentPage)

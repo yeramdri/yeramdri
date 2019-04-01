@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import classnames from 'classnames/bind'
-import axios from 'axios'
-import {getCurrentContentId} from 'src/utils/contentsUtils'
 import {loadContent} from 'src/redux/contents/actions'
+import {linkRedirect} from 'src/utils'
 import Content from 'src/components/Content'
 import ArrowButton from 'src/components/ArrowButton'
 import css from './LifeContentPage.scss'
@@ -22,16 +21,7 @@ class LifeContentPage extends Component {
   }
 
   componentDidMount() {
-    this.props.loadContent('life', getCurrentContentId(document.URL))
-  }
 
-  getLifeContent(id) {
-    axios.get(`http://localhost:6508/card/life/${id}`).then(res => {
-      const {
-        data: [content]
-      } = res
-      this.setState({content})
-    })
   }
 
   nextContentItem = () => {
@@ -55,6 +45,30 @@ class LifeContentPage extends Component {
         </span>
       )
     })
+  }
+
+  _renderBibleText = scripture => {
+    const {bibleTextVisible} = this.state
+    return (
+      <div className={cx(`${moduleName}-post-bibleTextWrapper`)}>
+        <p
+          className={cx(`${moduleName}-post-bibleText`,
+            bibleTextVisible ? 'visible' : 'hidden')}
+        >
+          {scripture}
+        </p>
+        {!bibleTextVisible && <div className={cx(`background`)} />}
+        <div
+          className={cx(`${moduleName}-arrowIcon`)}
+          onClick={this.toggleBibleText}
+        >
+          {!bibleTextVisible && <p>더 보기</p>}
+          <i
+            className={`fas fa-chevron-${bibleTextVisible ? 'up' : 'down'}`}
+          />
+        </div>
+      </div>
+    )
   }
 
   render() {
@@ -101,10 +115,17 @@ class LifeContentPage extends Component {
               <h3 className={cx(`${moduleName}-title`)}>{title}</h3>
             </div>
             <div className={cx(`${moduleName}-postWrapper`)}>
+              <p className={cx(`${moduleName}-bibleRange`)}>{bibleSection}</p>
+              {this._renderBibleText(scripture)}
               <p className={cx(`${moduleName}-description`)}>{description}</p>
               <div className={cx(`${moduleName}-tagWrapepr`)}>
                 {this.renderTags(tag)}
               </div>
+              <button
+                className={cx(`${moduleName}-post-sharing-button`)}
+                onClick={() => linkRedirect(originalLink)}>
+                원문 말씀 보러가기
+              </button>
             </div>
           </div>
         }

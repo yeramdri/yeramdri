@@ -33,7 +33,7 @@ const routes = [
   },
   {
     path: '/life/:id',
-    component: LifeContentPage,
+    component: BibleContentPage,
   },
   {
     path: '/life',
