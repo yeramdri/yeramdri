@@ -25,7 +25,7 @@ class Life extends Component {
 
   getRecentlyContents = () => {
     axios
-      .get('https://www.yeramdri.com/card/life')
+      .get('http://localhost:6508/card/life')
       .then(res => this.setState({recentContents: [...res.data]}))
       .catch(err => console.log(err))
   }

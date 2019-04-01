@@ -1,5 +1,12 @@
 import axios from 'axios'
 
+export function getContent({id, category}) {
+  return axios
+    .get(`http://localhost:6508/card/${category}/${id}`)
+    .then(res => res.data[0])
+    .catch(err => {throw err});
+}
+
 export function getContents({ keyword, category }) {
   const path = category === 'results'
     ? `https://www.yeramdri.com/card/result?search=${keyword}`
