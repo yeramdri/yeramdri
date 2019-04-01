@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classnames from 'classnames/bind';
 import {loadContent} from 'src/redux/contents/actions';
@@ -12,14 +13,9 @@ const cx = classnames.bind(css)
 const moduleName = 'ContentDetail'
 
 class ContentDetail extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      content: null,
-      contentIndex: 0,
-      bibleTextVisible: false
-    }
+  state = {
+    contentIndex: 0,
+    bibleTextVisible: false
   }
 
   componentDidMount() {
@@ -155,6 +151,12 @@ class ContentDetail extends Component {
       </div>
     )
   }
+}
+
+ContentDetail.propTypes = {
+  content: PropTypes.object,
+  contentState: PropTypes.object,
+  loadContent: PropTypes.func
 }
 
 const mapStateToProps = ({contents: {content, contentState}}) => ({content, contentState});

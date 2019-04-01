@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import classnames from 'classnames/bind'
 import {loadRecentContents} from 'src/redux/contents/actions';
@@ -42,9 +43,11 @@ class Bible extends Component {
   }
 }
 
-const mapStateToProps = ({
-  contents: {contentsState, contents}
-}) => ({contentsState, contents});
+Bible.propTypes = {
+  loadRecentContents: PropTypes.func
+}
+
+const mapStateToProps = () => ({});
 const mapDispatchToProps = {loadRecentContents};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bible)

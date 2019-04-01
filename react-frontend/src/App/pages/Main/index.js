@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom'
 import classnames from 'classnames/bind'
 import {loadRecentContents} from 'src/redux/contents/actions';
 import ContentsList from 'src/components/ContentsList';
 import SearchBar from 'src/components/SearchBar';
-import ContentCard from 'src/components/ContentCard'
 import bibleImg from 'src/assets/bible-card.jpg';
 import lifeImg from 'src/assets/life-card2.jpg';
 import ministryImg from 'src/assets/ministry-card.jpg';
@@ -84,7 +84,11 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = ({contents: {contents, contentsState}}) => ({contents, contentsState});
+Main.propTypes = {
+  loadRecentContents: PropTypes.func
+}
+
+const mapStateToProps = () => ({});
 const mapDispatchToProps = {loadRecentContents};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
