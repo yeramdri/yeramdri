@@ -9,9 +9,9 @@ import css from './index.scss'
 import Content from './Content'
 
 const cx = classnames.bind(css)
-const moduleName = 'ContentPage'
+const moduleName = 'ContentDetail'
 
-class ContentPage extends Component {
+class ContentDetail extends Component {
   constructor (props) {
     super(props)
 
@@ -160,4 +160,4 @@ class ContentPage extends Component {
 const mapStateToProps = ({contents: {content, contentState}}) => ({content, contentState});
 const mapDispatchToProps = {loadContent};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContentPage)
+export default connect(mapStateToProps, mapDispatchToProps)(ContentDetail)
