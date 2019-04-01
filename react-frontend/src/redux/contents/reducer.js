@@ -9,6 +9,9 @@ import {
   LOAD_CONTENT,
   LOAD_CONTENT_SUCCESS,
   LOAD_CONTENT_FAILURE,
+  LOAD_RECENT_CONTENTS,
+  LOAD_RECENT_CONTENTS_SUCCESS,
+  LOAD_RECENT_CONTENTS_FAILURE
 } from './actions'
 
 const INITIAL_STATE = {
@@ -25,7 +28,9 @@ const INITIAL_STATE = {
     tag: null,
     title: null
   },
-  contentState: asyncState()
+  contentState: asyncState(),
+contents: [],
+contentsState: asyncState()
 }
 
 const contents = (state = INITIAL_STATE, action) => {
@@ -60,16 +65,32 @@ const contents = (state = INITIAL_STATE, action) => {
         ...state,
         contentState: asyncState(PENDING)
       }
+    case LOAD_RECENT_CONTENTS:
+      return {
+        ...state,
+        contentsState: asyncState(PENDING)
+      }
     case LOAD_CONTENT_SUCCESS:
       return {
         ...state,
         content: action.content,
         contentState: asyncState(FULFILLED)
       }
+    case LOAD_RECENT_CONTENTS_SUCCESS:
+      return {
+        ...state,
+        contents: action.contents,
+        contentsState: asyncState(FULFILLED)
+      }
     case LOAD_CONTENT_FAILURE:
       return {
         ...state,
         contentState: asyncState(REJECTED)
+      }
+    case LOAD_RECENT_CONTENTS_FAILURE:
+      return {
+        ...state,
+        contentsState: asyncState(REJECTED)
       }
     default:
       return state

@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom'
 import classnames from 'classnames/bind'
-import axios from 'axios'
+import {loadRecentContents} from 'src/redux/contents/actions';
 import SearchBar from 'src/components/SearchBar';
 import ContentCard from 'src/components/ContentCard'
 import bibleImg from 'src/assets/bible-card.jpg';
@@ -12,29 +13,20 @@ const cx = classnames.bind(css)
 const moduleName = 'Main'
 
 class Main extends Component {
-  state = {
-    recentContents: [],
-    recentContentsNumber: 3
-  }
-  
+  state = {contentsNumber: 3}
+
   componentDidMount() {
-    this.getRecentlyContents()
+    this.props.loadRecentContents();
   }
-  
-  getRecentlyContents = () => {
-    axios
-    .get('https://www.yeramdri.com/card/')
-    .then(res=> this.setState({recentContents: [...res.data]}))
-    .catch(err => console.log(err))
-  }
-  
+
   showMoreContents = () => {
-    this.setState({ recentContentsNumber: this.state.recentContentsNumber + 3 })
+    this.setState({contentsNumber: this.state.contentsNumber + 3})
   }
-  
+
   isHideArrow = () => {
-    const {recentContents, recentContentsNumber} = this.state
-    return recentContents.length <= recentContentsNumber
+    const {contentsNumber} = this.state
+    const {contents} = this.props;
+    return contents.length <= contentsNumber
   }
 
   renderButtons = () => {
@@ -66,29 +58,28 @@ class Main extends Component {
     ))
   }
 
-  renderContents = () => (
-    <div className={cx(`${moduleName}-contents`)}>
-      <p className={cx(`${moduleName}-contents-title`)}>최신컨텐츠</p>
-      <div>
-        {this.state.recentContents.length ? (
-          this.renderContentCards()
-        ) : (
-            <div> Loading </div>
-          )}
-        <div className={cx(`${moduleName}-contents-downIcon`, {hide: this.isHideArrow()})}>
-          <i
-            className="fas fa-chevron-down"
-            onClick={this.showMoreContents}
-          />
+  renderContents = () => {
+    const {contentsState: {pending, fulfilled}} = this.props;
+    return (
+      <div className={cx(`${moduleName}-contents`)}>
+        <p className={cx(`${moduleName}-contents-title`)}>최신컨텐츠</p>
+        <div>
+          {pending && <div>Loading</div>}
+          {fulfilled && this.renderContentCards()}
+          <div className={cx(`${moduleName}-contents-downIcon`, {hide: this.isHideArrow()})}>
+            <i
+              className="fas fa-chevron-down"
+              onClick={this.showMoreContents}/>
+          </div>
         </div>
       </div>
-    </div>
-  )
-  
+    )
+  }
+
   renderContentCards = () => {
-    const { recentContents, recentContentsNumber } = this.state
-    const slicedContents = recentContents.slice(0, recentContentsNumber)
-    return slicedContents.map(content => (
+    const {contentsNumber} = this.state
+    const {contents} = this.props
+    return contents.slice(0, contentsNumber).map(content => (
       <ContentCard key={content.id} content={content} />
     ))
   };
@@ -99,7 +90,7 @@ class Main extends Component {
         <div className={cx(`${moduleName}-words`)}>
           <h1 className={cx(`${moduleName}-words-title`)}>예람드리</h1>
           <p className={cx(`${moduleName}-words-subTitle`)}>
-            예배자들의 삶이<br/>아름드리 꽃피우길
+            예배자들의 삶이<br />아름드리 꽃피우길
           </p>
         </div>
         <div className={cx(`${moduleName}-searchbarWrapper`)}>
@@ -130,4 +121,7 @@ class Main extends Component {
   }
 }
 
-export default Main
+const mapStateToProps = ({contents: {contents, contentsState}}) => ({contents, contentsState});
+const mapDispatchToProps = {loadRecentContents};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main)
