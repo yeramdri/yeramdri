@@ -58,9 +58,9 @@ export function* watchLoadContent() {
   yield takeEvery(LOAD_CONTENT, loadContentFlow)
 }
 
-export function* loadRecentContentsFlow() {
+export function* loadRecentContentsFlow({category}) {
   try {
-    const contents = yield call(getRecentContents);
+    const contents = yield call(getRecentContents, category);
     yield put(loadRecentContentsSuccess(contents));
   } catch (err) {
     yield put(loadRecentContentsFailure());

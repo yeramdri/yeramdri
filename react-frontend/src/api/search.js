@@ -26,9 +26,9 @@ export function getAllContents() {
     .catch(err => console.log(err))
 }
 
-export function getRecentContents() {
+export function getRecentContents(category = '') {
   return axios
-    .get('http://localhost:6508/card/')
+    .get(`http://localhost:6508/card/${category}`)
     .then(res => res.data)
     .catch(err => console.log(err))
 }
