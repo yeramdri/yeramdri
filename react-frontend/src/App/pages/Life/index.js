@@ -1,50 +1,16 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux';
 import classnames from 'classnames/bind'
-import axios from 'axios'
-
-import SearchBar from 'src/components/SearchBar/SearchBar'
-import ContentCard from 'src/components/ContentCard'
-
+import ContentsList from 'src/components/ContentsList';
+import SearchBar from 'src/components/SearchBar/SearchBar';
+import {loadRecentContents} from 'src/redux/contents/actions';
 import css from './index.scss'
 const cx = classnames.bind(css)
 const moduleName = 'Life'
 
 class Life extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      recentContents: [],
-      recentContentsNumber: 3
-    }
-  }
-
   componentDidMount() {
-    this.getRecentlyContents()
-  }
-
-  getRecentlyContents = () => {
-    axios
-      .get('http://localhost:6508/card/life')
-      .then(res => this.setState({recentContents: [...res.data]}))
-      .catch(err => console.log(err))
-  }
-
-  showMoreContents = () => {
-    this.setState({recentContentsNumber: this.state.recentContentsNumber + 3})
-  }
-
-  isHideArrow = () => {
-    const {recentContents, recentContentsNumber} = this.state
-    return recentContents.length <= recentContentsNumber
-  }
-
-  renderContents = () => {
-    const {recentContents, recentContentsNumber} = this.state
-    const slicedContents = recentContents.slice(0, recentContentsNumber)
-    return slicedContents.map(content => (
-      <ContentCard key={content.id} content={content} />
-    ))
+    this.props.loadRecentContents('life');
   }
 
   render() {
@@ -69,27 +35,13 @@ class Life extends Component {
             YERAMDRI - 일상의 예배(Daily Worship)
           </p>
         </div>
-        <div className={cx(`${moduleName}-recentContents`)}>
-          <p className={cx(`${moduleName}-recentContents-title`)}>
-            최신 컨텐츠
-          </p>
-          <div>
-            {this.state.recentContents.length ? (
-              this.renderContents()
-            ) : (
-                <div> Loading </div>
-              )}
-            <div className={cx(`${moduleName}-downIcon`, {hide: this.isHideArrow()})}>
-              <i
-                className="fas fa-chevron-down"
-                onClick={this.showMoreContents}
-              />
-            </div>
-          </div>
-        </div>
+        <ContentsList title="최신 Life 컨텐츠" />
       </div>
     )
   }
 }
 
-export default Life
+const mapStateToProps = () => ({});
+const mapDispatchToProps = {loadRecentContents};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Life)

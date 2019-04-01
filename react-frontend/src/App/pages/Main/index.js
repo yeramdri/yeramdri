@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom'
 import classnames from 'classnames/bind'
 import {loadRecentContents} from 'src/redux/contents/actions';
+import ContentsList from 'src/components/ContentsList';
 import SearchBar from 'src/components/SearchBar';
 import ContentCard from 'src/components/ContentCard'
 import bibleImg from 'src/assets/bible-card.jpg';
@@ -13,20 +14,8 @@ const cx = classnames.bind(css)
 const moduleName = 'Main'
 
 class Main extends Component {
-  state = {contentsNumber: 3}
-
   componentDidMount() {
     this.props.loadRecentContents();
-  }
-
-  showMoreContents = () => {
-    this.setState({contentsNumber: this.state.contentsNumber + 3})
-  }
-
-  isHideArrow = () => {
-    const {contentsNumber} = this.state
-    const {contents} = this.props;
-    return contents.length <= contentsNumber
   }
 
   renderButtons = () => {
@@ -57,32 +46,6 @@ class Main extends Component {
       </Link>
     ))
   }
-
-  renderContents = () => {
-    const {contentsState: {pending, fulfilled}} = this.props;
-    return (
-      <div className={cx(`${moduleName}-contents`)}>
-        <p className={cx(`${moduleName}-contents-title`)}>최신컨텐츠</p>
-        <div>
-          {pending && <div>Loading</div>}
-          {fulfilled && this.renderContentCards()}
-          <div className={cx(`${moduleName}-contents-downIcon`, {hide: this.isHideArrow()})}>
-            <i
-              className="fas fa-chevron-down"
-              onClick={this.showMoreContents}/>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  renderContentCards = () => {
-    const {contentsNumber} = this.state
-    const {contents} = this.props
-    return contents.slice(0, contentsNumber).map(content => (
-      <ContentCard key={content.id} content={content} />
-    ))
-  };
 
   render() {
     return (
@@ -115,7 +78,7 @@ class Main extends Component {
             </div>
           </div>
         </div>
-        {this.renderContents()}
+        <ContentsList title="전체 최신 컨텐츠" />
       </div>
     )
   }
