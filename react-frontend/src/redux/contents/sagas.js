@@ -1,5 +1,5 @@
 import {call, put, takeEvery, all} from 'redux-saga/effects'
-import {getAllContents, getContents, getContent} from 'src/api'
+import {getAllContents, getContents, getContent, getRecentContents} from 'src/api'
 import {
   LOAD_ALL_CONTENTS,
   loadAllContentsRequest,
@@ -11,7 +11,10 @@ import {
   loadKeywordContentsFailure,
   LOAD_CONTENT,
   loadContentSuccess,
-  loadContentFailure
+  loadContentFailure,
+  LOAD_RECENT_CONTENTS,
+  loadRecentContentsSuccess,
+  loadRecentContentsFailure
 } from './actions'
 
 function* loadAllContentsFlow() {
@@ -55,10 +58,24 @@ export function* watchLoadContent() {
   yield takeEvery(LOAD_CONTENT, loadContentFlow)
 }
 
+export function* loadRecentContentsFlow({category}) {
+  try {
+    const contents = yield call(getRecentContents, category);
+    yield put(loadRecentContentsSuccess(contents));
+  } catch (err) {
+    yield put(loadRecentContentsFailure());
+  };
+};
+
+export function* watchLoadRecentContents() {
+  yield takeEvery(LOAD_RECENT_CONTENTS, loadRecentContentsFlow)
+}
+
 export default function* contentsRoot() {
   yield all([
     watchLoadAllContentsFlow(),
     watchLoadKeywordContentsFlow(),
-    watchLoadContent()
+    watchLoadContent(),
+    watchLoadRecentContents()
   ]);
 }
