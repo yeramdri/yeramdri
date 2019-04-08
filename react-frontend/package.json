@@ -43,6 +43,7 @@
     "react-router-dom": "^4.3.1",
     "react-router-redux": "next",
     "react-sidebar": "^3.0.2",
+    "react-slick": "^0.23.2",
     "recompose": "^0.30.0",
     "redux": "next",
     "redux-saga": "^0.16.0",

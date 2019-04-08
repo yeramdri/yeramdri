@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function getContent({ id, category }) {
   return axios
-    .get(`http://localhost:6508/card/${category}/${id}`)
+    .get(`${process.env.REACT_APP_YERAMDRI_URL}/card/${category}/${id}`)
     .then(res => res.data[0])
     .catch(err => {
       throw err;
