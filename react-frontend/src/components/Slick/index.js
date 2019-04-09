@@ -1,41 +1,44 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import classnames from "classnames/bind";
+import css from "./index.scss";
+
+const cx = classnames.bind(css);
+const moduleName = "Slick";
 
 class Slick extends Component {
   _renderMultiMedia = multiMedia => {
     return multiMedia.map(({ type, url }) => {
       switch (type) {
         case "img":
-          return (
-            <div>
-              <img src={url} alt="mediaImg" />
-            </div>
-          );
+          return <img src={url} alt="mediaImg" key={url} />;
         case "video":
           return (
-            <div>
-              <iframe
-                title="introduceVideo"
-                src={url}
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              />
-            </div>
+            <iframe
+              className={cx(`${moduleName}-video`)}
+              key={url}
+              title="introduceVideo"
+              src={url}
+              frameBorder="0"
+              allowFullScreen
+            />
           );
+        default:
+          return null;
       }
     });
   };
 
   render() {
     const { multiMedia } = this.props;
-    console.log("asdfas", multiMedia);
-    var settings = {
-      dots: true
+    const settings = {
+      dots: true,
+      dotsClass: "slick-dots",
+      speed: 500,
+      infinite: false
     };
-
     return (
-      <div>
+      <div className={cx(moduleName)}>
         <Slider {...settings}>{this._renderMultiMedia(multiMedia)}</Slider>
       </div>
     );

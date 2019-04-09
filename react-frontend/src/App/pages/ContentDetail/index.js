@@ -105,7 +105,6 @@ class ContentDetail extends Component {
         title
       }
     } = this.props;
-    console.log(multiMedia);
     return (
       <div className={cx(`${moduleName}`)}>
         {pending && <h1>Loading</h1>}
@@ -150,9 +149,7 @@ class ContentDetail extends Component {
                 {title}
               </h3>
             </div>
-            <div>
-              <Slick multiMedia={multiMedia} />
-            </div>
+            <Slick multiMedia={multiMedia} />
             <div className={cx(`${moduleName}-post`)}>
               <p className={cx(`${moduleName}-post-bibleRange`)}>
                 {bibleSection}
