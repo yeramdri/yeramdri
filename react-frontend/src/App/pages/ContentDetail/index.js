@@ -1,21 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames/bind";
 import { loadContent } from "src/redux/contents/actions";
 import { linkRedirect } from "src/utils";
 import { searchTag } from "src/utils/contentsUtils";
-import ArrowButton from "src/components/ArrowButton";
-import Slick from "src/components/Slick";
+import ContentSlick from "./ContentSlick";
 import css from "./index.scss";
-import Content from "./Content";
 
 const cx = classnames.bind(css);
 const moduleName = "ContentDetail";
 
 class ContentDetail extends Component {
   state = {
-    contentIndex: 0,
     bibleTextVisible: false
   };
 
@@ -30,18 +27,6 @@ class ContentDetail extends Component {
     } = this.props;
     const [, category, id] = url.split("/");
     loadContent(category, id);
-  };
-
-  nextContentItem = () => {
-    this.setState({
-      contentIndex: this.state.contentIndex + 1
-    });
-  };
-
-  prevContentItem = () => {
-    this.setState({
-      contentIndex: this.state.contentIndex - 1
-    });
   };
 
   toggleBibleText = () => {
@@ -109,47 +94,13 @@ class ContentDetail extends Component {
       <div className={cx(`${moduleName}`)}>
         {pending && <h1>Loading</h1>}
         {fulfilled && (
-          <div>
-            <div className={cx(`${moduleName}-contentCardSliderWrapper`)}>
-              <div className={cx(`${moduleName}-contentCardSlider`)}>
-                <div
-                  className={cx(`${moduleName}-contentCardSlider-leftArrow`)}
-                >
-                  <ArrowButton
-                    onClick={() => this.prevContentItem()}
-                    disabled={this.state.contentIndex === 0}
-                    direction={"left"}
-                  />
-                </div>
-                <div
-                  className={cx(`${moduleName}-contentCardSlider-rightArrow`)}
-                >
-                  <ArrowButton
-                    onClick={() => this.nextContentItem()}
-                    disabled={this.state.contentIndex === multiMedia.length - 1}
-                    direction={"right"}
-                  />
-                </div>
-                <div
-                  className={cx(`${moduleName}-contentCardSlider-wrapper`)}
-                  style={{
-                    transform: `translateX(-${this.state.contentIndex *
-                      14 *
-                      (100 / multiMedia.length)}%)`
-                  }}
-                >
-                  {multiMedia.map((media, id) => (
-                    <Content media={media} key={id} />
-                  ))}
-                </div>
-              </div>
-              <h3
-                className={cx(`${moduleName}-contentCardSliderWrapper-title`)}
-              >
+          <Fragment>
+            <div className={cx(`${moduleName}-contentWrapper`)}>
+              <ContentSlick multiMedia={multiMedia} />
+              <h3 className={cx(`${moduleName}-contentWrapper-title`)}>
                 {title}
               </h3>
             </div>
-            <Slick multiMedia={multiMedia} />
             <div className={cx(`${moduleName}-post`)}>
               <p className={cx(`${moduleName}-post-bibleRange`)}>
                 {bibleSection}
@@ -170,7 +121,7 @@ class ContentDetail extends Component {
                 </button>
               </div>
             </div>
-          </div>
+          </Fragment>
         )}
       </div>
     );

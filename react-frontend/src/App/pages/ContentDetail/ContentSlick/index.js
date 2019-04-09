@@ -4,9 +4,9 @@ import classnames from "classnames/bind";
 import css from "./index.scss";
 
 const cx = classnames.bind(css);
-const moduleName = "Slick";
+const moduleName = "ContentSlick";
 
-class Slick extends Component {
+class ContentSlick extends Component {
   _renderMultiMedia = multiMedia => {
     return multiMedia.map(({ type, url }) => {
       switch (type) {
@@ -45,4 +45,4 @@ class Slick extends Component {
   }
 }
 
-export default Slick;
+export default ContentSlick;
