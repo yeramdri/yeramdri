@@ -127,7 +127,7 @@ class ContentDetail extends Component {
               <p className={cx(`${moduleName}-post-bibleRange`)}>
                 {bibleSection}
               </p>
-              {this._renderBibleText(scripture)}
+              {scripture && this._renderBibleText(scripture)}
               <div className={cx(`${moduleName}-post-sharing`)}>
                 <p className={cx(`${moduleName}-post-sharing-advice`)}>
                   {description}

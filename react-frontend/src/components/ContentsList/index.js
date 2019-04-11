@@ -24,7 +24,7 @@ class ContentsList extends PureComponent {
     const {contentsNumber} = this.state
     const {contents} = this.props
     return contents.slice(0, contentsNumber).map(content => (
-      <ContentCard key={content.id} content={content} />
+      <ContentCard key={content._id} content={content} />
     ))
   };
 
@@ -49,7 +49,7 @@ class ContentsList extends PureComponent {
 
 ContentsList.propTypes = {
   contentsState: PropTypes.object,
-  contents: PropTypes.object,
+  contents: PropTypes.array,
   title: PropTypes.string
 }
 
