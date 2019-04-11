@@ -32,7 +32,7 @@ class ContentDetail extends Component {
     }
   }
 
-  _isShowMoreRender = () => this.state.bibleTextHeight > MAX_HEIGHT;
+  _isShowMoreRender = () => this.state.bibleTextHeight >= MAX_HEIGHT;
 
   _renderShowMore = () => {
     const { bibleTextVisible } = this.state;
