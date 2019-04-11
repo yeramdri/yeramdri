@@ -10,14 +10,42 @@ import css from "./index.scss";
 
 const cx = classnames.bind(css);
 const moduleName = "ContentDetail";
+const MAX_HEIGHT = 115;
 
 class ContentDetail extends Component {
-  state = {
-    bibleTextVisible: false
-  };
+  constructor(props) {
+    super(props)
+    this.bibleTextEl = null;
+    this.state = {
+      bibleTextHeight: 0,
+      bibleTextVisible: false
+    };
+  }
 
   componentDidMount() {
     this._loadContent();
+  }
+
+  componentDidUpdate() {
+    if (this.bibleTextEl && !this.state.bibleTextHeight) {
+      this.setState({bibleTextHeight :this.bibleTextEl.clientHeight}) 
+    }
+  }
+
+  _isShowMoreRender = () => this.state.bibleTextHeight > MAX_HEIGHT;
+
+  _renderShowMore = () => {
+    const { bibleTextVisible } = this.state;
+    return (<Fragment>
+      {!bibleTextVisible && <div className={cx(`background`)} />}
+      <div
+        className={cx(`${moduleName}-arrowIcon`)}
+        onClick={this.toggleBibleText}
+      >
+        {!bibleTextVisible && <p>더 보기</p>}
+        <i className={`fas fa-chevron-${bibleTextVisible ? "up" : "down"}`} />
+      </div>
+    </Fragment>)
   }
 
   _loadContent = () => {
@@ -62,17 +90,11 @@ class ContentDetail extends Component {
             `${moduleName}-post-bibleText`,
             bibleTextVisible ? "visible" : "hidden"
           )}
+          ref={el => this.bibleTextEl = el}
         >
           {scripture}
         </p>
-        {!bibleTextVisible && <div className={cx(`background`)} />}
-        <div
-          className={cx(`${moduleName}-arrowIcon`)}
-          onClick={this.toggleBibleText}
-        >
-          {!bibleTextVisible && <p>더 보기</p>}
-          <i className={`fas fa-chevron-${bibleTextVisible ? "up" : "down"}`} />
-        </div>
+        {this._isShowMoreRender() && this._renderShowMore()}
       </div>
     );
   };
