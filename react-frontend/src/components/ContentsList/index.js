@@ -29,12 +29,13 @@ class ContentsList extends PureComponent {
   };
 
   render() {
-    const {contentsState: {pending, fulfilled}, title} = this.props;
+    const {contentsState: {pending, fulfilled, rejected}, title} = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
         <p className={cx(`${moduleName}-title`)}>{title}</p>
         <div>
           {pending && <div>Loading</div>}
+          {rejected && <div>Error</div>}
           {fulfilled && this._renderContentCards()}
           <div className={cx(`${moduleName}-downIcon`, {hide: this._isHideArrow()})}>
             <i
