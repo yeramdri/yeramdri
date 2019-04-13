@@ -28,7 +28,7 @@ class ContentDetail extends Component {
 
   componentDidUpdate() {
     if (this.bibleTextEl && !this.state.bibleTextHeight) {
-      this.setState({bibleTextHeight :this.bibleTextEl.clientHeight}) 
+      this.setState({ bibleTextHeight: this.bibleTextEl.clientHeight })
     }
   }
 
@@ -135,12 +135,12 @@ class ContentDetail extends Component {
                 <div className={cx(`${moduleName}-post-sharing-tagWrapper`)}>
                   {this.renderTags(tag)}
                 </div>
-                <button
+                {originalLink && <button
                   className={cx(`${moduleName}-post-sharing-button`)}
                   onClick={() => linkRedirect(originalLink)}
                 >
                   원문 말씀 보러가기
-                </button>
+                </button>}
               </div>
             </div>
           </Fragment>
