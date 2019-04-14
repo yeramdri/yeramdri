@@ -10,14 +10,42 @@ import css from "./index.scss";
 
 const cx = classnames.bind(css);
 const moduleName = "ContentDetail";
+const MAX_HEIGHT = 115;
 
 class ContentDetail extends Component {
-  state = {
-    bibleTextVisible: false
-  };
+  constructor(props) {
+    super(props)
+    this.bibleTextEl = null;
+    this.state = {
+      bibleTextHeight: 0,
+      bibleTextVisible: false
+    };
+  }
 
   componentDidMount() {
     this._loadContent();
+  }
+
+  componentDidUpdate() {
+    if (this.bibleTextEl && !this.state.bibleTextHeight) {
+      this.setState({ bibleTextHeight: this.bibleTextEl.clientHeight })
+    }
+  }
+
+  _isShowMoreRender = () => this.state.bibleTextHeight >= MAX_HEIGHT;
+
+  _renderShowMore = () => {
+    const { bibleTextVisible } = this.state;
+    return (<Fragment>
+      {!bibleTextVisible && <div className={cx(`background`)} />}
+      <div
+        className={cx(`${moduleName}-arrowIcon`)}
+        onClick={this.toggleBibleText}
+      >
+        {!bibleTextVisible && <p>더 보기</p>}
+        <i className={`fas fa-chevron-${bibleTextVisible ? "up" : "down"}`} />
+      </div>
+    </Fragment>)
   }
 
   _loadContent = () => {
@@ -62,17 +90,11 @@ class ContentDetail extends Component {
             `${moduleName}-post-bibleText`,
             bibleTextVisible ? "visible" : "hidden"
           )}
+          ref={el => this.bibleTextEl = el}
         >
           {scripture}
         </p>
-        {!bibleTextVisible && <div className={cx(`background`)} />}
-        <div
-          className={cx(`${moduleName}-arrowIcon`)}
-          onClick={this.toggleBibleText}
-        >
-          {!bibleTextVisible && <p>더 보기</p>}
-          <i className={`fas fa-chevron-${bibleTextVisible ? "up" : "down"}`} />
-        </div>
+        {this._isShowMoreRender() && this._renderShowMore()}
       </div>
     );
   };
@@ -105,7 +127,7 @@ class ContentDetail extends Component {
               <p className={cx(`${moduleName}-post-bibleRange`)}>
                 {bibleSection}
               </p>
-              {this._renderBibleText(scripture)}
+              {scripture && this._renderBibleText(scripture)}
               <div className={cx(`${moduleName}-post-sharing`)}>
                 <p className={cx(`${moduleName}-post-sharing-advice`)}>
                   {description}
@@ -113,12 +135,12 @@ class ContentDetail extends Component {
                 <div className={cx(`${moduleName}-post-sharing-tagWrapper`)}>
                   {this.renderTags(tag)}
                 </div>
-                <button
+                {originalLink && <button
                   className={cx(`${moduleName}-post-sharing-button`)}
                   onClick={() => linkRedirect(originalLink)}
                 >
                   원문 말씀 보러가기
-                </button>
+                </button>}
               </div>
             </div>
           </Fragment>

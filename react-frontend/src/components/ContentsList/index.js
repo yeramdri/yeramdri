@@ -24,17 +24,18 @@ class ContentsList extends PureComponent {
     const {contentsNumber} = this.state
     const {contents} = this.props
     return contents.slice(0, contentsNumber).map(content => (
-      <ContentCard key={content.id} content={content} />
+      <ContentCard key={content._id} content={content} />
     ))
   };
 
   render() {
-    const {contentsState: {pending, fulfilled}, title} = this.props;
+    const {contentsState: {pending, fulfilled, rejected}, title} = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
         <p className={cx(`${moduleName}-title`)}>{title}</p>
         <div>
           {pending && <div>Loading</div>}
+          {rejected && <div>Error</div>}
           {fulfilled && this._renderContentCards()}
           <div className={cx(`${moduleName}-downIcon`, {hide: this._isHideArrow()})}>
             <i
@@ -49,7 +50,7 @@ class ContentsList extends PureComponent {
 
 ContentsList.propTypes = {
   contentsState: PropTypes.object,
-  contents: PropTypes.object,
+  contents: PropTypes.array,
   title: PropTypes.string
 }
 
