@@ -23,17 +23,15 @@
       line-height: 1.75;
       letter-spacing: -0.3px;
       color: #c5c8cf;
-      background: green;
       span {
         display: inline-block;
-        width: 220px;
-        background: red;
       }
       @media (min-width: 768px) {
-        color: blue;
         span {
           width: 220px;
-          background: red;
+        }
+        br {
+          display: none;
         }
       }
       @media (min-width: 1024px) {

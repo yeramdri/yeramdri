@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import classnames from 'classnames/bind'
-import {loadRecentContents} from 'src/redux/contents/actions';
+import { loadRecentContents } from 'src/redux/contents/actions';
 import ContentsList from 'src/components/ContentsList';
 import SearchBar from 'src/components/SearchBar';
 import bibleImg from 'src/assets/bible-card.jpg';
@@ -34,7 +34,7 @@ class Main extends Component {
       }
     ];
 
-    return buttonData.map(({type, img, title, subTitle}, i) => (
+    return buttonData.map(({ type, img, title, subTitle }, i) => (
       <Link to={`/${type}`} key={i}>
         <div className={cx(`${moduleName}-button`)}>
           <div className={cx(`${moduleName}-button-imgWrapper`)}>
@@ -53,7 +53,7 @@ class Main extends Component {
         <div className={cx(`${moduleName}-words`)}>
           <h1 className={cx(`${moduleName}-words-title`)}>예람드리</h1>
           <p className={cx(`${moduleName}-words-subTitle`)}>
-            <span>예배자들의 삶이 아름드리 꽃피우길</span>
+            <span>예배자들의 삶이 <br /> 아름드리 꽃피우길</span>
           </p>
         </div>
         <div className={cx(`${moduleName}-searchbarWrapper`)}>
@@ -89,6 +89,6 @@ Main.propTypes = {
 }
 
 const mapStateToProps = () => ({});
-const mapDispatchToProps = {loadRecentContents};
+const mapDispatchToProps = { loadRecentContents };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
