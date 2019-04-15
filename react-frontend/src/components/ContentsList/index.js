@@ -6,9 +6,9 @@ import ContentCard from 'src/components/ContentCard'
 import css from './index.scss';
 const cx = classnames.bind(css);
 const moduleName = 'ContentsList';
-
+const CONTENTS_COUNT = 4;
 class ContentsList extends PureComponent {
-  state = { contentsNumber: 3 };
+  state = { contentsNumber: CONTENTS_COUNT };
 
   _isHideArrow = () => {
     const { contentsNumber } = this.state
@@ -17,7 +17,7 @@ class ContentsList extends PureComponent {
   }
 
   _showMoreContents = () => {
-    this.setState({ contentsNumber: this.state.contentsNumber + 3 })
+    this.setState({ contentsNumber: this.state.contentsNumber + CONTENTS_COUNT })
   }
 
   _renderContentCards = () => {
