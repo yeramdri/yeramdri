@@ -6,9 +6,8 @@ import ContentCard from 'src/components/ContentCard'
 import css from './index.scss';
 const cx = classnames.bind(css);
 const moduleName = 'ContentsList';
-const CONTENTS_COUNT = 4;
 class ContentsList extends PureComponent {
-  state = { contentsNumber: CONTENTS_COUNT };
+  state = { contentsNumber: this.props.contentsCount };
 
   _isHideArrow = () => {
     const { contentsNumber } = this.state
@@ -17,7 +16,7 @@ class ContentsList extends PureComponent {
   }
 
   _showMoreContents = () => {
-    this.setState({ contentsNumber: this.state.contentsNumber + CONTENTS_COUNT })
+    this.setState({ contentsNumber: this.state.contentsNumber + this.props.contentsCount })
   }
 
   _renderContentCards = () => {
@@ -29,10 +28,10 @@ class ContentsList extends PureComponent {
   };
 
   render() {
-    const { contentsState: { pending, fulfilled, rejected }, title } = this.props;
+    const { contentsState: { pending, fulfilled, rejected }, title, columnOneLine} = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
-        <div className={cx(`${moduleName}-wrapper`)}>
+        <div className={cx(`${moduleName}-wrapper`)} style={columnOneLine && {width: '400px'}}>
           <p className={cx(`${moduleName}-title`)}>{title}</p>
           <div>
             {pending && <div>Loading</div>}
@@ -53,7 +52,12 @@ class ContentsList extends PureComponent {
 ContentsList.propTypes = {
   contentsState: PropTypes.object,
   contents: PropTypes.array,
-  title: PropTypes.string
+  title: PropTypes.string,
+  columnOneLine: PropTypes.number
+}
+
+ContentsList.defaultProps = {
+  contentsCount: 4
 }
 
 const mapStateToProps = ({ contents: { contentsState, contents } }) => ({ contentsState, contents });
