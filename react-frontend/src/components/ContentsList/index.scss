@@ -1,13 +1,21 @@
 .ContentsList {
   border-bottom: solid 1px rgba(136, 136, 136, 0.164);
-  padding: 0 8px 10px;
+  text-align: left;
+  @media (min-width: 768px) {
+    padding: 0 8px 10px;
+  }
   @media (min-width: 1024px) {
     padding: 0 8px 20px;
   }
   &-wrapper {
-    text-align: left;
     @media (min-width: 1024px) {
       width: 800px;
+      margin: 0 auto;
+    }
+  }
+  &-onelineWrapper {
+    @media (min-width: 1024px) {
+      width: 400px;
       margin: 0 auto;
     }
   }

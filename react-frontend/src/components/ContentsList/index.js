@@ -28,10 +28,10 @@ class ContentsList extends PureComponent {
   };
 
   render() {
-    const { contentsState: { pending, fulfilled, rejected }, title, columnOneLine} = this.props;
+    const { contentsState: { pending, fulfilled, rejected }, title, columnOneLine } = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
-        <div className={cx(`${moduleName}-wrapper`)} style={columnOneLine && {width: '400px'}}>
+        <div className={cx(`${moduleName}-${columnOneLine ? 'onelineWrapper' : 'wrapper'}`)}>
           <p className={cx(`${moduleName}-title`)}>{title}</p>
           <div>
             {pending && <div>Loading</div>}

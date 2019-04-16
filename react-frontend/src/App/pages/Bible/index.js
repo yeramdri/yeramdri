@@ -19,13 +19,14 @@ class Bible extends Component {
   render() {
     return (
       <div className={cx(`${moduleName}`)}>
-        <div className={cx(`${moduleName}-main`)}>
           <h1>BIBLE</h1>
-          <p className={cx(`${moduleName}-main-subTitle`)}>예수, 나를 향한 사랑의 시작</p>
-          <SearchBar path={`/bible/results?search=`} />
+          <p className={cx(`${moduleName}-subTitle`)}>예수, 나를 향한 사랑의 시작</p>
+          <div className={cx(`${moduleName}-searchWrapper`)}>
+            <SearchBar path={`/bible/results?search=`} />
+          </div>
           <div className={cx(`${moduleName}-contentsWrapper`)}>
             <div className={cx(`${moduleName}-contentsWrapper-right`)}>
-              <div className={cx(`${moduleName}-main-iframeWrapper`)}>
+              <div className={cx(`${moduleName}-iframeWrapper`)}>
                 <iframe
                   title="introduceVideo"
                   src="https://www.youtube.com/embed/9xmdxhnIDT8?showinfo=0"
@@ -35,15 +36,14 @@ class Bible extends Component {
                   allowFullScreen
                 />
               </div>
-              <p className={cx(`${moduleName}-main-explain`)}>
+              <p className={cx(`${moduleName}-explain`)}>
                 YERAMDRI - 삶의 고백(A Confession of Life)
               </p>
             </div>
             <div className={cx(`${moduleName}-contentsWrapper-left`)}>
-              <ContentsList title="말씀 최신 컨텐츠" contentsCount={3} columnOneLine={1}/>
+              <ContentsList title="말씀 최신 컨텐츠" contentsCount={3} columnOneLine={1} />
             </div>
           </div>
-        </div>
       </div>
     )
   }
