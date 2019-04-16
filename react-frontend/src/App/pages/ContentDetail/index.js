@@ -123,7 +123,6 @@ class ContentDetail extends Component {
                 {title}
               </h3>
             </div>
-
             <div className={cx(`${moduleName}-post`)}>
               <p className={cx(`${moduleName}-post-bibleRange`)}>
                 {bibleSection}
