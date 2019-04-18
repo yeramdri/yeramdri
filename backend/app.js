@@ -9,12 +9,14 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const card = require('./routes/card');
+const life = require('./routes/life');
+const bible = require('./routes/bible');
 
 const app = express();
 const port = process.env.PORT || 6508;
 
-// var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
-// app.use(redirectToHTTPS([/13.209.190.90/]));
+var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
+app.use(redirectToHTTPS([/13.209.190.90/]));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -45,6 +47,8 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/card', card);
+app.use('/bible', bible);
+app.use('/life', life);
 
 app.listen(port, function (){
   console.log(`Server running port ${port}`)
