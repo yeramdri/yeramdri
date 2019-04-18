@@ -116,7 +116,7 @@ class ContentDetail extends Component {
       <div className={cx(`${moduleName}`)}>
         {pending && <h1>Loading</h1>}
         {fulfilled && (
-          <Fragment>
+          <div className={cx(`${moduleName}-wrapper`)}>
             <div className={cx(`${moduleName}-contentWrapper`)}>
               <ContentSlick multiMedia={multiMedia} />
               <h3 className={cx(`${moduleName}-contentWrapper-title`)}>
@@ -143,7 +143,7 @@ class ContentDetail extends Component {
                 </button>}
               </div>
             </div>
-          </Fragment>
+          </div>
         )}
       </div>
     );

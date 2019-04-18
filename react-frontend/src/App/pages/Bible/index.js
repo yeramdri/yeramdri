@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import classnames from 'classnames/bind'
-import {loadRecentContents} from 'src/redux/contents/actions';
+import { loadRecentContents } from 'src/redux/contents/actions';
 import ContentsList from 'src/components/ContentsList';
 import SearchBar from 'src/components/SearchBar/SearchBar'
 
@@ -19,25 +19,31 @@ class Bible extends Component {
   render() {
     return (
       <div className={cx(`${moduleName}`)}>
-        <div className={cx(`${moduleName}-main`)}>
           <h1>BIBLE</h1>
-          <p className={cx(`${moduleName}-main-subTitle`)}>예수, 나를 향한 사랑의 시작</p>
-          <SearchBar path={`/bible/results?search=`} />
-          <div className={cx(`${moduleName}-main-iframeWrapper`)}>
-            <iframe
-              title="introduceVideo"
-              src="https://www.youtube.com/embed/9xmdxhnIDT8?showinfo=0"
-              frameBorder="0"
-              gesture="media"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            />
+          <p className={cx(`${moduleName}-subTitle`)}>예수, 나를 향한 사랑의 시작</p>
+          <div className={cx(`${moduleName}-searchWrapper`)}>
+            <SearchBar path={`/bible/results?search=`} />
           </div>
-          <p className={cx(`${moduleName}-main-explain`)}>
-            YERAMDRI - 삶의 고백(A Confession of Life)
-          </p>
-        </div>
-        <ContentsList title="말씀 최신 컨텐츠" />
+          <div className={cx(`${moduleName}-contentsWrapper`)}>
+            <div className={cx(`${moduleName}-contentsWrapper-right`)}>
+              <div className={cx(`${moduleName}-iframeWrapper`)}>
+                <iframe
+                  title="introduceVideo"
+                  src="https://www.youtube.com/embed/9xmdxhnIDT8?showinfo=0"
+                  frameBorder="0"
+                  gesture="media"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
+              </div>
+              <p className={cx(`${moduleName}-explain`)}>
+                YERAMDRI - 삶의 고백(A Confession of Life)
+              </p>
+            </div>
+            <div className={cx(`${moduleName}-contentsWrapper-left`)}>
+              <ContentsList title="말씀 최신 컨텐츠" contentsCount={3} columnOneLine={1} />
+            </div>
+          </div>
       </div>
     )
   }
@@ -48,6 +54,6 @@ Bible.propTypes = {
 }
 
 const mapStateToProps = () => ({});
-const mapDispatchToProps = {loadRecentContents};
+const mapDispatchToProps = { loadRecentContents };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bible)

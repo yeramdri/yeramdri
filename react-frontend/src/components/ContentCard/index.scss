@@ -1,10 +1,15 @@
 .ContentCard {
-  margin: 16px;
-  height: 88px;
   display: flex;
+  height: 88px;
+  margin: 16px;
+  border-radius: 5px;
+  @media (min-width: 1024px) {
+    width: 368px;
+    display: inline-flex;
+  }
   &-img {
-    height: 88px;
-    width: 94px;
+    width: 88px;
+    box-sizing: border-box;
     border-radius: 5px;
     border: 1px solid #4a4a4a2d;
     padding: 10px, 0;
@@ -35,6 +40,29 @@
       font-family: OpenSans;
       font-size: 10px;
       text-align: center;
+    }
+  }
+  &-bible {
+    @media (min-width: 1024px) {
+      transition: background-color 0.5s ease;
+      &:hover {
+        background: #ffe3e3;
+      }
+    }
+  }
+  &-life {
+    @media (min-width: 1024px) {
+      transition: background-color 0.5s ease;
+      &:hover {
+        background: #d0ebff;
+      }
+    }
+  }
+  &-ministry {
+    @media (min-width: 1024px) {
+      &:hover {
+        background: #f3d9fa;
+      }
     }
   }
 }

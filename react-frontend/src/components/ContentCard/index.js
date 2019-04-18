@@ -49,7 +49,7 @@ class ContentCard extends Component {
     } = this.props
     return (
       <Link to={`/${type}/${typeId}`}>
-        <div className={cx(`${moduleName}`)}>
+        <div className={cx(`${moduleName}`, `${moduleName}-${type}`)}>
           <img
             className={cx(`${moduleName}-img`)}
             src={thumbnail}

@@ -1,6 +1,33 @@
 .ContentDetail {
+  @media (min-width: 728px) {
+    background: #fafafa;
+    padding: 80px 0;
+    border-top: solid rgba(0, 0, 0, 0.15) 1px;
+  }
+  &-wrapper {
+    @media (min-width: 728px) {
+      max-width: 500px;
+      padding: 0 0 30px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 5px;
+    }
+    @media(min-width: 1024px) {
+      display: flex;
+      max-width: 1000px;
+      margin: 0px auto;
+      padding: 10px;
+      border: solid rgba(0, 0, 0, 0.15) 1px;
+    }
+  }
   &-contentWrapper {
     box-shadow: 0 6px 30px -15px rgba(41, 57, 72, 0.2);
+    @media (min-width: 728px) {
+      border-radius: 5px;
+    }
+    @media (min-width: 1024px) {
+      box-shadow: none;
+    }
     &-title {
       padding: 13px 0 18px 24px;
       font-family: NanumSquareEB;
@@ -13,6 +40,11 @@
   &-post {
     margin: 0 24px;
     text-align: left;
+    @media(min-width: 1024px) {
+      margin: 20px 0px;
+      padding: 0 20px;
+      border-left: solid rgba(0, 0, 0, 0.15) 1px;
+    }
     &-bibleRange {
       margin: 20px 0 16px 0;
       font-weight: 500;
@@ -25,12 +57,10 @@
       position: relative;
     }
     &-bibleText {
-      // background: blue;
       font-family: NanumSquareR;
       font-size: 14px;
       line-height: 1.71;
       color: #383e44;
-
     }
     &-sharing {
       margin: 24px 0 0 0;
@@ -53,6 +83,7 @@
         font-family: OpenSans;
         font-size: 10px;
         line-height: 20px;
+        cursor: pointer; 
       }
       &-button {
         display: block;
@@ -65,6 +96,7 @@
         letter-spacing: -0.2px;
         text-align: center;
         color: #293948;
+        cursor: pointer; 
       }
     }
   }
@@ -73,7 +105,6 @@
     border-bottom: 1px solid #e8e9ee;
     color: #95a4b3;
     text-align: center;
-    // background: red;
     p {
       width: 42px;
       margin: 0 auto;
@@ -97,7 +128,7 @@
   height: 100%;
   max-height:1000px;
   overflow: hidden;
-  transition:max-height 1s ease;
+  transition:max-height 3s ease;
 }
 
 .background {

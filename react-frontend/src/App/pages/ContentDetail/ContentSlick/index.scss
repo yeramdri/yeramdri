@@ -1,8 +1,12 @@
 .ContentSlick {
   overflow-x: hidden;
-  height: 405px;
+  @media (min-width: 1024px) {
+    margin: 20px;
+    width: 530px;
+    border-radius: 5px;
+  }
   &-video {
-    height: 375px;
+    height: 375px; 
   }
 }
 
