@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import ArrowButton from 'src/components/ArrowButton';
 import classnames from "classnames/bind";
 import css from "./index.scss";
 
@@ -35,7 +36,10 @@ class ContentSlick extends Component {
       dots: true,
       dotsClass: "slick-dots",
       speed: 500,
-      infinite: false
+      infinite: false,
+      lazyLoad: true,
+      nextArrow: <ArrowButton btnStyle={{ position: 'absolute', right: 12, top: '45%' }} direction="right" />,
+      prevArrow: <ArrowButton btnStyle={{ position: 'absolute', left: 12, top: '45%', zIndex: 100 }} />
     };
     return (
       <div className={cx(moduleName)}>

@@ -8,13 +8,14 @@ import leftArrow from 'src/assets/leftArrow.png'
 const cx = classnames.bind(css)
 const moduleName = 'ArrowButton'
 
-const ArrowButton = ({ onClick, direction = 'left', disabled }) => {
+const ArrowButton = ({ onClick, direction = 'left', disabled, btnStyle }) => {
   if(disabled) return null
   return (
     <button
       className={cx(`${moduleName}`)}
       onClick={onClick}
       disabled={disabled}
+      style={btnStyle}
     >
         <img
           className={cx(`${moduleName}-img-${direction}`)}
@@ -26,9 +27,10 @@ const ArrowButton = ({ onClick, direction = 'left', disabled }) => {
 }
 
 ArrowButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   direction: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  style: PropTypes.object
 }
 
 export default ArrowButton
