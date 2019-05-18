@@ -39,7 +39,12 @@ class Life extends Component {
           </p>
           </div>
           <div className={cx(`${moduleName}-contentsWrapper-left`)}>
-            <ContentsList title="최신 Life 컨텐츠" contentsCount={3} columnOneLine={1} />
+            <ContentsList
+              title="최신 Life 컨텐츠"
+              contentsCount={3}
+              columnOneLine={1}
+              category="life"
+            />
           </div>
         </div>
       </div >

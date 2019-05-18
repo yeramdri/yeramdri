@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames/bind';
-import ContentCard from 'src/components/ContentCard'
+import ContentCard from 'src/components/ContentCard';
+import Loading from 'src/components/Loading';
 import css from './index.scss';
 const cx = classnames.bind(css);
 const moduleName = 'ContentsList';
@@ -28,13 +29,16 @@ class ContentsList extends PureComponent {
   };
 
   render() {
-    const { contentsState: { pending, fulfilled, rejected }, title, columnOneLine } = this.props;
+    const { contentsState: { pending, fulfilled, rejected }, title, columnOneLine, category } = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
         <div className={cx(`${moduleName}-${columnOneLine ? 'onelineWrapper' : 'wrapper'}`)}>
           <p className={cx(`${moduleName}-title`)}>{title}</p>
           <div>
-            {pending && <div>Loading</div>}
+            {pending &&
+              <div className={cx(`${moduleName}-loading`)}>
+                <Loading color={category === 'life' ? '#a5d8ff' : undefined} />
+              </div>}
             {rejected && <div>Error</div>}
             {fulfilled && this._renderContentCards()}
             <div className={cx(`${moduleName}-downIcon`, { hide: this._isHideArrow() })}>
@@ -53,7 +57,8 @@ ContentsList.propTypes = {
   contentsState: PropTypes.object,
   contents: PropTypes.array,
   title: PropTypes.string,
-  columnOneLine: PropTypes.number
+  columnOneLine: PropTypes.number,
+  category: PropTypes.string
 }
 
 ContentsList.defaultProps = {

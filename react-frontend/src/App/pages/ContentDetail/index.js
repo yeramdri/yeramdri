@@ -6,6 +6,7 @@ import { loadContent } from "src/redux/contents/actions";
 import { linkRedirect } from "src/utils";
 import { searchTag } from "src/utils/contentsUtils";
 import { lineBreakText } from "src/utils/string";
+import Loading from 'src/components/Loading';
 import ContentSlick from "./ContentSlick";
 import css from "./index.scss";
 
@@ -74,6 +75,11 @@ class ContentDetail extends Component {
         <span
           onClick={() => searchTag(tag, pathname, push)}
           className={cx(`${moduleName}-post-sharing-tag`)}
+          style={{
+            color: pathname.split('/')[1] === 'life' ?
+              '#349dee'
+              : undefined
+          }}
           key={index}
         >
           #{tag}
@@ -111,11 +117,18 @@ class ContentDetail extends Component {
         scripture,
         tag,
         title
-      }
+      },
+      match: { path }
     } = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
-        {pending && <h1>Loading</h1>}
+        {pending &&
+          <div className={cx(`${moduleName}-loading`)}>
+            <Loading
+              size={90}
+              color={path.split('/')[1] === 'life' ? '#a5d8ff' : undefined}
+            />
+          </div>}
         {fulfilled && (
           <div className={cx(`${moduleName}-wrapper`)}>
             <div className={cx(`${moduleName}-contentWrapper`)}>
