@@ -39,6 +39,9 @@
       font-size: 14px;
       text-align: left;
       color: #4a4a4a;
+      @media (min-width: 1024px) {
+        display: none;
+      }
     }
   }
 
@@ -49,6 +52,14 @@
       margin: 20px 0px;
       padding: 0 20px;
       border-left: solid rgba(0, 0, 0, 0.15) 1px;
+    }
+    &-title {
+      display: none;
+      @media (min-width: 1024px) {
+        display: block;
+        padding: 10px 0 0;
+        color: #4a4a4a;
+      }
     }
     &-bibleRange {
       margin: 20px 0 16px 0;
