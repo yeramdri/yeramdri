@@ -28,7 +28,7 @@ class Life extends Component {
             <div className={cx(`${moduleName}-iframeWrapper`)}>
               <iframe
                 title="introduceVideo"
-                src="https://www.youtube.com/embed/MlaVZuUvNwE?showinfo=0"
+                src="https://www.youtube.com/embed/MlaVZuUvNwE?controls=2&showinfo=0&modestbranding=1"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
                 allowFullScreen

@@ -29,7 +29,7 @@ class Bible extends Component {
               <div className={cx(`${moduleName}-iframeWrapper`)}>
                 <iframe
                   title="introduceVideo"
-                  src="https://www.youtube.com/embed/9xmdxhnIDT8?showinfo=0"
+                  src="https://www.youtube.com/embed/9xmdxhnIDT8?controls=2&showinfo=1&modestbranding=1"
                   frameBorder="0"
                   gesture="media"
                   allow="autoplay; encrypted-media"
