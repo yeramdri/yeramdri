@@ -16,13 +16,14 @@ class ContentSlick extends Component {
         case "video":
           return (
             <iframe
-              className={cx(`${moduleName}-video`)}
-              key={url}
-              title="introduceVideo"
-              src={url}
-              frameBorder="0"
-              allowFullScreen
-            />
+                className={cx(`${moduleName}-video`)}
+                key={url}
+                title="contentVideo"
+                src={`${url}?controls=2&showinfo=0&modestbranding=1`}
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
           );
         default:
           return null;
