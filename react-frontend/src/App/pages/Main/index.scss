@@ -1,6 +1,6 @@
 .Main {
   &-words {
-    margin: 24px 0 24px 30px;
+    margin: 24px 30px;
     &-title {
       height: 28px;
       text-align: left;
@@ -8,6 +8,10 @@
       font-size: 24px;
       font-weight: 600;
       color: #fd9297;
+      @media (min-width: 1024px) {
+        text-align: center;
+        font-size: 27px;
+      }
     }
     &-subTitle {
       height: 70px;
@@ -19,6 +23,26 @@
       line-height: 1.75;
       letter-spacing: -0.3px;
       color: #c5c8cf;
+      span {
+        display: inline-block;
+        width: 220px;
+      }
+      @media (min-width: 768px) {
+        span {
+          width: 220px;
+        }
+        br {
+          display: none;
+        }
+      }
+      @media (min-width: 1024px) {
+        text-align: center;
+        font-size: 22px;
+        span {
+          width: 265px;
+          margin: 0 auto;
+        }
+      }
     }
   }
   
@@ -30,8 +54,13 @@
     padding: 20px 18px 25px 18px;
     overflow: scroll;
     display: flex;
+    position: relative;
     &::-webkit-scrollbar { 
       display: none; 
+    }
+    @media (min-width: 1024px) {
+      padding: 54px 0px;
+      justify-content: center;
     }
   }
   &-button {
@@ -44,6 +73,10 @@
     box-shadow: 0 3px 30px -3px rgba(0, 0, 0, 0.15);
     text-align: left;
     overflow: hidden;
+    -webkit-transition: top 0.5s ease-out;
+    -moz-transition: top 0.5s ease-out;
+    -o-transition: top 0.5s ease-out;
+    top: 0px;
     &-imgWrapper {
       height: 98px;
       overflow: hidden;
@@ -65,20 +98,12 @@
       font-size: 13px;
       color: #4a4a4ac0;
     }
-  }
-  &-contents {
-    padding: 0 8px;
-    &-title {
-      padding: 0 0 0 16px;
-      text-align: left;
-      font-family: NanumSquareR;
-      font-size: 12px;
-      color: #4a4a4ac0;
-    }
-    &-downIcon {
-      padding: 0 0 10px 0;
-      font-size: 20px;
-      color: #d9dbe1;
+    &:hover {
+      @media (min-width: 1024px) {
+        position: relative;
+        top: -10px;
+        box-shadow: 0 4px 40px -4px rgba(0, 0, 0, 0.411);
+      }
     }
   }
 }
@@ -93,8 +118,4 @@
 
 .ministry {
   color: #be4bdb;
-}
-
-.hide {
-  display: none;
 }

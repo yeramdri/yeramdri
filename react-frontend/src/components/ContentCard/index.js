@@ -14,6 +14,10 @@ const TYPE_COLOR = {
   life: '#349dee',
   ministry: '#be4bdb'
 }
+const TYPE_COLOR_BLUR = {
+  bible: '#fff5f5',
+  life: '#e7f5ff',
+}
 class ContentCard extends Component {
   constructor (props) {
     super(props)
@@ -49,11 +53,12 @@ class ContentCard extends Component {
     } = this.props
     return (
       <Link to={`/${type}/${typeId}`}>
-        <div className={cx(`${moduleName}`)}>
+        <div className={cx(`${moduleName}`, `${moduleName}-${type}`)}>
           <img
             className={cx(`${moduleName}-img`)}
             src={thumbnail}
             alt="listImage"
+            style={{background: TYPE_COLOR_BLUR[type]}}
           />
           <div className={cx(`${moduleName}-right`)}>
             <p>{title}</p>

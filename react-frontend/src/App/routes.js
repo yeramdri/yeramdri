@@ -2,8 +2,7 @@ import Main from './pages/Main';
 import Bible from './pages/Bible';
 import Life from './pages/Life';
 import SearchResult from './pages/SearchResult/SearchResult'
-import BibleContentPage from './pages/Bible/ContentPage'
-import LifeContentPage from './pages/Life/LifeContentPage'
+import ContentDetail from './pages/ContentDetail'
 
 const routes = [
   {
@@ -21,7 +20,7 @@ const routes = [
   },
   {
     path: '/bible/:id',
-    component: BibleContentPage,
+    component: ContentDetail,
   },
   {
     path: '/bible',
@@ -33,7 +32,7 @@ const routes = [
   },
   {
     path: '/life/:id',
-    component: LifeContentPage,
+    component: ContentDetail,
   },
   {
     path: '/life',

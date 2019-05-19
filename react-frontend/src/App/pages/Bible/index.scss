@@ -1,64 +1,100 @@
 .Bible {
-  &-main {
+  h1 {
+    padding: 30px 0 11px 30px;
+    text-align: left;
+    font-weight: 600;
+    font-family: NanumSquareEB;
+    font-size: 18px;
+    color: #fc747b;
+    @media (min-width: 1024px) {
+      padding: 30px 0 10px;
+      font-size: 32px;
+      text-align: center;
+    }
+  }
+  &-subTitle {
+    padding: 0 0 17px 30px;
+    margin-top: 0px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: NanumSquareR;
+    color: #4a4a4ab4;
+    @media (min-width: 1024px) {
+      padding: 0 0 30px;
+      font-size: 24px;
+      text-align: center;
+    }
+  }
+  &-searchWrapper {
     padding: 0 11px;
-    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.5);
-    h1 {
-      padding: 30px 0 11px 30px;
-      text-align: left;
-      font-weight: 600;
-      font-family: NanumSquareEB;
-      font-size: 18px;
-      color: #fc747b;
+    @media (min-width: 768px) {
+      padding: 0 26px;
     }
-    &-subTitle {
-      padding: 0 0 17px 30px;
-      margin-top: 0px;
-      text-align: left;
-      font-size: 13px;
-      font-weight: 400;
-      font-family: NanumSquareR;
-      color: #4a4a4ab4;
-    }
-    &-iframeWrapper {
-      border-radius: 5px;
-      overflow: hidden;
-      z-index: 1;
+  }
+  &-iframeWrapper {
+    background: #f1f3f5;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+    max-height: 198px;
+    height: 100%;
+    margin: 20px 0 0 0;
+    // webkit에서 overflow-hidden을 위함. 참고:https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    iframe {
       width: 100%;
-      max-height:198px;
-      height: 100%;
-      margin: 20px 0 0 0;
-      // webkit에서 overflow-hidden을 위함. 참고:https://gist.github.com/ayamflow/b602ab436ac9f05660d9c15190f4fd7b
-      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      height: 198px;
+    }
+    @media (min-width: 768px) {
+      max-height: 400px;
       iframe {
-        width: 100%;
-        height: 198px;
+        height: 400px;
       }
     }
-    &-explain {
-      padding: 18px 0 20px 13px;
-      text-align: left;
-      font-family: NanumSquareR;
-      font-size: 13px;
-      color: #4a4a4ab4;
+    @media (min-width: 1024px) {
+      height: 377px;
+      margin: 46px 0 0 0;
+      iframe {
+        height: 377px;
+      }
     }
   }
-  &-recentContents {
-    border-bottom: solid 1px rgba(136, 136, 136, 0.164);
-    &-title {
-      margin: 16px 0 0 16px;
-      font-size: 14px;
-      font-weight: 400;
-      font-family: NanumSquareR;
-      text-align: left;
-      color: #4a4a4ab4;
+  &-explain {
+    padding: 18px 0 20px 13px;
+    text-align: left;
+    font-family: NanumSquareR;
+    font-size: 13px;
+    color: #4a4a4ab4;
+    @media (min-width: 1024px) {
+      font-size: 16px;
     }
   }
-  &-downIcon {
-    padding: 0 0 10px 0;
-    font-size: 20px;
-    color: #d9dbe1;
+  &-contentsWrapper {
+    overflow: hidden;
+    @media (min-width: 1024px) {
+      display: flex;
+      justify-content: center;
+    }
+    &-right {
+      box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.5);
+      padding: 0 11px;
+      overflow: hidden;
+      @media (min-width: 768px) {
+        padding: 0 24px;
+      }
+      @media (min-width: 1024px) {
+        box-shadow: none;
+        flex-grow: 2;
+        max-width: 780px;
+      }
+    }
+    &-left {
+      @media (min-width: 1024px) {
+        margin: 46px 24px 0 20px;
+        border-top: solid 1px rgba(136, 136, 136, 0.164);
+      }
+    }
   }
-}
-.hide {
-  display: none;
 }

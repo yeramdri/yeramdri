@@ -1,0 +1,33 @@
+.ContentSlick {
+  position: relative;
+  overflow-x: hidden;
+  @media (min-width: 1024px) {
+    margin: 20px;
+    width: 530px;
+    border-radius: 5px;
+  }
+  &-video {
+    height: 375px;
+  }
+}
+
+:global(.slick-dots) {
+  height: 30px;
+  position: relative;
+  bottom: 0px;
+  li {
+    margin: 0px;
+  }
+
+  li button:before {
+    font-size: 4px;
+  }
+}
+
+:global(.slick-list) {
+  @media (min-width: 1024px) {
+    img {
+      border-radius: 5px;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+languge: node_js
+node_js: lts/*
+install:
+  - cd react-frontend && yarn && cd .. && cd backend && yarn && cd ..
+script:
+  - cd react-frontend && yarn build && cd build && cp -r * ../../backend/public
