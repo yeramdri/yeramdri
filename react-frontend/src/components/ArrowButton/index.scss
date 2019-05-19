@@ -1,34 +1,39 @@
 .ArrowButton {
-  border-radius: 30px;
-  width: 30px;
-  height: 30px;
-  padding: 0px;
-  background: rgba(255, 255, 255, 0.74);
-  border: 1px #f6f6f686 solid;
-  &:focus {
-    outline: 0;
-  }
-
-  &-img {
-    width: 20px;
-    height: 20px;
-    position: relative;
-    left: 0px;
-    top: 1px;
-    &-right {
-      width: 20px;
-      height: 20px;
-      position: relative;
-      left: 0px;
-      top: 1px;
-      transform: rotate(180deg);
+  // 모바일 일시에는 안보이기
+  display: none;
+  @media (min-width: 728px) {
+    display: block;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    background: rgba(255, 255, 255, 0.486);
+    border: 1px #f6f6f650 solid;
+    &:focus {
+      outline: 0;
     }
-    &-left {
+
+    &-img {
       width: 20px;
       height: 20px;
       position: relative;
       left: 0px;
       top: 1px;
+      &-right {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        left: 0px;
+        top: 2px;
+        transform: rotate(180deg);
+      }
+      &-left {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        left: 0px;
+        top: 2px;
+      }
     }
   }
 }

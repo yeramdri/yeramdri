@@ -5,6 +5,8 @@ import classnames from "classnames/bind";
 import { loadContent } from "src/redux/contents/actions";
 import { linkRedirect } from "src/utils";
 import { searchTag } from "src/utils/contentsUtils";
+import { lineBreakText } from "src/utils/string";
+import Loading from 'src/components/Loading';
 import ContentSlick from "./ContentSlick";
 import css from "./index.scss";
 
@@ -73,6 +75,11 @@ class ContentDetail extends Component {
         <span
           onClick={() => searchTag(tag, pathname, push)}
           className={cx(`${moduleName}-post-sharing-tag`)}
+          style={{
+            color: pathname.split('/')[1] === 'life' ?
+              '#349dee'
+              : undefined
+          }}
           key={index}
         >
           #{tag}
@@ -85,7 +92,7 @@ class ContentDetail extends Component {
     const { bibleTextVisible } = this.state;
     return (
       <div className={cx(`${moduleName}-post-bibleTextWrapper`)}>
-        <p
+        <div
           className={cx(
             `${moduleName}-post-bibleText`,
             bibleTextVisible ? "visible" : "hidden"
@@ -93,7 +100,7 @@ class ContentDetail extends Component {
           ref={el => this.bibleTextEl = el}
         >
           {scripture}
-        </p>
+        </div>
         {this._isShowMoreRender() && this._renderShowMore()}
       </div>
     );
@@ -110,11 +117,18 @@ class ContentDetail extends Component {
         scripture,
         tag,
         title
-      }
+      },
+      match: { path }
     } = this.props;
     return (
       <div className={cx(`${moduleName}`)}>
-        {pending && <h1>Loading</h1>}
+        {pending &&
+          <div className={cx(`${moduleName}-loading`)}>
+            <Loading
+              size={90}
+              color={path.split('/')[1] === 'life' ? '#a5d8ff' : undefined}
+            />
+          </div>}
         {fulfilled && (
           <div className={cx(`${moduleName}-wrapper`)}>
             <div className={cx(`${moduleName}-contentWrapper`)}>
@@ -124,14 +138,17 @@ class ContentDetail extends Component {
               </h3>
             </div>
             <div className={cx(`${moduleName}-post`)}>
+              <h3 className={cx(`${moduleName}-post-title`)}>
+                {title}
+              </h3>
               <p className={cx(`${moduleName}-post-bibleRange`)}>
                 {bibleSection}
               </p>
-              {scripture && this._renderBibleText(scripture)}
+              {scripture && this._renderBibleText(lineBreakText(scripture))}
               <div className={cx(`${moduleName}-post-sharing`)}>
-                <p className={cx(`${moduleName}-post-sharing-advice`)}>
-                  {description}
-                </p>
+                <div className={cx(`${moduleName}-post-sharing-advice`)}>
+                  {lineBreakText(description)}
+                </div>
                 <div className={cx(`${moduleName}-post-sharing-tagWrapper`)}>
                   {this.renderTags(tag)}
                 </div>

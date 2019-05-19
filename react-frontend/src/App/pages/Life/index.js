@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames/bind'
 import ContentsList from 'src/components/ContentsList';
 import SearchBar from 'src/components/SearchBar/SearchBar';
+import YoutubePlayer from 'src/components/YoutubePlayer';
 import { loadRecentContents } from 'src/redux/contents/actions';
 import css from './index.scss'
 const cx = classnames.bind(css)
@@ -25,21 +26,18 @@ class Life extends Component {
         </div>
         <div className={cx(`${moduleName}-contentsWrapper`)}>
           <div className={cx(`${moduleName}-contentsWrapper-right`)}>
-            <div className={cx(`${moduleName}-iframeWrapper`)}>
-              <iframe
-                title="introduceVideo"
-                src="https://www.youtube.com/embed/MlaVZuUvNwE?showinfo=0"
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              />
-            </div>
+            <YoutubePlayer title="introduceVideo" src="EO0yIxS1OnE" />
             <p className={cx(`${moduleName}-explain`)}>
-              YERAMDRI - 일상의 예배(Daily Worship)
+              예람드리, 그와 함께하는 나날들
           </p>
           </div>
           <div className={cx(`${moduleName}-contentsWrapper-left`)}>
-            <ContentsList title="최신 Life 컨텐츠" contentsCount={3} columnOneLine={1} />
+            <ContentsList
+              title="최신 Life 컨텐츠"
+              contentsCount={3}
+              columnOneLine={1}
+              category="life"
+            />
           </div>
         </div>
       </div >
