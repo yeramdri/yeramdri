@@ -1,4 +1,6 @@
 const express = require('express');
+const formidable = require('formidable');
+const AWS = require('aws-sdk');
 const router = express.Router();
 const card = require('../models/card');
 const sortById = { id: -1 }
@@ -22,10 +24,42 @@ router.get('/', function (request, response) {
 
 router.post('/', function (request, response) {
   const body = request.body;
+  const form = new formidable.IncomingForm();
   let cardInsert = new card(body, false);
   cardInsert.save().then(()=>{
     response.sendStatus(200);
   });
+  form.parse(request, function (err, fields, files) {
+    if (err) throw err;
+
+    if (files.userfile.name !== '') {
+      let s3 = new AWS.S3()
+      let params = {
+        Bucket: 'yramdri',
+        Key: files.userfile.name,
+        ACL: 'public-read',
+        Body: require('fs').createReadStream(files.userfile.path)
+      }
+      s3.upload(params, function(err, data) {
+        let result = ''
+        if (err) {
+          result = 'Fail';
+          throw err;
+        }
+        else result = 'Success';
+        response.send(result);
+      })
+    }
+  })
+
+})
+
+router.patch('/', function (request, response) {
+  response.sendStatus(200);
+})
+
+router.delete('/', function (request, response) {
+  response.sendStatus(200);
 })
 
 /**
