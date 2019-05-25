@@ -1,17 +1,10 @@
-import {asyncState, PENDING, FULFILLED, REJECTED} from 'src/utils';
+import { asyncState, PENDING, FULFILLED, REJECTED } from 'src/utils';
 import {
-  LOAD_ALL_CONTENTS_REQUEST,
-  LOAD_ALL_CONTENTS_SUCCESS,
-  LOAD_ALL_CONTENTS_FAILURE,
-  LOAD_KEYWORD_CONTENTS_REQUEST,
-  LOAD_KEYWORD_CONTENTS_SUCCESS,
-  LOAD_KEYWORD_CONTENTS_FAILURE,
-  LOAD_CONTENT,
-  LOAD_CONTENT_SUCCESS,
-  LOAD_CONTENT_FAILURE,
-  LOAD_RECENT_CONTENTS,
-  LOAD_RECENT_CONTENTS_SUCCESS,
-  LOAD_RECENT_CONTENTS_FAILURE
+  LOAD_ALL_CONTENTS_REQUEST, LOAD_ALL_CONTENTS_SUCCESS, LOAD_ALL_CONTENTS_FAILURE,
+  LOAD_KEYWORD_CONTENTS_REQUEST, LOAD_KEYWORD_CONTENTS_SUCCESS, LOAD_KEYWORD_CONTENTS_FAILURE,
+  LOAD_CONTENT, LOAD_CONTENT_SUCCESS, LOAD_CONTENT_FAILURE,
+  LOAD_RECENT_CONTENTS, LOAD_RECENT_CONTENTS_SUCCESS, LOAD_RECENT_CONTENTS_FAILURE,
+  CREATE_CONTENT, CREATE_CONTENT_SUCCESS, CREATE_CONTENT_FAILURE
 } from './actions'
 
 const INITIAL_STATE = {
@@ -29,8 +22,8 @@ const INITIAL_STATE = {
     title: null
   },
   contentState: asyncState(),
-contents: [],
-contentsState: asyncState()
+  contents: [],
+  contentsState: asyncState()
 }
 
 const contents = (state = INITIAL_STATE, action) => {
@@ -58,7 +51,7 @@ const contents = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        err: {...action.err}
+        err: { ...action.err }
       }
     case LOAD_CONTENT:
       return {
@@ -92,6 +85,12 @@ const contents = (state = INITIAL_STATE, action) => {
         ...state,
         contentsState: asyncState(REJECTED)
       }
+    case CREATE_CONTENT:
+      return state;
+    case CREATE_CONTENT_SUCCESS:
+      return state;
+    case CREATE_CONTENT_FAILURE:
+      return state;
     default:
       return state
   }
