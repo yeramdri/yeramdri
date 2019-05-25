@@ -16,6 +16,7 @@ const sortById = { id: -1 }
  *       200:
  *         description: 성공
  */
+
 router.get('/', function (request, response) {
   card.find({}).sort(sortById).then((cards) => {
     response.send(cards)
@@ -23,35 +24,55 @@ router.get('/', function (request, response) {
 })
 
 router.post('/', function (request, response) {
-  const body = request.body;
+  let body = request.body;
   const form = new formidable.IncomingForm();
-  let cardInsert = new card(body, false);
-  cardInsert.save().then(()=>{
-    response.sendStatus(200);
-  });
-  form.parse(request, function (err, fields, files) {
-    if (err) throw err;
-
-    if (files.userfile.name !== '') {
-      let s3 = new AWS.S3()
-      let params = {
-        Bucket: 'yramdri',
-        Key: files.userfile.name,
-        ACL: 'public-read',
-        Body: require('fs').createReadStream(files.userfile.path)
-      }
-      s3.upload(params, function(err, data) {
-        let result = ''
-        if (err) {
-          result = 'Fail';
-          throw err;
-        }
-        else result = 'Success';
-        response.send(result);
+  if (body.type == 'life' || body.type == 'bible') {
+    card.find({}).sort(sortById).then((cards) =>{
+      body.id = cards[0].id + 1;
+      let flag = 0;
+      cards.forEach(function (card) {
+        if (flag == 0 && card.type == body.type) {
+          console.log(card.typeId)
+          body.typeId = card.typeId + 1;
+          flag = 1;
+        } 
       })
-    }
-  })
+      console.log(body.typeId)
+      let cardInsert = new card(body, false);
+      cardInsert.save().then(()=>{
+        response.sendStatus(200);
+      });
+    }).catch(
+      response.sendStatus(500)
+    )
+  } else if (body.type == 'ministry') {
+    response.sendStatus(400)
+  } else {
+    response.sendStatus(500)
+  }
 
+  // form.parse(request, function (err, fields, files) {
+  //   if (err) throw err;
+
+  //   if (files.userfile.name !== '') {
+  //     let s3 = new AWS.S3()
+  //     let params = {
+  //       Bucket: 'yramdri',
+  //       Key: files.userfile.name,
+  //       ACL: 'public-read',
+  //       Body: require('fs').createReadStream(files.userfile.path)
+  //     }
+  //     s3.upload(params, function(err, data) {
+  //       let result = ''
+  //       if (err) {
+  //         result = 'Fail';
+  //         throw err;
+  //       }
+  //       else result = 'Success';
+  //       response.send(result);
+  //     })
+  //   }
+  // });
 })
 
 router.patch('/', function (request, response) {
