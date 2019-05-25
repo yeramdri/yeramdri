@@ -1,7 +1,8 @@
 const express = require('express');
 const formidable = require('formidable');
 const AWS = require('aws-sdk');
-AWS.config.loadFromPath('../../invisible/aws_key.json')
+const aws_data = require('../../invisible/data.json')
+AWS.config.update(aws_data)
 const router = express.Router();
 const card = require('../../models/card');
 const sortById = { id: -1 }
