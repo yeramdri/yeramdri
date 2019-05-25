@@ -3,20 +3,25 @@ import PropTypes from 'prop-types';
 
 class Create extends Component {
   state = {
-    selectedFile: null,
-    imgPreviewUrl: null
+    selectedFileList: [],
+    imgPreviewUrlList: []
   }
 
   _handleFileSelect = e => {
     e.preventDefault();
-    let file = e.target.files[0]
-    let reader = new FileReader();
+    const fileList = Array.from(e.target.files);
 
-    reader.onloadend = () => {
-      this.setState({ selectedFile: file, imgPreviewUrl: reader.result });
-    }
-
-    reader.readAsDataURL(file)
+    fileList.forEach(file => {
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        const { selectedFileList, imgPreviewUrlList } = this.state;
+        this.setState(() => ({
+          selectedFileList: selectedFileList.concat(file),
+          imgPreviewUrlList: imgPreviewUrlList.concat(reader.result)
+        }));
+      }
+      reader.readAsDataURL(file)
+    });
   }
 
   _handleFileUpload = () => {
@@ -26,19 +31,22 @@ class Create extends Component {
     // api요청. axios의 네번째 인자로 콜백을 보내면, img업로드 퍼센트를 얻을 수 있다.
   }
 
-  _renderPrevImg = imgSrc => {
-    return <img src={imgSrc}></img>
+  _renderPrevImg = imgSrcList => {
+    return imgSrcList.map((imgSrc, i) =>
+      <img src={imgSrc} key={i}></img>
+    )
   }
 
   render() {
-    const { imgPreviewUrl } = this.state;
+    const { imgPreviewUrlList } = this.state;
     return (
       <div>
-        {imgPreviewUrl && this._renderPrevImg(imgPreviewUrl)}
+        {imgPreviewUrlList.length !== 0
+          && this._renderPrevImg(imgPreviewUrlList)}
         <input
           style={{ display: 'none' }}
           type="file"
-          multiple="multiple"
+          multiple
           onChange={this._handleFileSelect}
           ref={fileInput => this.fileInput = fileInput} />
         <button onClick={() => this.fileInput.click()}>Pick</button>
