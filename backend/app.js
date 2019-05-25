@@ -11,6 +11,7 @@ const index = require('./routes/index');
 const card = require('./routes/card');
 const life = require('./routes/life');
 const bible = require('./routes/bible');
+const ministry = require('./routes/ministry');
 
 const app = express();
 const port = process.env.PORT || 6508;
@@ -50,6 +51,7 @@ app.use('/', index);
 app.use('/card', card);
 app.use('/bible', bible);
 app.use('/life', life);
+app.use('/ministry', ministry);
 
 app.listen(port, function (){
   console.log(`Server running port ${port}`)
