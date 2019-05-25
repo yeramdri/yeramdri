@@ -29,7 +29,21 @@ router.get('/', function (request, response) {
 })
   
 router.get('/tag', function (request, response){
-
+  const search = request.query.search.trim();
+  if (search == "" || search == undefined) {
+    response.sendStatus(400)
+  } else {
+    card.find({
+      tag: new RegExp(search, 'i')
+    }).sort(sortById).then((cards) => {
+      let dic = {};
+      for(let i=0; i<cards.length; i++) {
+        let key = String(i);
+        dic[key] = cards[i].tag;
+      }
+      response.send(JSON.stringify(dic))
+    })
+  }
 })
 
 
