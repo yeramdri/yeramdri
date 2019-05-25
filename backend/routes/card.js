@@ -32,23 +32,21 @@ router.post('/', function (request, response) {
       let flag = 0;
       cards.forEach(function (card) {
         if (flag == 0 && card.type == body.type) {
-          console.log(card.typeId)
           body.typeId = card.typeId + 1;
           flag = 1;
         } 
       })
-      console.log(body.typeId)
       let cardInsert = new card(body, false);
       cardInsert.save().then(()=>{
         response.sendStatus(200);
       });
-    }).catch(
+    }).catch(() => {
       response.sendStatus(500)
-    )
+    })
   } else if (body.type == 'ministry') {
-    response.sendStatus(400)
+    response.sendStatus(400);
   } else {
-    response.sendStatus(500)
+    response.sendStatus(500);
   }
 
   // form.parse(request, function (err, fields, files) {
@@ -76,11 +74,38 @@ router.post('/', function (request, response) {
 })
 
 router.patch('/', function (request, response) {
-  response.sendStatus(200);
+  let body = request.body;
+  if (body.type == 'life' || body.type == 'bible') {
+    card.findOneAndUpdate(
+      {id: body.id},
+      body
+    ).then(() => {
+      response.sendStatus(200);
+    }).catch(() => {
+      response.sendStatus(500);
+    })
+  } else if(body.type == 'ministry') {
+    response.sendStatus(400);
+  } else {
+    response.sendStatus(500);
+  }
 })
 
 router.delete('/', function (request, response) {
-  response.sendStatus(200);
+  let body = request.body;
+  if (body.type == 'life' || body.type == 'bible') {
+    card.findOneAndRemove({
+      id: body.id
+    }).then(() => {
+      response.sendStatus(200);
+    }).catch(() => {
+      response.sendStatus(500);
+    })
+  } else if(body.type == 'ministry') {
+    response.sendStatus(400)
+  } else {
+    response.sendStatus(500)
+  }
 })
 
 /**
