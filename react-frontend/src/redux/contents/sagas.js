@@ -73,7 +73,7 @@ function* createContentFlow({ data }) {
     console.log(res);
     debugger
     yield put(createContentSuccess());
-  } catch {
+  } catch(err) {
     yield put(createContentFailure());
   };
 };
