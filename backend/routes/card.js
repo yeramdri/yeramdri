@@ -19,9 +19,24 @@ const sortById = { id: -1 }
 
 router.get('/', function (request, response) {
   card.find({}).sort(sortById).then((cards) => {
-    response.send(cards)
+    response.send(cards);
   });
 })
+
+/**
+ * /card:
+ *   post:
+ *     summary: 카드 추가
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       400:
+ *         description: 나쁜 요청, 요청을 수정하여 보내시오
+ *       500:
+ *         description: 서버에러
+ */
 
 router.post('/', function (request, response) {
   let body = request.body;
@@ -41,7 +56,7 @@ router.post('/', function (request, response) {
         response.sendStatus(200);
       });
     }).catch(() => {
-      response.sendStatus(500)
+      response.sendStatus(500);
     })
   } else if (body.type == 'ministry') {
     response.sendStatus(400);
@@ -73,8 +88,24 @@ router.post('/', function (request, response) {
   // });
 })
 
+/**
+ * /card:
+ *   patch:
+ *     summary: 카드 수정
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       400:
+ *         description: 나쁜 요청, 요청을 수정하여 보내시오
+ *       500:
+ *         description: 서버에러
+ */
+
 router.patch('/', function (request, response) {
   let body = request.body;
+  const form = new formidable.IncomingForm();
   if (body.type == 'life' || body.type == 'bible') {
     card.findOneAndUpdate(
       {id: body.id},
@@ -91,6 +122,21 @@ router.patch('/', function (request, response) {
   }
 })
 
+/**
+ * @swagger
+ * /card:
+ *   delete:
+ *     summary: 카드 삭제
+ *     tags: [Card]
+ *     parameters:
+ *     responses:
+ *       200:
+ *         description: 성공
+ *       400:
+ *         description: 나쁜 요청, 요청을 수정하여 보내시오
+ *       500:
+ *         description: 서버에러
+ */
 router.delete('/', function (request, response) {
   let body = request.body;
   if (body.type == 'life' || body.type == 'bible') {
@@ -102,9 +148,9 @@ router.delete('/', function (request, response) {
       response.sendStatus(500);
     })
   } else if(body.type == 'ministry') {
-    response.sendStatus(400)
+    response.sendStatus(400);
   } else {
-    response.sendStatus(500)
+    response.sendStatus(500);
   }
 })
 
@@ -119,6 +165,7 @@ router.delete('/', function (request, response) {
  *       200:
  *         description: 성공
  */
+
 router.get('/result', function (request, response) {
   const search = request.query.search.trim();
   if (search == "" || search == undefined) {
