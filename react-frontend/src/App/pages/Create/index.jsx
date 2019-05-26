@@ -10,10 +10,12 @@ class Create extends Component {
       selectedFileList: [],
       imgPreviewUrlList: [],
       type: 'bible',
+      title: '',
       bibleSection: '',
       scripture: '',
       description: '',
       tag: '',
+      originalLink: ''
     }
     this.fileInput = null;
   }
@@ -43,8 +45,8 @@ class Create extends Component {
   _handleFileUpload = e => {
     e.preventDefault();
     const {
-      selectedFileList, type, bibleSection,
-      scripture, description, tag
+      selectedFileList, type, title, bibleSection,
+      scripture, description, tag, originalLink
     } = this.state;
 
     const fd = new FormData();
@@ -52,10 +54,12 @@ class Create extends Component {
       fd.append('image', file, file.name);
     })
     fd.append('type', type);
+    fd.append('title', title);
     fd.append('bibleSection', bibleSection);
     fd.append('scripture', scripture);
     fd.append('description', description);
     fd.append('tag', tag);
+    fd.append('originalLink', originalLink);
     // api요청. axios의 네번째 인자로 콜백을 보내면, img업로드 퍼센트를 얻을 수 있다.
     this.props.createContent(fd);
   }
@@ -84,6 +88,11 @@ class Create extends Component {
           <option value="life">삶</option>
         </select>
         <input
+          name="title"
+          onChange={this._handleChange}
+          type="text"
+          placeholder="제목을 입력해 주세요" />
+        <input
           name="bibleSection"
           onChange={this._handleChange}
           type="text"
@@ -101,6 +110,11 @@ class Create extends Component {
           onChange={this._handleChange}
           type="text"
           placeholder="태그를 입력해 주세요(#을 사용해 주세요)" />
+        <input
+          name="originalLink"
+          onChange={this._handleChange}
+          type="text"
+          placeholder="원문 말씀 링크를 입력해 주세요" />
         <button onClick={this._handleFileUpload}>Create</button>
       </div>
     );
