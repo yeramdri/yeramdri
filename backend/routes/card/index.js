@@ -49,22 +49,21 @@ router.get('/', function (request, response) {
  */
 
 router.post('/', function (request, response) {
-  let body = request.body;
   const form = new formidable.IncomingForm();
-  if (body.type == 'life' || body.type == 'bible') {
-    card.find({}).sort(sortById).then((cards) =>{
-      body.id = cards[0].id + 1;
-      let flag = 0;
-      cards.forEach(function (card) {
-        if (flag == 0 && card.type == body.type) {
-          body.typeId = card.typeId + 1;
-          flag = 1;
-        } 
-      })
-      form.parse(request, function (err, fields, files) {
-        if (err) throw err;
+  form.parse(request, function (err, fields, files) {
+    if (err) throw err;
+    if (fields.type == 'life' || fields.type == 'bible') {
+      card.find({}).sort(sortById).then((cards) => {
+        fields.id = cards[0].id + 1;
+        let flag = 0;
+        cards.forEach(function (card) {
+          if (flag == 0 && card.type == fields.type) {
+            fields.typeId = card.typeId + 1;
+            flag = 1; 
+          }
+        })
         if (files.userfile.name !== '') {
-          let s3 = new AWS.S3()
+          let s3 = new AWS.S3();
           let params = {
             Bucket: 'yramdri',
             Key: files.userfile.name,
@@ -72,27 +71,26 @@ router.post('/', function (request, response) {
             Body: require('fs').createReadStream(files.userfile.path)
           }
           s3.upload(params, function(err, data) {
-            let result = ''
+            let result = '';
             if (err) {
               result = 'Fail';
               throw err;
-            }
-            else result = 'Success';
-            let cardInsert = new card(body, false);
-            cardInsert.save().then(()=>{
-                response.sendStatus(200);
-            });
+            } else result = 'Success';
+            let cardInsert = new card(fields, false)
+            cardInsert.save().then(() => {
+              response.sendStatus(200);
+            })
           })
         }
-      });
-    }).catch(() => {
+      }).catch(() => {
+        response.sendStatus(500)
+      })
+    } else if (fields.type == 'ministry') {
+      response.sendStatus(400);
+    } else {
       response.sendStatus(500);
-    })
-  } else if (body.type == 'ministry') {
-    response.sendStatus(400);
-  } else {
-    response.sendStatus(500);
-  }
+    }
+  })
 })
 
 /**
