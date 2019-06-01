@@ -1,0 +1,55 @@
+.CreateInputs {
+  // background: red;
+  padding: 0px 10px;
+  &-title {
+    @extend .inputBlock;
+    height: 30px;
+    select {
+      width: 80px;
+    }
+    input {
+      flex-grow: 1;
+    }
+  }
+  &-bibleSection {
+    @extend .inputBlock;
+    height: 30px;
+    input {
+      flex-grow: 1;
+    }
+  }
+  &-scripture {
+    @extend .inputBlock;
+    height: 80px;
+    textarea {
+      flex-grow: 1;
+    }
+  }
+  &-description {
+    @extend .inputBlock;
+    height: 80px;
+    textarea {
+      flex-grow: 1;
+    }
+  }
+  &-tag {
+    @extend .inputBlock;
+    height: 30px;
+    input {
+      flex-grow: 1;
+    }
+  }
+  &-originalLink {
+    @extend .inputBlock;
+    height: 30px;
+    input {
+      flex-grow: 1;
+    }
+  }
+
+  .inputBlock {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 10px 0;
+  }
+}

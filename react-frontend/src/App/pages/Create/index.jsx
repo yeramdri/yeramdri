@@ -5,6 +5,7 @@ import { createContent } from "src/redux/contents/actions";
 
 import PrevImgSlick from "./PrevImgSlick";
 import ImgUploadBtn from "./ImgUploadBtn";
+import CreateInputs from "./CreateInputs";
 
 class Create extends Component {
   constructor(props) {
@@ -94,44 +95,7 @@ class Create extends Component {
             name={"Pick Img!!"}
           />
         </PrevImgSlick>
-        <select name="type" onChange={this._handleChange}>
-          <option value="bible">말씀</option>
-          <option value="life">삶</option>
-        </select>
-        <input
-          name="title"
-          onChange={this._handleChange}
-          type="text"
-          placeholder="제목을 입력해 주세요"
-        />
-        <input
-          name="bibleSection"
-          onChange={this._handleChange}
-          type="text"
-          placeholder="말씀 구간을 입력해 주세요"
-        />
-        <textarea
-          name="scripture"
-          onChange={this._handleChange}
-          placeholder="말씀을 입력해 주세요"
-        />
-        <textarea
-          name="description"
-          onChange={this._handleChange}
-          placeholder="설명 또는 나눔을 입력해 주세요"
-        />
-        <input
-          name="tag"
-          onChange={this._handleChange}
-          type="text"
-          placeholder="태그를 입력해 주세요(#을 사용해 주세요)"
-        />
-        <input
-          name="originalLink"
-          onChange={this._handleChange}
-          type="text"
-          placeholder="원문 말씀 링크를 입력해 주세요"
-        />
+        <CreateInputs onChange={this._handleChange} />
         <button onClick={this._handleFileUpload}>Create</button>
       </section>
     );
