@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createContent } from "src/redux/contents/actions";
 
 import PrevImgSlick from "./PrevImgSlick";
+import ImgUploadBtn from "./ImgUploadBtn";
 
 class Create extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Create extends Component {
       tag: "",
       originalLink: ""
     };
-    this.fileInput = null;
+    this.fileInput = createRef();
   }
 
   _handleChange = e => {
@@ -77,19 +78,21 @@ class Create extends Component {
     this.props.createContent(fd);
   };
 
+  _handleClickFileUpload = () => {
+    this.fileInput.current.click();
+  };
+
   render() {
     const { imgPreviewUrlList } = this.state;
     return (
       <section>
         <PrevImgSlick imgSrcList={imgPreviewUrlList}>
-          <input
-            style={{ display: "none" }}
-            type="file"
-            multiple
-            onChange={this._handleFileSelect}
-            ref={fileInput => (this.fileInput = fileInput)}
+          <ImgUploadBtn
+            onFileSelect={this._handleFileSelect}
+            onClick={this._handleClickFileUpload}
+            fileRef={this.fileInput}
+            name={"Pick Img!!"}
           />
-          <button onClick={() => this.fileInput.click()}>Pick Img!!</button>
         </PrevImgSlick>
         <select name="type" onChange={this._handleChange}>
           <option value="bible">말씀</option>
