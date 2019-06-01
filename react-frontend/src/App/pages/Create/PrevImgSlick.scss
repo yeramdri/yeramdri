@@ -1,0 +1,9 @@
+.PrevImgSlick {
+  min-height: 340px;
+  &-plzUpload {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 340px;
+  }
+}

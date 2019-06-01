@@ -77,24 +77,20 @@ class Create extends Component {
     this.props.createContent(fd);
   };
 
-  _renderPrevImg = imgSrcList => {
-    return <PrevImgSlick imgSrcList={imgSrcList} />;
-  };
-
   render() {
     const { imgPreviewUrlList } = this.state;
     return (
-      <div>
-        {imgPreviewUrlList.length !== 0 &&
-          this._renderPrevImg(imgPreviewUrlList)}
-        <input
-          style={{ display: "none" }}
-          type="file"
-          multiple
-          onChange={this._handleFileSelect}
-          ref={fileInput => (this.fileInput = fileInput)}
-        />
-        <button onClick={() => this.fileInput.click()}>Pick</button>
+      <section>
+        <PrevImgSlick imgSrcList={imgPreviewUrlList}>
+          <input
+            style={{ display: "none" }}
+            type="file"
+            multiple
+            onChange={this._handleFileSelect}
+            ref={fileInput => (this.fileInput = fileInput)}
+          />
+          <button onClick={() => this.fileInput.click()}>Pick Img!!</button>
+        </PrevImgSlick>
         <select name="type" onChange={this._handleChange}>
           <option value="bible">말씀</option>
           <option value="life">삶</option>
@@ -134,7 +130,7 @@ class Create extends Component {
           placeholder="원문 말씀 링크를 입력해 주세요"
         />
         <button onClick={this._handleFileUpload}>Create</button>
-      </div>
+      </section>
     );
   }
 }

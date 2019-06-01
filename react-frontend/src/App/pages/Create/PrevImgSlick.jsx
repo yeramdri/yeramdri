@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
+import classnames from "classnames/bind";
+import styles from "./PrevImgSlick.scss";
 
-function PrevImgSlick({ imgSrcList }) {
+const cx = classnames.bind(styles);
+
+function PrevImgSlick({ imgSrcList, children }) {
   const settings = {
     dots: true,
     infinite: true,
@@ -17,16 +21,29 @@ function PrevImgSlick({ imgSrcList }) {
     });
   };
 
+  const _renderPlzUpload = () => {
+    return (
+      <div className={cx("PrevImgSlick-plzUpload")}>
+        <h3>이미지를 업로드 해주세요 🏙🌉🎑</h3>
+        {children}
+      </div>
+    );
+  };
+
   return (
-    <div>
-      hi
-      <Slider {...settings}>{_renderImgs(imgSrcList)}</Slider>
-    </div>
+    <section className={cx("PrevImgSlick")}>
+      {imgSrcList.length === 0 ? (
+        _renderPlzUpload()
+      ) : (
+        <Slider {...settings}>{_renderImgs(imgSrcList)}</Slider>
+      )}
+    </section>
   );
 }
 
 PrevImgSlick.propTypes = {
-  imgSrcList: PropTypes.array
+  imgSrcList: PropTypes.array,
+  children: PropTypes.element
 };
 
 export default PrevImgSlick;
