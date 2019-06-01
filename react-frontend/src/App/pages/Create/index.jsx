@@ -1,87 +1,99 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { createContent } from 'src/redux/contents/actions';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createContent } from "src/redux/contents/actions";
+
+import PrevImgSlick from "./PrevImgSlick";
 
 class Create extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       selectedFileList: [],
       imgPreviewUrlList: [],
-      type: 'bible',
-      title: '',
-      bibleSection: '',
-      scripture: '',
-      description: '',
-      tag: '',
-      originalLink: ''
-    }
+      type: "bible",
+      title: "",
+      bibleSection: "",
+      scripture: "",
+      description: "",
+      tag: "",
+      originalLink: ""
+    };
     this.fileInput = null;
   }
 
   _handleChange = e => {
     const { name, value } = e.target;
     this.setState(() => ({ [name]: value }));
-  }
+  };
 
   _handleFileSelect = e => {
     e.preventDefault();
     const fileList = Array.from(e.target.files);
 
-    fileList.forEach(file => {
-      let reader = new FileReader();
-      reader.onloadend = () => {
-        const { selectedFileList, imgPreviewUrlList } = this.state;
-        this.setState(() => ({
-          selectedFileList: selectedFileList.concat(file),
-          imgPreviewUrlList: imgPreviewUrlList.concat(reader.result)
-        }));
-      }
-      reader.readAsDataURL(file)
+    const pFileList = fileList.map(file => {
+      // reject 처리 어떻게 해야하는지 찾아보기..!
+      return new Promise((resolve, reject) => {
+        let reader = new FileReader();
+        reader.onloadend = () => {
+          resolve({ file, readerResult: reader.result });
+        };
+        reader.readAsDataURL(file);
+      });
     });
-  }
+
+    Promise.all(pFileList).then(res => {
+      const selectedFileList = res.map(v => v.file);
+      const imgPreviewUrlList = res.map(v => v.readerResult);
+      this.setState({ selectedFileList, imgPreviewUrlList });
+    });
+  };
 
   _handleFileUpload = e => {
     e.preventDefault();
     const {
-      selectedFileList, type, title, bibleSection,
-      scripture, description, tag, originalLink
+      selectedFileList,
+      type,
+      title,
+      bibleSection,
+      scripture,
+      description,
+      tag,
+      originalLink
     } = this.state;
 
     const fd = new FormData();
     selectedFileList.forEach(file => {
-      fd.append('image', file, file.name);
-    })
-    fd.append('type', type);
-    fd.append('title', title);
-    fd.append('bibleSection', bibleSection);
-    fd.append('scripture', scripture);
-    fd.append('description', description);
-    fd.append('tag', tag);
-    fd.append('originalLink', originalLink);
+      fd.append("image", file, file.name);
+    });
+    fd.append("type", type);
+    fd.append("title", title);
+    fd.append("bibleSection", bibleSection);
+    fd.append("scripture", scripture);
+    fd.append("description", description);
+    fd.append("tag", tag);
+    fd.append("originalLink", originalLink);
     // api요청. axios의 네번째 인자로 콜백을 보내면, img업로드 퍼센트를 얻을 수 있다.
     this.props.createContent(fd);
-  }
+  };
 
   _renderPrevImg = imgSrcList => {
-    return imgSrcList.map((imgSrc, i) =>
-      <img src={imgSrc} key={i}></img>
-    )
-  }
+    return <PrevImgSlick imgSrcList={imgSrcList} />;
+  };
 
   render() {
     const { imgPreviewUrlList } = this.state;
     return (
       <div>
-        {imgPreviewUrlList.length !== 0
-          && this._renderPrevImg(imgPreviewUrlList)}
+        {imgPreviewUrlList.length !== 0 &&
+          this._renderPrevImg(imgPreviewUrlList)}
         <input
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
           type="file"
           multiple
           onChange={this._handleFileSelect}
-          ref={fileInput => this.fileInput = fileInput} />
+          ref={fileInput => (this.fileInput = fileInput)}
+        />
         <button onClick={() => this.fileInput.click()}>Pick</button>
         <select name="type" onChange={this._handleChange}>
           <option value="bible">말씀</option>
@@ -91,41 +103,48 @@ class Create extends Component {
           name="title"
           onChange={this._handleChange}
           type="text"
-          placeholder="제목을 입력해 주세요" />
+          placeholder="제목을 입력해 주세요"
+        />
         <input
           name="bibleSection"
           onChange={this._handleChange}
           type="text"
-          placeholder="말씀 구간을 입력해 주세요" />
+          placeholder="말씀 구간을 입력해 주세요"
+        />
         <textarea
           name="scripture"
           onChange={this._handleChange}
-          placeholder="말씀을 입력해 주세요" />
+          placeholder="말씀을 입력해 주세요"
+        />
         <textarea
           name="description"
           onChange={this._handleChange}
-          placeholder="설명 또는 나눔을 입력해 주세요" />
+          placeholder="설명 또는 나눔을 입력해 주세요"
+        />
         <input
           name="tag"
           onChange={this._handleChange}
           type="text"
-          placeholder="태그를 입력해 주세요(#을 사용해 주세요)" />
+          placeholder="태그를 입력해 주세요(#을 사용해 주세요)"
+        />
         <input
           name="originalLink"
           onChange={this._handleChange}
           type="text"
-          placeholder="원문 말씀 링크를 입력해 주세요" />
+          placeholder="원문 말씀 링크를 입력해 주세요"
+        />
         <button onClick={this._handleFileUpload}>Create</button>
       </div>
     );
   }
 }
 
-Create.propTypes = {
+Create.propTypes = {};
 
-};
-
-const mapStateToProps = () => ({})
+const mapStateToProps = () => ({});
 const mapDispatchToProps = { createContent };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Create);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Create);
