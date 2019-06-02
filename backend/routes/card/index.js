@@ -50,6 +50,7 @@ router.get('/', function (request, response) {
 
 router.post('/', function (request, response) {
   const form = new formidable.IncomingForm();
+  form.multiples = true;
   form.parse(request, function (err, fields, files) {
     if (err) throw err;
     if (fields.type == 'life' || fields.type == 'bible') {
@@ -62,57 +63,54 @@ router.post('/', function (request, response) {
             flag = 1; 
           }
         })
-        if (files.image.name !== '') {
+        if (files.image.length !== 0){
           let s3 = new AWS.S3();
-          if (fields.type == 'life') {
-            let params = {
-              Bucket: `yramdri/life/life-${fields.typeId}` ,
-              Key: files.image.name,
-              ACL: 'public-read',
-              Body: require('fs').createReadStream(files.image._writeStream.path)
-            }
-            multiMedia = {}
-            fields.multiMedia = [];
-            multiMedia['type'] = 'img';
-            multiMedia['url'] = `${aws_data['s3_domain']}/life/life-${fields.typeId}/${files.image.name}`;
-            fields.multiMedia.push(multiMedia);
-            s3.upload(params, function(err, data) {
-              let result = '';
-              if (err) {
-                result = 'Fail';
-                throw err;
-              } else result = 'Success';
-              let cardInsert = new card(fields, false)
-              cardInsert.save().then(() => {
-                response.sendStatus(200);
+          fields.multiMedia = [];
+          for (let i=0;i < files.image.length;i++) {
+            let params = {}
+            if (fields.type == 'life') {
+              params = {
+                Bucket: `yramdri/life/life-${fields.typeId}`,
+                Key: files.image[i].name,
+                ACL: 'public-read',
+                Body: require('fs').createReadStream(files.image[i]._writeStream.path)
+              }
+              let multiMedia = {};
+              multiMedia['type'] = 'img';
+              multiMedia['url'] = `${aws_data['s3_domain']}/life/life-${fields.typeId}/${files.image[i].name}`
+              fields.multiMedia.push(multiMedia);
+              s3.upload(params, function(err, data) {
+                let result = '';
+                if (err) {
+                  result = 'Fail';
+                  throw err;
+                } else result = 'Success';
               })
-              console.log(result);
-            })
-          } else if (fields.type == 'bible') {
-            let params = {
-              Bucket: `yramdri/bible/bible-${fields.typeId}`,
-              Key: files.image.name,
-              ACL: 'public-read',
-              Body: require('fs').createReadStream(files.image._writeStream.path)
-            }
-            multiMedia = {}
-            fields.multiMedia = [];
-            multiMedia['type'] = 'img';
-            multiMedia['url'] = `${aws_data['s3_domain']}/bible/bible-${fields.typeId}/${files.image.name}`;
-            fields.multiMedia.push(multiMedia);
-            s3.upload(params, function(err, data) {
-              let result = '';
-              if (err) {
-                result = 'Fail';
-                throw err;
-              } else result = 'Success';
-              let cardInsert = new card(fields, false);
-              cardInsert.save().then(()=> {
-                response.sendStatus(200)
+            } else {
+              params = {
+                Bucket: `yramdri/bible/bible-${fields.typeId}`,
+                Key: files.image[i].name,
+                ACL: 'public-read',
+                Body: require('fs').createReadStream(files.image[i]._writeStream.path)
+              }
+              let multiMedia = {};
+              multiMedia['type'] = 'img';
+              multiMedia['url'] = `${aws_data['s3_domain']}/bible/bible-${fields.typeId}/${files.image[i].name}`
+              fields.multiMedia.push(multiMedia);
+              s3.upload(params, function(err, data) {
+                let result = '';
+                if (err) {
+                  result = 'Fail';
+                  throw err;
+                } else result = 'Success';
               })
-              console.log(result);
-            })
+            }
           }
+          fields.thumbnail = fields.multiMedia[0].url;
+          let cardInsert = new card(fields, false);
+          cardInsert.save().then(()=> {
+            response.json({type: fields.type, typeId: fields.typeId});
+          })
         }
       }).catch(() => {
         response.sendStatus(500)
