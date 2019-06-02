@@ -42,7 +42,7 @@ function CreateTextFields({ onChange }) {
       const { name, tag } = data;
       return (
         <div className={cx(`CreateTextFields-${name}`)} key={i}>
-          {createElement(tag, { ...data })}
+          {createElement(tag, { ...data, onChange })}
         </div>
       );
     });

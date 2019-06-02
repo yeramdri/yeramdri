@@ -1,44 +1,57 @@
-import { call, put, takeEvery, all } from 'redux-saga/effects'
+import { call, put, takeEvery, all } from "redux-saga/effects";
 import {
-  getAllContents, getContents, getContent,
-  getRecentContents, postContent
-} from 'src/api'
+  getAllContents,
+  getContents,
+  getContent,
+  getRecentContents,
+  postContent
+} from "src/api";
 import {
-  LOAD_ALL_CONTENTS, loadAllContentsRequest,
-  loadAllContentsSuccess, loadAllContentsFailure,
-  LOAD_KEYWORD_CONTENTS, loadKeywordContentsRequest,
-  loadKeywordContentsSuccess, loadKeywordContentsFailure,
-  LOAD_CONTENT, loadContentSuccess, loadContentFailure,
-  LOAD_RECENT_CONTENTS, loadRecentContentsSuccess, loadRecentContentsFailure,
-  CREATE_CONTENT, createContentSuccess, createContentFailure
-} from './actions'
+  LOAD_ALL_CONTENTS,
+  loadAllContentsRequest,
+  loadAllContentsSuccess,
+  loadAllContentsFailure,
+  LOAD_KEYWORD_CONTENTS,
+  loadKeywordContentsRequest,
+  loadKeywordContentsSuccess,
+  loadKeywordContentsFailure,
+  LOAD_CONTENT,
+  loadContentSuccess,
+  loadContentFailure,
+  LOAD_RECENT_CONTENTS,
+  loadRecentContentsSuccess,
+  loadRecentContentsFailure,
+  CREATE_CONTENT,
+  createContentSuccess,
+  createContentFailure
+} from "./actions";
 
 function* loadAllContentsFlow() {
-  yield put(loadAllContentsRequest())
+  yield put(loadAllContentsRequest());
   try {
-    const { data } = yield call(getAllContents)
-    yield put(loadAllContentsSuccess(data))
+    const { data } = yield call(getAllContents);
+    yield put(loadAllContentsSuccess(data));
   } catch (err) {
-    yield put(loadAllContentsFailure(err))
+    yield put(loadAllContentsFailure(err));
   }
 }
 
 export function* watchLoadAllContentsFlow() {
-  yield takeEvery(LOAD_ALL_CONTENTS, loadAllContentsFlow)
+  yield takeEvery(LOAD_ALL_CONTENTS, loadAllContentsFlow);
 }
 
 function* loadKeywordContentsFlow({ keyword, category }) {
-  yield put(loadKeywordContentsRequest())
+  yield put(loadKeywordContentsRequest());
   try {
-    const { data } = yield call(getContents, { keyword, category })
-    yield put(loadKeywordContentsSuccess(data))
+    const { data } = yield call(getContents, { keyword, category });
+    yield put(loadKeywordContentsSuccess(data));
   } catch (err) {
-    yield put(loadKeywordContentsFailure(err))
+    yield put(loadKeywordContentsFailure(err));
   }
 }
 
 export function* watchLoadKeywordContentsFlow() {
-  yield takeEvery(LOAD_KEYWORD_CONTENTS, loadKeywordContentsFlow)
+  yield takeEvery(LOAD_KEYWORD_CONTENTS, loadKeywordContentsFlow);
 }
 
 export function* loadContentFlow({ category, id }) {
@@ -47,11 +60,11 @@ export function* loadContentFlow({ category, id }) {
     yield put(loadContentSuccess(content));
   } catch (err) {
     yield put(loadContentFailure());
-  };
-};
+  }
+}
 
 export function* watchLoadContent() {
-  yield takeEvery(LOAD_CONTENT, loadContentFlow)
+  yield takeEvery(LOAD_CONTENT, loadContentFlow);
 }
 
 export function* loadRecentContentsFlow({ category }) {
@@ -60,8 +73,8 @@ export function* loadRecentContentsFlow({ category }) {
     yield put(loadRecentContentsSuccess(contents));
   } catch (err) {
     yield put(loadRecentContentsFailure());
-  };
-};
+  }
+}
 
 export function* watchLoadRecentContents() {
   yield takeEvery(LOAD_RECENT_CONTENTS, loadRecentContentsFlow);
@@ -71,12 +84,12 @@ function* createContentFlow({ data }) {
   try {
     const res = yield call(postContent, data);
     console.log(res);
-    debugger
+    debugger;
     yield put(createContentSuccess());
-  } catch(err) {
+  } catch (err) {
     yield put(createContentFailure());
-  };
-};
+  }
+}
 
 export function* watchCreateContent() {
   yield takeEvery(CREATE_CONTENT, createContentFlow);
