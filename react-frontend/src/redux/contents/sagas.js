@@ -85,6 +85,7 @@ function* createContentFlow({ data }) {
     const res = yield call(postContent, data);
     console.log(res);
     debugger;
+    // id 로 리다이렉트? 어느부분에서 리다이렉트를 해주어야 할까...? 여기서 redux router push를 가져와야 하나..?
     yield put(createContentSuccess());
   } catch (err) {
     yield put(createContentFailure());

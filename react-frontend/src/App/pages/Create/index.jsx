@@ -1,8 +1,9 @@
-import React, { Component, createRef } from "react";
+import React, { Component, createRef, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createContent } from "src/redux/contents/actions";
 
+import Loading from "src/components/Loading";
 import PrevImgSlick from "./PrevImgSlick";
 import ImgUploadBtn from "./ImgUploadBtn";
 import CreateTextFields from "./CreateTextFields";
@@ -85,8 +86,14 @@ class Create extends Component {
 
   render() {
     const { imgPreviewUrlList } = this.state;
+    const { createContentState } = this.props;
     return (
-      <section>
+      <Fragment>
+        <Loading
+          isLoading={createContentState.pending}
+          size={90}
+          isFloat={true}
+        />
         <PrevImgSlick imgSrcList={imgPreviewUrlList}>
           <ImgUploadBtn
             onFileSelect={this._handleFileSelect}
@@ -97,14 +104,18 @@ class Create extends Component {
         </PrevImgSlick>
         <CreateTextFields onChange={this._handleChangeInput} />
         <button onClick={this._handleFileUpload}>Create</button>
-      </section>
+      </Fragment>
     );
   }
 }
 
-Create.propTypes = {};
+Create.propTypes = {
+  createContentState: PropTypes.object
+};
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ contents: { createContentState } }) => ({
+  createContentState
+});
 const mapDispatchToProps = { createContent };
 
 export default connect(
