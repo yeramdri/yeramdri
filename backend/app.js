@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const card = require('./routes/card');
+const create = require('./routes/create');
 const life = require('./routes/life');
 const bible = require('./routes/bible');
 const ministry = require('./routes/ministry');
@@ -49,6 +50,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/card', card);
+app.use('/create', create);
 app.use('/bible', bible);
 app.use('/life', life);
 app.use('/ministry', ministry);
