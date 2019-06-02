@@ -9,8 +9,10 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const card = require('./routes/card');
+const create = require('./routes/create');
 const life = require('./routes/life');
 const bible = require('./routes/bible');
+const ministry = require('./routes/ministry');
 
 const app = express();
 const port = process.env.PORT || 6508;
@@ -48,8 +50,10 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/card', card);
+app.use('/create', create);
 app.use('/bible', bible);
 app.use('/life', life);
+app.use('/ministry', ministry);
 
 app.listen(port, function (){
   console.log(`Server running port ${port}`)
