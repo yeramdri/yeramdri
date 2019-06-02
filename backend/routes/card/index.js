@@ -62,25 +62,57 @@ router.post('/', function (request, response) {
             flag = 1; 
           }
         })
-        if (files.userfile.name !== '') {
+        if (files.image.name !== '') {
           let s3 = new AWS.S3();
-          let params = {
-            Bucket: 'yramdri',
-            Key: files.userfile.name,
-            ACL: 'public-read',
-            Body: require('fs').createReadStream(files.userfile.path)
-          }
-          s3.upload(params, function(err, data) {
-            let result = '';
-            if (err) {
-              result = 'Fail';
-              throw err;
-            } else result = 'Success';
-            let cardInsert = new card(fields, false)
-            cardInsert.save().then(() => {
-              response.sendStatus(200);
+          if (fields.type == 'life') {
+            let params = {
+              Bucket: `yramdri/life/life-${fields.typeId}` ,
+              Key: files.image.name,
+              ACL: 'public-read',
+              Body: require('fs').createReadStream(files.image._writeStream.path)
+            }
+            multiMedia = {}
+            fields.multiMedia = [];
+            multiMedia['type'] = 'img';
+            multiMedia['url'] = `${aws_data['s3_domain']}/life/life-${fields.typeId}/${files.image.name}`;
+            fields.multiMedia.push(multiMedia);
+            s3.upload(params, function(err, data) {
+              let result = '';
+              if (err) {
+                result = 'Fail';
+                throw err;
+              } else result = 'Success';
+              let cardInsert = new card(fields, false)
+              cardInsert.save().then(() => {
+                response.sendStatus(200);
+              })
+              console.log(result);
             })
-          })
+          } else if (fields.type == 'bible') {
+            let params = {
+              Bucket: `yramdri/bible/bible-${fields.typeId}`,
+              Key: files.image.name,
+              ACL: 'public-read',
+              Body: require('fs').createReadStream(files.image._writeStream.path)
+            }
+            multiMedia = {}
+            fields.multiMedia = [];
+            multiMedia['type'] = 'img';
+            multiMedia['url'] = `${aws_data['s3_domain']}/bible/bible-${fields.typeId}/${files.image.name}`;
+            fields.multiMedia.push(multiMedia);
+            s3.upload(params, function(err, data) {
+              let result = '';
+              if (err) {
+                result = 'Fail';
+                throw err;
+              } else result = 'Success';
+              let cardInsert = new card(fields, false);
+              cardInsert.save().then(()=> {
+                response.sendStatus(200)
+              })
+              console.log(result);
+            })
+          }
         }
       }).catch(() => {
         response.sendStatus(500)
