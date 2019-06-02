@@ -60,6 +60,7 @@ router.post('/', function (request, response) {
           if (flag == 0 && card.type == fields.type) {
             fields.typeId = card.typeId + 1;
             flag = 1; 
+<<<<<<< HEAD
           }
         })
         if (files.image.name !== '') {
@@ -113,6 +114,29 @@ router.post('/', function (request, response) {
               console.log(result);
             })
           }
+=======
+          }
+        })
+        if (files.userfile.name !== '') {
+          let s3 = new AWS.S3();
+          let params = {
+            Bucket: 'yramdri',
+            Key: files.userfile.name,
+            ACL: 'public-read',
+            Body: require('fs').createReadStream(files.userfile.path)
+          }
+          s3.upload(params, function(err, data) {
+            let result = '';
+            if (err) {
+              result = 'Fail';
+              throw err;
+            } else result = 'Success';
+            let cardInsert = new card(fields, false)
+            cardInsert.save().then(() => {
+              response.sendStatus(200);
+            })
+          })
+>>>>>>> 411876c88273f24ab5595a5a03ef9af4fe7f73fd
         }
       }).catch(() => {
         response.sendStatus(500)
