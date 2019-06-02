@@ -49,50 +49,78 @@ router.get('/', function (request, response) {
  */
 
 router.post('/', function (request, response) {
-  let body = request.body;
   const form = new formidable.IncomingForm();
-  if (body.type == 'life' || body.type == 'bible') {
-    card.find({}).sort(sortById).then((cards) =>{
-      body.id = cards[0].id + 1;
-      let flag = 0;
-      cards.forEach(function (card) {
-        if (flag == 0 && card.type == body.type) {
-          body.typeId = card.typeId + 1;
-          flag = 1;
-        } 
-      })
-      form.parse(request, function (err, fields, files) {
-        if (err) throw err;
-        if (files.userfile.name !== '') {
-          let s3 = new AWS.S3()
-          let params = {
-            Bucket: 'yramdri',
-            Key: files.userfile.name,
-            ACL: 'public-read',
-            Body: require('fs').createReadStream(files.userfile.path)
+  form.multiples = true;
+  form.parse(request, function (err, fields, files) {
+    if (err) throw err;
+    if (fields.type == 'life' || fields.type == 'bible') {
+      card.find({}).sort(sortById).then((cards) => {
+        fields.id = cards[0].id + 1;
+        let flag = 0;
+        cards.forEach(function (card) {
+          if (flag == 0 && card.type == fields.type) {
+            fields.typeId = card.typeId + 1;
+            flag = 1; 
           }
-          s3.upload(params, function(err, data) {
-            let result = ''
-            if (err) {
-              result = 'Fail';
-              throw err;
+        })
+        if (files.image.length !== 0){
+          let s3 = new AWS.S3();
+          fields.multiMedia = [];
+          for (let i=0;i < files.image.length;i++) {
+            let params = {}
+            if (fields.type == 'life') {
+              params = {
+                Bucket: `yramdri/life/life-${fields.typeId}`,
+                Key: files.image[i].name,
+                ACL: 'public-read',
+                Body: require('fs').createReadStream(files.image[i]._writeStream.path)
+              }
+              let multiMedia = {};
+              multiMedia['type'] = 'img';
+              multiMedia['url'] = `${aws_data['s3_domain']}/life/life-${fields.typeId}/${files.image[i].name}`
+              fields.multiMedia.push(multiMedia);
+              s3.upload(params, function(err, data) {
+                let result = '';
+                if (err) {
+                  result = 'Fail';
+                  throw err;
+                } else result = 'Success';
+              })
+            } else {
+              params = {
+                Bucket: `yramdri/bible/bible-${fields.typeId}`,
+                Key: files.image[i].name,
+                ACL: 'public-read',
+                Body: require('fs').createReadStream(files.image[i]._writeStream.path)
+              }
+              let multiMedia = {};
+              multiMedia['type'] = 'img';
+              multiMedia['url'] = `${aws_data['s3_domain']}/bible/bible-${fields.typeId}/${files.image[i].name}`
+              fields.multiMedia.push(multiMedia);
+              s3.upload(params, function(err, data) {
+                let result = '';
+                if (err) {
+                  result = 'Fail';
+                  throw err;
+                } else result = 'Success';
+              })
             }
-            else result = 'Success';
-            let cardInsert = new card(body, false);
-            cardInsert.save().then(()=>{
-                response.sendStatus(200);
-            });
+          }
+          fields.thumbnail = fields.multiMedia[0].url;
+          let cardInsert = new card(fields, false);
+          cardInsert.save().then(()=> {
+            response.json({type: fields.type, typeId: fields.typeId});
           })
         }
-      });
-    }).catch(() => {
+      }).catch(() => {
+        response.sendStatus(500)
+      })
+    } else if (fields.type == 'ministry') {
+      response.sendStatus(400);
+    } else {
       response.sendStatus(500);
-    })
-  } else if (body.type == 'ministry') {
-    response.sendStatus(400);
-  } else {
-    response.sendStatus(500);
-  }
+    }
+  })
 })
 
 /**
