@@ -1,3 +1,4 @@
+import { push } from "react-router-redux";
 import { call, put, takeEvery, all } from "redux-saga/effects";
 import {
   getAllContents,
@@ -82,13 +83,14 @@ export function* watchLoadRecentContents() {
 
 function* createContentFlow({ data }) {
   try {
-    const res = yield call(postContent, data);
-    console.log(res);
-    debugger;
-    // id 로 리다이렉트? 어느부분에서 리다이렉트를 해주어야 할까...? 여기서 redux router push를 가져와야 하나..?
+    const {
+      data: { type, typeId }
+    } = yield call(postContent, data);
+
     yield put(createContentSuccess());
+    yield put(push(`/${type}/${typeId}`));
   } catch (err) {
-    yield put(createContentFailure());
+    yield put(createContentFailure(err));
   }
 }
 
