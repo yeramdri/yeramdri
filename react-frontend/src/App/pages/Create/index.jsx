@@ -5,7 +5,7 @@ import { createContent } from "src/redux/contents/actions";
 
 import PrevImgSlick from "./PrevImgSlick";
 import ImgUploadBtn from "./ImgUploadBtn";
-import CreateInputs from "./CreateInputs";
+import CreateTextFields from "./CreateTextFields";
 
 class Create extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Create extends Component {
     this.fileInput = createRef();
   }
 
-  _handleChange = e => {
+  _handleChangeInput = e => {
     const { name, value } = e.target;
     this.setState(() => ({ [name]: value }));
   };
@@ -95,7 +95,7 @@ class Create extends Component {
             name={"Pick Img!!"}
           />
         </PrevImgSlick>
-        <CreateInputs onChange={this._handleChange} />
+        <CreateTextFields onChange={this._handleChangeInput} />
         <button onClick={this._handleFileUpload}>Create</button>
       </section>
     );
