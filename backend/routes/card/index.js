@@ -63,10 +63,54 @@ router.post('/', function (request, response) {
             flag = 1; 
           }
         })
-        if (files.image.length !== 0){
+        if (files.image.length === undefined) {
+          let s3 = new AWS.S3();
+          let params = {};
+          fields.multiMedia = [];
+          if (fields.type == 'life') {
+            params = {
+              Bucket: `yramdri/life/life-${fields.typeId}`,
+              Key: files.image.name,
+              ACL: 'public-read',
+              Body: require('fs').createReadStream(files.image._writeStream.path)
+            }
+            let multiMedia = {};
+            multiMedia['type'] = 'img';
+            multiMedia['url'] = `${aws_data['s3_domain']}/life/life-${fields.typeId}/${files.image.name}`
+            fields.multiMedia.push(multiMedia);
+            s3.upload(params, function(err, data) {
+              let result = '';
+              if (err) {
+                result = 'Fail';
+                throw err;
+              } else result = 'Success'
+            })
+          } else {
+            let s3 = new AWS.S3();
+            let params = {};
+            fields.multiMedia = [];
+            params = {
+              Bucket: `yramdri/bible/bible-${fields.typeId}`,
+              Key: files.image.name,
+              ACL: 'public-read',
+              Body: require('fs').createReadStream(files.image._writeStream.path)
+            }
+            let multiMedia = {};
+            multiMedia['type'] = 'img';
+            multiMedia['url'] = `${aws_data['s3_domain']}/bible/bible-${fields.typeId}/${files.image.name}`
+            fields.multiMedia.push(multiMedia);
+            s3.upload(params, function(err, data) {
+              let result = '';
+              if (err) {
+                result = 'Fail';
+                throw err;
+              } else result = 'Success'
+            })
+          } 
+        } else {
           let s3 = new AWS.S3();
           fields.multiMedia = [];
-          for (let i=0;i < files.image.length;i++) {
+          for (let i = 0; i< files.image.length;i++) {
             let params = {}
             if (fields.type == 'life') {
               params = {
@@ -106,11 +150,6 @@ router.post('/', function (request, response) {
               })
             }
           }
-          fields.thumbnail = fields.multiMedia[0].url;
-          let cardInsert = new card(fields, false);
-          cardInsert.save().then(()=> {
-            response.json({type: fields.type, typeId: fields.typeId});
-          })
         }
       }).catch(() => {
         response.sendStatus(500)
