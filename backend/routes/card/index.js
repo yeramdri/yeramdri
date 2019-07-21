@@ -83,7 +83,14 @@ router.post('/', function (request, response) {
               if (err) {
                 result = 'Fail';
                 throw err;
-              } else result = 'Success'
+              } else {
+                result = 'Success'
+                fields.thumbnail = fields.multiMedia[0].url;
+                let cardInsert = new card(fields, false);
+                cardInsert.save().then(()=> {
+                  response.json({type: fields.type, typeId: fields.typeId});
+                })
+              }
             })
           } else {
             let s3 = new AWS.S3();
@@ -104,8 +111,16 @@ router.post('/', function (request, response) {
               if (err) {
                 result = 'Fail';
                 throw err;
-              } else result = 'Success'
+              } else {
+                result = 'Success'
+                fields.thumbnail = fields.multiMedia[0].url;
+                let cardInsert = new card(fields, false);
+                cardInsert.save().then(()=> {
+                  response.json({type: fields.type, typeId: fields.typeId});
+                })
+              }
             })
+
           } 
         } else {
           let s3 = new AWS.S3();
@@ -128,7 +143,14 @@ router.post('/', function (request, response) {
                 if (err) {
                   result = 'Fail';
                   throw err;
-                } else result = 'Success';
+                } else {
+                  result = 'Success';
+                  fields.thumbnail = fields.multiMedia[0].url;
+                  let cardInsert = new card(fields, false);
+                  cardInsert.save().then(()=> {
+                    response.json({type: fields.type, typeId: fields.typeId});
+                  })
+                }
               })
             } else {
               params = {
@@ -146,7 +168,14 @@ router.post('/', function (request, response) {
                 if (err) {
                   result = 'Fail';
                   throw err;
-                } else result = 'Success';
+                } else {
+                  result = 'Success';
+                  fields.thumbnail = fields.multiMedia[0].url;
+                  let cardInsert = new card(fields, false);
+                  cardInsert.save().then(()=> {
+                    response.json({type: fields.type, typeId: fields.typeId});
+                  })
+                }
               })
             }
           }
