@@ -1,4 +1,4 @@
 /node_modules
 /invisible
-
+.DS_Store
 .env
