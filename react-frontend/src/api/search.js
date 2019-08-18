@@ -10,8 +10,8 @@ export function getContent({ id, category }) {
 export function getContents({ keyword, category }) {
   const path =
     category === "results"
-      ? `https://www.yeramdri.com/card/result?search=${keyword}`
-      : `https://www.yeramdri.com/card/${category}/result?search=${keyword}`;
+      ? `https://www.yeramdri.net/card/result?search=${keyword}`
+      : `https://www.yeramdri.net/card/${category}/result?search=${keyword}`;
   return axios
     .get(path)
     .then(res => res)
@@ -20,7 +20,7 @@ export function getContents({ keyword, category }) {
 
 export function getAllContents() {
   return axios
-    .get(`https://www.yeramdri.com/bible-card/result`)
+    .get(`https://www.yeramdri.net/bible-card/result`)
     .then(res => res)
     .catch(err => { throw err });
 }
