@@ -30,7 +30,7 @@ class App extends Component {
       <Fragment>
         {/* 좋은 방법 아니다. 빠르게 하기 위한 임시 방편 */}
         {
-          window.location.pathname.includes('/new-main') 
+          window.location.pathname.includes('/new-main')
             ? (
               <div className={css.New}>
                 <header>
@@ -51,6 +51,11 @@ class App extends Component {
                     <Route {...routeProps} key={routeProps.path || ''} />
                   ))}
                 </Switch>
+                <footer>
+                  <Link to="/new-main">
+                    <img src={require("../assets/logo.png")}></img>
+                  </Link>
+                </footer>
               </div>
             )
             : <Sidebar
