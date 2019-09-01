@@ -11,7 +11,7 @@ function YoutubePlayer({ title, src, controls, showInfo, modestBranding }) {
     <div className={cx(`${moduleName}`)}>
       <iframe
         title={title}
-        src={`https://www.youtube.com/embed/${src}?controls=${controls}&showinfo=${showInfo}&modestbranding=${modestBranding}`}
+        src={`http://www.youtube.com/embed/${src}?controls=${controls}&showinfo=${showInfo}&modestbranding=${modestBranding}`}
         frameBorder="0"
         allow="autoplay; encrypted-media"
         allowFullScreen
