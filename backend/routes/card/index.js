@@ -28,7 +28,7 @@ router.use('/result', result)
  */
 
 router.get('/', function (request, response) {
-  card.find({}).sort(sortById).then((cards) => {
+  card.find({}).select('id thumbnail createdAt title').sort(sortById).then((cards) => {
     response.send(cards);
   });
 })
