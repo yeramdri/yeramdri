@@ -47,19 +47,19 @@ const routes = [{
         component: Create
     },
     {
-        path: '/new-main/yeramdri',
+        path: '/temp/yeramdri',
         component: NewYeramdri
     },
     {
-        path: '/new-main/contents',
+        path: '/temp/contents',
         component: NewContents
     },
     {
-        path: '/new-main/open-contents',
+        path: '/temp/open-contents',
         component: NewOpenContents
     },
     {
-        path: '/new-main',
+        path: '/temp',
         component: NewMain
     },
 ];
