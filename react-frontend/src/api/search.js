@@ -34,7 +34,7 @@ export function getRecentContents(category = "") {
 
 export function tempGetContent(id) {
   return axios
-    .get(`http://www.yeramdri.net/card/life/${id}`)
+    .get(`http://www.yeramdri.net/card/${id}`)
     .then(res => res)
     .catch(err => { throw err });
 }

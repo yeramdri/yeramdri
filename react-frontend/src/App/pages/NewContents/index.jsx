@@ -17,7 +17,6 @@ class NewContents extends Component {
 
   componentDidMount() {
     getAllContents().then(({ data }) => {
-      console.log(data)
       this.setState({contents: data});
     })
   }

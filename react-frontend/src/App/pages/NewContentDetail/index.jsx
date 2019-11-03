@@ -20,7 +20,6 @@ class NewContentDetail extends Component {
 
   componentDidMount() {
     tempGetContent(this.props.match.params.id).then(({data}) => {
-      console.log(data[0])
       this.setState({ content: data[0] });
     })
   }
@@ -35,7 +34,7 @@ class NewContentDetail extends Component {
         <div className={cx(`ContentDetail-right`)}>
           <h1 className={cx(`ContentDetail-right-title`)}>{title}</h1>
           <p className={cx(`ContentDetail-right-createdAt`)}>{createdAt.slice(0,10)}</p>
-          <p className={cx(`ContentDetail-right-description`)}>{lineBreakText(description)}</p>
+          <div className={cx(`ContentDetail-right-description`)}>{lineBreakText(description)}</div>
         </div>
       </div>
     )

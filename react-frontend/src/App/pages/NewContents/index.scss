@@ -27,6 +27,11 @@
     &-title {
       font-size: 20px;
       line-height: 25px;
+      text-overflow: ellipsis;
+      width: 50%;
+      white-space:nowrap;
+      text-align: left;
+      overflow:hidden;
     }
     &-date {
       font-size: 15px;
