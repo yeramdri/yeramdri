@@ -190,6 +190,12 @@ router.post('/', function (request, response) {
     }
   })
 })
+router.get('/:id', function(request, response) {
+  const cardId = request.params.id
+  card.find({id: cardId}).sort(sortById).then((cards) => {
+    response.send(cards)
+  })
+})
 
 /**
  * /card:
