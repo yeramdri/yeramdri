@@ -4,7 +4,6 @@
 }
 
 .ContentCard {
-  background: blue;
   width: 23%;
   margin-right: 1%;
   margin-left: 1%;
@@ -14,8 +13,10 @@
     padding-top: 100%;
     margin-bottom: 9px;
     overflow: hidden;
-    background-image: url("http://www.bare.kr/storage/a0be097c013bfb8e40775f08468ce3b2.jpg");
     border: 10px solid rgba(53, 53, 53, 1);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
   }
   &-text {
     display: flex;
