@@ -54,6 +54,7 @@ app.use('/create', create);
 app.use('/bible', bible);
 app.use('/life', life);
 app.use('/ministry', ministry);
+app.use('/temp', temp);
 
 app.listen(port, function (){
   console.log(`Server running port ${port}`)
