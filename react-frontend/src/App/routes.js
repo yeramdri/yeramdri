@@ -7,6 +7,7 @@ import Create from './pages/Create';
 import NewMain from './pages/NewMain';
 import NewYeramdri from './pages/NewYeramdri';
 import NewContents from './pages/NewContents/index.jsx';
+import NewContentDetail from './pages/NewContentDetail/index.jsx';
 import NewOpenContents from './pages/NewOpenContents';
 
 const routes = [{
@@ -49,6 +50,10 @@ const routes = [{
     {
         path: '/temp/yeramdri',
         component: NewYeramdri
+    },
+    {
+        path: '/temp/contents/:id',
+        component: NewContentDetail
     },
     {
         path: '/temp/contents',

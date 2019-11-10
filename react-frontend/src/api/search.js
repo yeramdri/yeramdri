@@ -20,7 +20,7 @@ export function getContents({ keyword, category }) {
 
 export function getAllContents() {
   return axios
-    .get(`http://www.yeramdri.net/bible-card/result`)
+    .get(`http://www.yeramdri.net/card/`)
     .then(res => res)
     .catch(err => { throw err });
 }
@@ -29,5 +29,12 @@ export function getRecentContents(category = "") {
   return axios
     .get(`${process.env.REACT_APP_YERAMDRI_URL}/card/${category}`)
     .then(res => res.data)
+    .catch(err => { throw err });
+}
+
+export function tempGetContent(id) {
+  return axios
+    .get(`http://www.yeramdri.net/card/${id}`)
+    .then(res => res)
     .catch(err => { throw err });
 }
