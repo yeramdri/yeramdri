@@ -13,6 +13,7 @@ const create = require('./routes/create');
 const life = require('./routes/life');
 const bible = require('./routes/bible');
 const ministry = require('./routes/ministry');
+const temp = require('./routes/temp')
 
 const app = express();
 const port = process.env.PORT || 6508;
