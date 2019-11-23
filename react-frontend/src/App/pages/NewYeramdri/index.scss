@@ -1,0 +1,114 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
+.introduction {
+  font-family: 'Nanum Myeongjo', serif;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding-top: 88px;
+  .content-stack{
+    display: inline-block;
+    width: 770px;
+    .content {
+      font-size: 25px;
+      text-align: left;
+      margin-bottom: 120px;
+      &-location {
+        margin-bottom: 28px;
+      }
+    }
+    .stack {
+      &-location { 
+        text-align: left;
+        margin-bottom: 30px;
+        .work {
+          font-size: 25px;
+        }
+        .detail {
+          font-size: 22px;
+          margin-left: 22px;
+        }
+      }
+    }
+  }
+  .title-sns {
+    display: inline-block;
+    width: 450px;
+    .title {
+      position: relative;
+      margin-left: 120px;
+      width: 263px;
+      height: 457px;
+      margin-right: 67px;
+      margin-bottom:183px; 
+      .ye {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-weight: bold;
+        font-size: 180px;
+      }
+      .ram {
+        top: 110px;
+        right: 0px;
+        position: absolute;
+        font-weight: bold;
+        font-size: 120px;
+      }
+      .d {
+        top: 210px;
+        left: 40px;
+        position: absolute;
+        font-size: 150px;
+      }
+      .ri {
+        bottom: 0px;
+        right: 0px;
+        position: absolute;
+        font-size: 80px;
+      }
+    }
+    .sns {
+      width: 263px;
+      margin-left: 120px;
+      margin-right: 67px;
+      margin-bottom: 67px;
+      position: relative;
+      .instagram {
+        position: relative;
+        height: 44px;
+        width: 263px;
+        margin-bottom: 5px;
+      }
+      .facebook {
+        position: relative;
+        height: 44px;
+        width: 263px;
+        .text {
+          top: 13px;
+        }
+      }
+      .text {
+        display: inline-block;
+        position: absolute;
+        top: 0px;
+        right: 50px;
+        text-align: left;
+      }
+      .logo {
+        display: inline-block;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        width: 44px;
+        height: 44px;
+        img {
+          width: 44px;
+          height: 44px;
+        }
+      }
+    }
+  }
+
+}
