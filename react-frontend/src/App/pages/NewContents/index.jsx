@@ -26,7 +26,7 @@ class NewContents extends Component {
       <div className={cx(`${moduleName}`)}>
         {this.state.contents.map((content) => (
             <div className={cx(`ContentCard`)} key={content.id}>
-              <Link to={`/temp/contents/${content.id}`}>
+              <Link to={`/contents/${content.id}`}>
                 <div className={cx(`ContentCard-img`)} style={{backgroundImage: `url(${content.thumbnail})`}} />
                 <div className={cx(`ContentCard-text`)}>
                   <p className={cx(`ContentCard-text-title`)}>{content.title}</p>
