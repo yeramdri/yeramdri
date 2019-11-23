@@ -8,6 +8,10 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
+const yeramdri = require('./routes/yeramdri');
+const contents = require('./routes/contents');
+const openContents = require('./routes/openContents');
+
 const card = require('./routes/card');
 const create = require('./routes/create');
 const life = require('./routes/life');
@@ -18,8 +22,8 @@ const temp = require('./routes/temp')
 const app = express();
 const port = process.env.PORT || 6508;
 
-var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
-app.use(redirectToHTTPS([/13.209.190.90/]));
+// var redirectToHTTPS = require('express-http-to-https').redirectToHTTPS
+// app.use(redirectToHTTPS([/13.209.190.90/]));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -50,12 +54,16 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
+app.use('/yeramdri', yeramdri);
+app.use('/contents', contents);
+app.use('/open-contents', openContents);
+
 app.use('/card', card);
 app.use('/create', create);
 app.use('/bible', bible);
 app.use('/life', life);
 app.use('/ministry', ministry);
-app.use('/temp', temp);
+// app.use('/temp', temp);
 
 app.listen(port, function (){
   console.log(`Server running port ${port}`)

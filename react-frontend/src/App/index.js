@@ -33,19 +33,19 @@ class App extends Component {
       <Fragment>
         {/* 좋은 방법 아니다. 빠르게 하기 위한 임시 방편 */}
         {
-          window.location.pathname.includes('/temp')
+          window.location.pathname.includes('/')
             ? (
               <div className={css.New}>
                 <header>
                   <ul>
                     <li>
-                      <NavLink to="/temp/yeramdri" activeClassName={cx('active')}>예람드리</NavLink>
+                      <NavLink to="/yeramdri" activeClassName={cx('active')}>예람드리</NavLink>
                     </li>
                     <li>
-                      <NavLink to="/temp/contents" activeClassName={cx('active')}>컨텐츠</NavLink>
+                      <NavLink to="/contents" activeClassName={cx('active')}>컨텐츠</NavLink>
                     </li>
                     <li>
-                      <NavLink to="/temp/open-contents" activeClassName={cx('active')}>오픈 컨텐츠</NavLink>
+                      <NavLink to="/open-contents" activeClassName={cx('active')}>오픈 컨텐츠</NavLink>
                     </li>
                   </ul>
                 </header>
@@ -55,7 +55,7 @@ class App extends Component {
                   ))}
                 </Switch>
                 <footer>
-                  <Link to="/temp">
+                  <Link to="/">
                     <img src={require("../assets/logo.png")}></img>
                   </Link>
                 </footer>
