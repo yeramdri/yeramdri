@@ -10,61 +10,62 @@ import NewContents from './pages/NewContents/index.jsx';
 import NewContentDetail from './pages/NewContentDetail/index.jsx';
 import NewOpenContents from './pages/NewOpenContents';
 
-const routes = [{
-        path: '/',
-        exact: true,
-        component: Main,
-    },
+const routes = [
+    // {
+    //     path: '/',
+    //     exact: true,
+    //     component: Main,
+    // },
+    // {
+    //     path: '/results',
+    //     component: SearchResult,
+    // },
+    // {
+    //     path: '/bible/results',
+    //     component: SearchResult,
+    // },
+    // {
+    //     path: '/bible/:id',
+    //     component: ContentDetail,
+    // },
+    // {
+    //     path: '/bible',
+    //     component: Bible,
+    // },
+    // {
+    //     path: '/life/results',
+    //     component: SearchResult,
+    // },
+    // {
+    //     path: '/life/:id',
+    //     component: ContentDetail,
+    // },
+    // {
+    //     path: '/life',
+    //     component: Life,
+    // },
+    // {
+    //     path: '/create',
+    //     component: Create
+    // },
     {
-        path: '/results',
-        component: SearchResult,
-    },
-    {
-        path: '/bible/results',
-        component: SearchResult,
-    },
-    {
-        path: '/bible/:id',
-        component: ContentDetail,
-    },
-    {
-        path: '/bible',
-        component: Bible,
-    },
-    {
-        path: '/life/results',
-        component: SearchResult,
-    },
-    {
-        path: '/life/:id',
-        component: ContentDetail,
-    },
-    {
-        path: '/life',
-        component: Life,
-    },
-    {
-        path: '/create',
-        component: Create
-    },
-    {
-        path: '/temp/yeramdri',
+        path: '/yeramdri',
         component: NewYeramdri
     },
     {
-        path: '/temp/contents/:id',
+        path: '/contents/:id',
         component: NewContentDetail
     },
     {
-        path: '/temp/contents',
+        path: '/contents',
         component: NewContents
     },
     {
-        path: '/temp/open-contents',
+        path: '/open-contents',
         component: NewOpenContents
     },
     {
-        path: '/temp',
+        path: '/',
         component: NewMain
     },
 ];
