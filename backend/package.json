@@ -6,7 +6,7 @@
     "start": "pm2 start app.js --watch"
   },
   "dependencies": {
-    "aws-sdk": "^2.463.0",
+    "aws-sdk": "^2.814.0",
     "connect-history-api-fallback": "^1.5.0",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
